@@ -1,0 +1,51 @@
+@startuml Component Diagram - Sistem Informasi Jamaah Haji
+
+[Web Browser] as Browser
+
+package "Frontend" {
+  [Admin Dashboard]
+  [User Dashboard]
+  [Jamaah Management]
+  [Pembimbing Management]
+  [Berita Management]
+  [Report Generator]
+  [Search Module]
+  [File Upload Module]
+}
+
+package "Backend" {
+  [Authentication Module]
+  [Database Layer]
+  [Business Logic]
+  [PDF Generator]
+  [WhatsApp API]
+}
+
+package "Database" {
+  [MySQL Database]
+}
+
+Browser --> [Admin Dashboard] : HTTP
+Browser --> [User Dashboard] : HTTP
+Browser --> [Jamaah Management] : HTTP
+Browser --> [Pembimbing Management] : HTTP
+Browser --> [Berita Management] : HTTP
+Browser --> [Report Generator] : HTTP
+Browser --> [Search Module] : HTTP
+Browser --> [File Upload Module] : HTTP
+
+[Admin Dashboard] --> [Authentication Module] : authenticate
+[User Dashboard] --> [Authentication Module] : authenticate
+[Jamaah Management] --> [Business Logic] : CRUD
+[Pembimbing Management] --> [Business Logic] : CRUD
+[Berita Management] --> [Business Logic] : CRUD
+[Report Generator] --> [PDF Generator] : generate
+[Search Module] --> [Business Logic] : search
+[File Upload Module] --> [Business Logic] : upload
+
+[Business Logic] --> [Database Layer] : query
+[Business Logic] --> [WhatsApp API] : notify
+[Database Layer] --> [MySQL Database] : persist
+[PDF Generator] --> [Database Layer] : fetch
+
+@enduml

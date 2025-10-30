@@ -1,0 +1,65 @@
+  body {
+            background: url('https://images.pexels.com/photos/2291789/pexels-photo-2291789.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            color: #226d3d;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.15);
+            color: #388e3c;
+            text-align: center;
+            padding: 24px 0 10px 0;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-radius: 0 0 18px 18px;
+            box-shadow: none;
+        }
+
+        .report-container {
+            margin: 20px 0;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(34, 109, 61, 0.10);
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #e0e7c7;
+        }
+        .report-header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #388e3c;
+            padding-bottom: 10px;
+        }
+        .report-header h5 {
+            font-weight: bold;
+            margin: 0;
+            color: #388e3c;
+        }
+        .report-header h6 {
+            font-weight: bold;
+            margin: 5px 0;
+            color: #226d3d;
+        }
+        .report-header p {
+            margin: 5px 0;
+            color: #226d3d;
+        }
+        .report-footer {
+            text-align: right;
+            margin-top: 20px;
+            border-top: 1px solid #e0e7c7;
+            padding-top: 10px;
+            color: #226d3d;
+        }
+        @media print {
+            .card, .btn, .header, .actions {
+                display: none;
+            }
+            .report-container {
+                border: none;
+                padding: 0;
+                background: #fff;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }

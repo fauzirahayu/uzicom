@@ -1,0 +1,63 @@
+body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.pexels.com/photos/2291789/pexels-photo-2291789.jpeg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .conten {
+      margin: 60px auto;
+      max-width: 1000px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      padding: 60px 60px;
+      color: #226d3d;
+      text-align: center;
+      border: 2px solid #e0e7c7;
+    }
+
+    .conten h2 {
+      color: #226d3d;
+      font-weight: bold;
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+    }
+
+    .conten p {
+      color: #6bbf59;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: #e9f5ec;
+      padding: 30px;
+      border-radius: 12px;
+      margin: 10px;
+      flex: 1;
+      min-width: 120px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .stat-card i {
+      font-size: 2rem;
+      color: #bfa22e;
+      margin-bottom: 10px;
+    }
+
+    .stat-card h5 {
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #226d3d;
+    }
+
+    .stat-card p {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #bfa22e;
+    }

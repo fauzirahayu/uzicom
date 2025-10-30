@@ -1,0 +1,120 @@
+@startuml Class Diagram - Sistem Informasi Jamaah Haji
+
+class Admin {
+  + id : int
+  + username : string
+  + email : string
+  + password : string
+  --
+  + login() : bool
+  + logout() : void
+  + addJamaah() : void
+  + editJamaah() : void
+  + deleteJamaah() : void
+  + generateReport() : void
+  + addAdmin() : void
+}
+
+class Pengguna {
+  + id : int
+  + username : string
+  + email : string
+  + password : string
+  --
+  + login() : bool
+  + logout() : void
+  + viewDashboard() : void
+  + searchJamaah() : void
+  + viewDetail() : void
+}
+
+class Jamaah {
+  + id : int
+  + nama : string
+  + nik : string
+  + no_porsi : string
+  + tempat_lahir : string
+  + tanggal_lahir : date
+  + jenis_kelamin : char
+  + alamat : string
+  + no_telepon : string
+  + email : string
+  + foto : string
+  + id_pembimbing : int
+  --
+  + getDetail() : array
+  + updateData() : void
+}
+
+class Pembimbing {
+  + id : int
+  + nama : string
+  + nik : string
+  + tempat_lahir : string
+  + tanggal_lahir : date
+  + jenis_kelamin : char
+  + alamat : string
+  + no_telepon : string
+  + email : string
+  + foto : string
+  --
+  + getDetail() : array
+  + updateData() : void
+}
+
+class Berita {
+  + id : int
+  + judul : string
+  + konten : string
+  + tanggal_publikasi : date
+  + penulis : string
+  + gambar : string
+  --
+  + getDetail() : array
+  + updateData() : void
+}
+
+class Database {
+  + connect() : void
+  + query() : result
+  + insert() : bool
+  + update() : bool
+  + delete() : bool
+}
+
+class SessionManager {
+  + startSession() : void
+  + setSession() : void
+  + getSession() : mixed
+  + destroySession() : void
+}
+
+class FileUpload {
+  + uploadFile() : string
+  + validateFile() : bool
+}
+
+class PDFGenerator {
+  + generatePDF() : void
+  + downloadPDF() : void
+}
+
+Admin -- Jamaah : manages
+Admin -- Pembimbing : manages
+Admin -- Berita : manages
+Admin -- PDFGenerator : uses
+Pengguna -- Jamaah : views
+Pengguna -- Pembimbing : views
+Pengguna -- Berita : views
+Jamaah -- Pembimbing : belongs to
+Jamaah -- Database : persists in
+Pembimbing -- Database : persists in
+Berita -- Database : persists in
+Admin -- Database : uses
+Pengguna -- Database : uses
+Admin -- SessionManager : uses
+Pengguna -- SessionManager : uses
+Admin -- FileUpload : uses
+Pembimbing -- FileUpload : uses
+
+@enduml

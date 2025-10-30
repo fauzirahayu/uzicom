@@ -1,0 +1,112 @@
+@startuml ERD - Sistem Informasi Jamaah Haji
+
+entity "admin" as admin {
+  + id : int <<PK>>
+  --
+  username : varchar(250)
+  email : varchar(250)
+  password : varchar(250)
+}
+
+entity "pengguna" as pengguna {
+  + id : int <<PK>>
+  --
+  username : varchar(250)
+  email : varchar(250)
+  password : varchar(250)
+}
+
+entity "jamaah_haji" as jamaah_haji {
+  + id : int <<PK>>
+  --
+  nama : varchar(255)
+  nik : varchar(20)
+  no_porsi : varchar(50)
+  tempat_lahir : varchar(100)
+  tanggal_lahir : date
+  jenis_kelamin : enum('L','P')
+  alamat : text
+  no_telepon : varchar(15)
+  email : varchar(100)
+  foto : varchar(255)
+  id_pembimbing : int <<FK>>
+}
+
+entity "jamaah_2027" as jamaah_2027 {
+  + id : int <<PK>>
+  --
+  nama : varchar(255)
+  nik : varchar(20)
+  no_porsi : varchar(50)
+  tempat_lahir : varchar(100)
+  tanggal_lahir : date
+  jenis_kelamin : enum('L','P')
+  alamat : text
+  no_telepon : varchar(15)
+  email : varchar(100)
+  foto : varchar(255)
+  id_pembimbing : int <<FK>>
+}
+
+entity "jamaah_2028" as jamaah_2028 {
+  + id : int <<PK>>
+  --
+  nama : varchar(255)
+  nik : varchar(20)
+  no_porsi : varchar(50)
+  tempat_lahir : varchar(100)
+  tanggal_lahir : date
+  jenis_kelamin : enum('L','P')
+  alamat : text
+  no_telepon : varchar(15)
+  email : varchar(100)
+  foto : varchar(255)
+  id_pembimbing : int <<FK>>
+}
+
+entity "jamaah_2029" as jamaah_2029 {
+  + id : int <<PK>>
+  --
+  nama : varchar(255)
+  nik : varchar(20)
+  no_porsi : varchar(50)
+  tempat_lahir : varchar(100)
+  tanggal_lahir : date
+  jenis_kelamin : enum('L','P')
+  alamat : text
+  no_telepon : varchar(15)
+  email : varchar(100)
+  foto : varchar(255)
+  id_pembimbing : int <<FK>>
+}
+
+entity "pembimbing_haji" as pembimbing_haji {
+  + id : int <<PK>>
+  --
+  nama : varchar(255)
+  nik : varchar(20)
+  tempat_lahir : varchar(100)
+  tanggal_lahir : date
+  jenis_kelamin : enum('L','P')
+  alamat : text
+  no_telepon : varchar(15)
+  email : varchar(100)
+  foto : varchar(255)
+}
+
+entity "berita" as berita {
+  + id : int <<PK>>
+  --
+  judul : varchar(255)
+  konten : text
+  tanggal_publikasi : date
+  penulis : varchar(100)
+  gambar : varchar(255)
+}
+
+jamaah_haji }o--|| pembimbing_haji : "id_pembimbing"
+jamaah_2027 }o--|| pembimbing_haji : "id_pembimbing"
+jamaah_2028 }o--|| pembimbing_haji : "id_pembimbing"
+jamaah_2029 }o--|| pembimbing_haji : "id_pembimbing"
+
+@enduml

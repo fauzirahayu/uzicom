@@ -1,0 +1,32 @@
+        body {
+            background: url('https://images.pexels.com/photos/2291789/pexels-photo-2291789.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .card-form {
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.8);
+            padding: 40px 30px;
+            max-width: 400px;
+            margin: 60px auto;
+        }
+        .form-title {
+            color: #388e3c;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+        }
+        .form-label {
+            font-weight: 500;
+            color: #2e7d32;
+        }
+        .btn-primary {
+            background-color: #388e3c;
+            border: none;
+            font-weight: bold;
+        }
+        .btn-primary:hover {
+            background-color: #2e7d32;
+        }

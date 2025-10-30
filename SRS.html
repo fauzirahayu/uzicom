@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Requirements Specification (SRS) - Sistem Informasi dan Daftar Jamaah Haji</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; color: black; }
+        h1, h2, h3, h4 { color: black; }
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; color: black; }
+        th { background-color: #f2f2f2; }
+        ul { margin-left: 20px; }
+        .section { margin-bottom: 30px; border-bottom: 1px solid #ddd; padding-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Software Requirements Specification (SRS) - Sistem Informasi dan Daftar Jamaah Haji</h1>
+    <p><strong>Versi:</strong> 1.0</p>
+    <p><strong>Tanggal:</strong> 25 Oktober 2025</p>
+    <p><strong>Penulis:</strong> Tim Pengembang</p>
+
+    <div class="section">
+        <h2>1. Pendahuluan</h2>
+
+        <h3>1.1 Tujuan</h3>
+        <p>Dokumen ini menjelaskan kebutuhan perangkat lunak untuk Sistem Informasi Data Jamaah Haji. Tujuannya adalah:</p>
+        <ul>
+            <li>Menyediakan sarana penyimpanan & pengelolaan data jamaah secara terpusat.</li>
+            <li>Mempermudah petugas dalam melakukan input, edit, hapus, dan pencarian data jamaah.</li>
+            <li>Memberikan akses terbatas bagi jamaah untuk melihat data mereka tanpa bisa mengubah.</li>
+            <li>User/Jamaah bisa mendaftarkan diri.</li>
+            <li>Menyediakan keamanan data dengan pembatasan akses berdasarkan role (Admin/User).</li>
+        </ul>
+
+        <h3>1.2 Lingkup Sistem</h3>
+        <p>Sistem ini digunakan oleh:</p>
+        <ul>
+            <li>Admin/Petugas Haji → dapat melakukan CRUD data jamaah, tambah admin, upload foto, jika user/jamaah tidak menjawab via WhatsApp selama 24 jam maka data akan dihapus dari web. Pesan WhatsApp: "Halo [nama], selamat Anda telah terdaftar di web kami yang bekerja sama dengan Kemenag. Untuk melihat data Anda, silakan kunjungi web kami di: https://jamaah-haji.local".</li>
+            <li>User/Jamaah → hanya dapat melihat data dan mencari informasi keberangkatan, lihat detail profil jamaah.</li>
+        </ul>
+        <p>Sistem mencakup:</p>
+        <ul>
+            <li>Dashboard jumlah jamaah.</li>
+            <li>Pencarian data jamaah.</li>
+            <li>Detail profil jamaah.</li>
+            <li>Validasi & keamanan data (login role, hashing password).</li>
+        </ul>
+
+        <h3>1.3 Definisi & Singkatan</h3>
+        <ul>
+            <li><strong>CRUD:</strong> Create, Read, Update, Delete.</li>
+            <li><strong>NIK:</strong> Nomor Induk Kependudukan.</li>
+            <li><strong>SRS:</strong> Software Requirements Specification.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Deskripsi Umum</h2>
+
+        <h3>2.1 Perspektif Produk</h3>
+        <p>Sistem ini berbasis web, dapat diakses menggunakan browser. Data tersimpan pada database terpusat dan dikelola oleh admin.</p>
+
+        <h3>2.2 Fungsi Utama</h3>
+        <ul>
+            <li>Tambah jamaah baru.</li>
+            <li>Edit & hapus data jamaah.</li>
+            <li>Pencarian data jamaah berdasarkan nama, nik, no porsi.</li>
+            <li>Dashboard jumlah jamaah.</li>
+            <li>Pembuatan laporan jamaah dalam bentuk PDF/Excel.</li>
+            <li>Upload foto jamaah.</li>
+            <li>Role-based access (Admin/User).</li>
+        </ul>
+
+        <h3>2.3 Karakteristik Pengguna</h3>
+        <ul>
+            <li><strong>Admin/Petugas:</strong> memiliki kemampuan menggunakan komputer dasar.</li>
+            <li><strong>Jamaah:</strong> pengguna umum, hanya perlu bisa mencari, melihat data, </li>
+        </ul>
+
+        <h3>2.4 Batasan Sistem</h3>
+        <ul>
+            <li>Web berbasis PHP/MySQL.</li>
+            <li>Browser yang didukung: Chrome, Firefox, Edge.</li>
+            <li>Foto jamaah maksimal 2 MB (format JPG/PNG).</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>3. Kebutuhan Fungsional</h2>
+
+        <h3>3.1 Fungsi Admin</h3>
+        <ul>
+            <li>Tambah data jamaah baru.</li>
+            <li>Edit data jamaah.</li>
+            <li>Hapus data jamaah.</li>
+            <li>Tambah akun admin baru.</li>
+            <li>Melihat jumlah total jamaah di dashboard.</li>
+            <li>Pencarian data jamaah berdasarkan nama, nik, no porsi.</li>
+            <li>Upload foto jamaah.</li>
+            <li>Mencetak laporan data jamaah / generate laporan berdasarkan filter (jadwal keberangkatan, usia, jenis kelamin, dsb).</li>
+        </ul>
+
+        <h3>3.2 Fungsi User (Jamaah)</h3>
+        <ul>
+            <li>Melihat dashboard (jumlah jamaah).</li>
+            <li>Melihat daftar data jamaah.</li>
+            <li>Pencarian data jamaah berdasarkan nama, nik, no porsi.</li>
+            <li>Melihat detail profil jamaah.</li>
+            <li>Tidak dapat menambah, mengedit, atau menghapus data.</li>
+
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>4. Kebutuhan Non-Fungsional</h2>
+
+        <h3>4.1 Validasi Data</h3>
+        <ul>
+            <li>NIK harus unik.</li>
+            <li>Format tanggal harus valid.</li>
+            <li>Nomor telepon hanya angka (10–15 digit).</li>
+            <li>Jenis kelamin: hanya "Laki-laki" / "Perempuan".</li>
+            <li>Foto jamaah JPG/PNG, maks 2 MB.</li>
+        </ul>
+
+        <h3>4.2 Keamanan</h3>
+        <ul>
+            <li>Login menggunakan role (Admin/User).</li>
+            <li>Password disimpan dengan hashing (bcrypt).</li>
+            <li>Backup data berkala.</li>
+        </ul>
+
+        <h3>4.3 Kinerja</h3>
+        <ul>
+            <li>Respon sistem maksimal 3 detik untuk pencarian data.</li>
+            <li>Dapat menampung hingga 10.000 data jamaah.</li>
+        </ul>
+
+        <h3>4.4 Reliability</h3>
+        <ul>
+            <li>Sistem harus tersedia minimal 99% (uptime).</li>
+            <li>Data tetap aman walau terjadi crash, berkat backup rutin.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>5. Kebutuhan Data</h2>
+        <p>Data Jamaah yang disimpan:</p>
+        <ul>
+            <li>Nama Lengkap</li>
+            <li>NIK</li>
+            <li>No Porsi</li>
+            <li>Jenis Kelamin</li>
+            <li>Tanggal Lahir</li>
+            <li>Alamat</li>
+            <li>Nomor Telepon</li>
+            <li>Nomor Paspor</li>
+            <li>Golongan Darah</li>
+            <li>Penyakit Bawaan</li>
+            <li>Jadwal Keberangkatan</li>
+            <li>Tanggal Pulang</li>
+            <li>Foto Jamaah</li>
+            <li>Status</li>
+            <li>ID Pembimbing</li>
+        </ul>
+        <p>Data laporan dapat berisi rekap jumlah jamaah, daftar jamaah sesuai jadwal, detail kesehatan jamaah, dsb.</p>
+    </div>
+
+    <div class="section">
+        <h2>6. Batasan Desain</h2>
+        <ul>
+            <li>Tampilan sederhana (user-friendly).</li>
+            <li>Navigasi jelas antara halaman admin & user.</li>
+            <li>Menggunakan Bootstrap atau CSS untuk UI.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>7. Lampiran</h2>
+        <ul>
+            <li>Use Case: diagrams.html (section 2)</li>
+            <li>ERD: diagrams.html (section 1)</li>
+            <li>Class Diagram: diagrams.html (section 3)</li>
+            <li>Sequence Diagram: diagrams.html (section 4)</li>
+            <li>Activity Diagram: diagrams.html (section 5)</li>
+            <li>Component Diagram: diagrams.html (section 6)</li>
+            <li>desain figma</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>2. Analysis (Analisis)</h2>
+
+        <h3>2.1 Analisis Kelayakan</h3>
+        <p><strong>Teknis:</strong> Sistem memungkinkan dikembangkan menggunakan teknologi web (PHP/MySQL, HTML, CSS, Bootstrap, JS). Infrastruktur server yang dibutuhkan relatif standar (Laragon untuk pengembangan, hosting biasa untuk deployment).</p>
+        <p><strong>Finansial:</strong> Biaya pengembangan rendah karena menggunakan software open source (PHP, MySQL, Bootstrap). Hanya memerlukan biaya server & domain.</p>
+        <p><strong>Operasional:</strong> Admin/petugas sudah terbiasa menggunakan komputer dasar, sehingga sistem dapat dijalankan dengan mudah.</p>
+
+        <h3>2.2 Modeling & Diagram</h3>
+        <p><strong>Flowchart:</strong> menggambarkan alur proses (login, input data jamaah, pencarian, dan output laporan/dashboard).</p>
+        <p><strong>Use Case Diagram:</strong></p>
+        <ul>
+            <li>Aktor: Admin, Jamaah (User).</li>
+            <li>Admin dapat: Login, Tambah/Edit/Hapus Data, Tambah Admin, Upload Foto, Cari Jamaah, Lihat Dashboard.</li>
+            <li>User dapat: Lihat Dashboard, Lihat Data Jamaah, Cari Jamaah, Lihat Detail Profil.</li>
+        </ul>
+        <p><strong>ERD (Entity Relationship Diagram):</strong></p>
+        <ul>
+            <li>Entitas: Jamaah (jamaah_haji, jamaah_2027, jamaah_2028, jamaah_2029), Admin, User (pengguna), Pembimbing, Berita.</li>
+            <li>Relasi: Admin mengelola data Jamaah, Jamaah memiliki Jadwal Keberangkatan, Pembimbing terkait Jamaah.</li>
+        </ul>
+
+        <h3>2.3 Perencanaan Teknologi</h3>
+        <ul>
+            <li>Bahasa Pemrograman: PHP (native).</li>
+            <li>Database: MySQL.</li>
+            <li>Frontend: HTML, CSS, Bootstrap (opsional: JavaScript).</li>
+            <li>Web Server: Apache/Nginx.</li>
+            <li>Keamanan: bcrypt untuk password hashing, validasi input, proteksi SQL Injection/XSS.</li>
+        </ul>
+
+        <h3>2.4 Risiko & Solusi</h3>
+        <ul>
+            <li>Risiko: Mati lampu.</li>
+            <li>Solusi: menggunakan genset, nunggu lampu nyala kembali.</li>
+            <li>Risiko: Jaringan mati.</li>
+            <li>Solusi: Pake jaringan darurat seperti lewat hp, nunggu jaringan kembali seperti semula.</li>
+            <li>Risiko: Human error (admin salah input).</li>
+            <li>Solusi: Validasi form ketat & notifikasi konfirmasi sebelum simpan/hapus.</li>
+        </ul>
+    </div>
+</body>
+</html>

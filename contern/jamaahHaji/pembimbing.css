@@ -1,0 +1,109 @@
+body {
+    background: url('https://images.pexels.com/photos/2291789/pexels-photo-2291789.jpeg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: 'Segoe UI', sans-serif;
+    color: #226d3d;
+}
+
+.header {
+    background: rgba(255, 255, 255, 0.15);
+    color: #388e3c;
+    text-align: center;
+    padding: 24px 0 10px 0;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-radius: 0 0 18px 18px;
+    box-shadow: none;
+}
+
+.floating-add-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 100;
+    background-color: #388e3c;
+    color: #fff;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(34, 109, 61, 0.18);
+    font-size: 2rem;
+    border: none;
+    transition: background 0.2s;
+}
+
+.floating-add-btn:hover {
+    background-color: #bfa22e;
+    color: #fff;
+}
+
+.card-pembimbing {
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(34, 109, 61, 0.10);
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #e0e7c7;
+}
+
+.card-title {
+    color: #388e3c;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.card-icon {
+    font-size: 2rem;
+    color: #bfa22e;
+    margin-right: 10px;
+}
+
+.card-text {
+    color: #226d3d;
+    font-size: 1rem;
+    margin-bottom: 6px;
+}
+
+.card-footer {
+    background: none;
+    border-top: none;
+    text-align: right;
+}
+
+.edit-btn,
+.hapus-btn {
+    background-color: #e0e7c7;
+    color: #388e3c;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    margin-left: 6px;
+    font-weight: 500;
+    transition: 0.2s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.edit-btn:hover {
+    background-color: #bfa22e;
+    color: #fff;
+}
+
+.hapus-btn:hover {
+    background-color: #e63946;
+    color: #fff;
+}
+
+.foto-pembimbing {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(34, 109, 61, 0.12);
+    margin-bottom: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}

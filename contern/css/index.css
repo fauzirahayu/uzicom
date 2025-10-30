@@ -1,0 +1,62 @@
+        html,
+        body {
+            height: 100vh;
+        }
+
+        body {
+            background: url('https://images.pexels.com/photos/2291789/pexels-photo-2291789.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .card-form {
+            border-radius: 16px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+            background: rgba(255,255,255,0.7);
+            padding: 40px 30px;
+        }
+
+        .form-title {
+            color: #388e3c;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #2e7d32;
+        }
+
+        .btn-primary {
+            background-color: #388e3c;
+            border-color: #388e3c;
+            font-weight: bold;
+            padding: 10px 40px;
+        }
+
+        .btn-primary:hover {
+            background-color: #2e7d32;
+            border-color: #2e7d32;
+        }
+
+        .img-preview {
+            margin-top: 10px;
+            max-width: 150px;
+            border-radius: 8px;
+        }
+
+        .form-section {
+            margin-bottom: 20px;
+        }
+
+        .card-form {
+                opacity: 0;
+                transform: translateY(60px);
+                transition: opacity 0.5s cubic-bezier(.4,2,.3,1), transform 0.5s cubic-bezier(.4,2,.3,1);
+        }
+         .card-form.slide-in {
+                opacity: 1;
+                transform: translateY(0);
+        }

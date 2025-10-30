@@ -1,0 +1,51 @@
+@startuml Activity Diagram - Sistem Informasi Jamaah Haji
+
+title Activity Diagram - Sistem Informasi Jamaah Haji
+
+start
+
+:Login sebagai Admin atau User;
+
+if (Role Admin?) then (yes)
+    :Akses Dashboard Admin;
+    :Melihat Jumlah Jamaah per Tahun;
+    :Pilih Aksi: Tambah/Edit/Hapus Jamaah, Generate Laporan, dll.;
+    if (Tambah Jamaah?) then (yes)
+        :Input Data Jamaah;
+        :Upload Foto;
+        :Validasi Data;
+        :Simpan ke Database;
+        :Kirim Konfirmasi WhatsApp;
+    elseif (Edit Jamaah?) then (yes)
+        :Pilih Jamaah;
+        :Update Data;
+        :Simpan Perubahan;
+    elseif (Hapus Jamaah?) then (yes)
+        :Pilih Jamaah;
+        :Konfirmasi Hapus;
+        :Hapus dari Database;
+    elseif (Generate Laporan?) then (yes)
+        :Pilih Filter;
+        :Query Data;
+        :Generate PDF/Excel;
+        :Download Laporan;
+    endif
+else (no)
+    :Akses Dashboard User;
+    :Melihat Jumlah Jamaah per Tahun;
+    :Pilih Aksi: Cari Jamaah, Lihat Detail, dll.;
+    if (Cari Jamaah?) then (yes)
+        :Input Kata Kunci;
+        :Query Database;
+        :Tampilkan Hasil Pencarian;
+    elseif (Lihat Detail?) then (yes)
+        :Pilih Jamaah;
+        :Tampilkan Detail Profil;
+    endif
+endif
+
+:Logout;
+
+stop
+
+@enduml

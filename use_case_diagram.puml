@@ -1,0 +1,75 @@
+@startuml Use Case Diagram - Sistem Informasi dan Daftar Jamaah Haji
+
+left to right direction
+
+actor "Admin/Petugas Haji" as Admin
+actor "User/Jamaah" as Jamaah
+
+rectangle "Sistem Informasi Jamaah Haji" {
+    usecase "Login" as UC1
+    usecase "Logout" as UC2
+
+    usecase "Melihat Dashboard\n(Jumlah Jamaah)" as UC3
+    usecase "Melihat Daftar\nData Jamaah" as UC4
+    usecase "Pencarian Data Jamaah\nBerdasarkan Nama" as UC5
+    usecase "Melihat Detail\nProfil Jamaah" as UC6
+
+    usecase "Tambah Data\nJamaah Baru" as UC7
+    usecase "Edit Data\nJamaah" as UC8
+    usecase "Hapus Data\nJamaah" as UC9
+    usecase "Tambah Akun\nAdmin Baru" as UC10
+    usecase "Upload Foto\nJamaah" as UC11
+    usecase "Generate Laporan\nData Jamaah\n(PDF/Excel)" as UC12
+    usecase "Filter Laporan\n(Jadwal Keberangkatan,\nUsia, Jenis Kelamin, dll.)" as UC13
+
+    usecase "Validasi Data\n(NIK Unik, Format Tanggal, dll.)" as UC14
+    usecase "Keamanan Data\n(Hashing Password, Backup)" as UC15
+    usecase "Kirim Pesan WhatsApp\n(Konfirmasi Pendaftaran)" as UC16
+    usecase "Hapus Data Jika\nTidak Dijawab WhatsApp\n(24 Jam)" as UC17
+}
+
+Admin --> UC1 : Login sebagai Admin
+Admin --> UC2 : Logout
+Admin --> UC3 : Melihat Dashboard
+Admin --> UC4 : Melihat Daftar Data
+Admin --> UC5 : Pencarian Data
+Admin --> UC6 : Melihat Detail Profil
+Admin --> UC7 : Tambah Data Jamaah
+Admin --> UC8 : Edit Data Jamaah
+Admin --> UC9 : Hapus Data Jamaah
+Admin --> UC10 : Tambah Admin Baru
+Admin --> UC11 : Upload Foto
+Admin --> UC12 : Generate Laporan
+Admin --> UC13 : Filter Laporan
+Admin --> UC14 : Validasi Data
+Admin --> UC15 : Keamanan Data
+Admin --> UC16 : Kirim WhatsApp
+Admin --> UC17 : Hapus Data Otomatis
+
+Jamaah --> UC1 : Login sebagai Jamaah
+Jamaah --> UC2 : Logout
+Jamaah --> UC3 : Melihat Dashboard
+Jamaah --> UC4 : Melihat Daftar Data
+Jamaah --> UC5 : Pencarian Data
+Jamaah --> UC6 : Melihat Detail Profil
+
+UC7 ..> UC14 : include (Validasi saat Tambah)
+UC8 ..> UC14 : include (Validasi saat Edit)
+UC11 ..> UC15 : include (Keamanan Upload)
+UC12 ..> UC13 : include (Filter dalam Laporan)
+UC16 ..> UC17 : include (Trigger Hapus jika Tidak Dijawab)
+
+note right of UC1
+    Login menggunakan role (Admin/User).
+    Password di-hash dengan bcrypt.
+end note
+
+note right of UC16
+    Pesan: "Halo [nama], selamat Anda telah terdaftar di web kami yang bekerja sama dengan Kemenag. Untuk melihat data Anda, silakan kunjungi web kami di: https://jamaah-haji.local".
+end note
+
+note right of UC17
+    Jika user/jamaah tidak menjawab WhatsApp selama 24 jam, data dihapus dari web.
+end note
+
+@enduml
