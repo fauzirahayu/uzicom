@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SRS - Sistem Informasi Jamaah Haji</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{--muted:#6b7280;--bg:#f8fafc;--card:#ffffff;--accent:#0ea5a4}
+    body{background:var(--bg);color:#0f172a;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+    .card{border-radius:12px;border:0}
+    .lead{color:var(--muted)}
+    pre{white-space:pre-wrap;background:#0b1220;color:#e6eef8;padding:12px;border-radius:8px;overflow:auto}
+    code{background:#eef2ff;padding:2px 6px;border-radius:6px}
+    .check{color:#16a34a;font-weight:700}
+    .section-title{font-size:1.05rem;font-weight:700}
+    .small-muted{color:var(--muted);font-size:.9rem}
+    .table-sm td, .table-sm th{vertical-align:middle}
+  </style>
+</head>
+<body>
+  <div class="container py-5">
+    <div class="text-center mb-4">
+      <h1 class="h3">Software Requirement Specification (SRS)</h1>
+      <p class="lead">Sistem Informasi & Daftar Jamaah Haji — Dokumen lengkap kebutuhan & analisis</p>
+      <p class="small-muted">Versi: 1.0 &middot; Tanggal: 30 Oktober 2025</p>
+    </div>
+
+    <!-- Overview -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title">Ringkasan Proyek</h2>
+      <p>Nama proyek: <strong>Sistem Informasi Jamaah Haji</strong></p>
+      <p>Tujuan: Menyediakan aplikasi web untuk manajemen data jamaah haji, pembimbing, jadwal keberangkatan/kepulangan, berita, dan laporan.</p>
+      <p>Stakeholder utama: <strong>Admin Travel</strong>, <strong>Calon Jamaah</strong>, <strong>Pembimbing</strong>, <strong>Petugas Keberangkatan</strong>.</p>
+    </div>
+
+    <!-- Requirements -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title"><span class="check">✅</span> 1. Requirements (Pengumpulan Kebutuhan)</h2>
+
+      <h3 class="mt-3">1.1 Identifikasi Kebutuhan</h3>
+      <ul>
+        <li>Wawancara dengan stakeholder: daftar pertanyaan terlampir (lihat lampiran A).</li>
+        <li>Observasi proses manual saat ini: pendaftaran, validasi dokumen, penjadwalan.</li>
+        <li>Hasil: kebutuhan fungsional dan non-fungsional di bawah ini.</li>
+      </ul>
+
+      <h3 class="mt-3">1.2 Kebutuhan Fungsional (Rinci)</h3>
+      <ol>
+        <li><strong>Autentikasi & Otorisasi</strong>
+          <ul>
+            <li>Login untuk Admin (username/password) dengan session.</li>
+            <li>Role: Admin, Petugas (read-only), Pembimbing (akses terbatas).</li>
+            <li>Password disimpan hashed (bcrypt).</li>
+          </ul>
+        </li>
+
+        <li><strong>Manajemen Jamaah</strong>
+          <ul>
+            <li>CRUD (Create, Read, Update, Delete) data jamaah: nama, NIK, tanggal lahir, alamat, no. telepon, tahun keberangkatan, status berkas.</li>
+            <li>Penambahan foto & scan KTP (opsional).</li>
+            <li>Field otomatis: <code>tanggal_kepulangan = tanggal_keberangkatan + 40 hari</code> (dapat dikonfigurasi).</li>
+            <li>Pencarian & filter berdasarkan nama, NIK, tahun keberangkatan, status.</li>
+          </ul>
+        </li>
+
+        <li><strong>Manajemen Pembimbing</strong>
+          <ul>
+            <li>CRUD pembimbing: nama, kode pembimbing, no. telepon, email.</li>
+            <li>Penugasan pembimbing ke jamaah (relasi many-to-many atau one-to-many sesuai kebutuhan).</li>
+          </ul>
+        </li>
+
+        <li><strong>Manajemen Berita & Pengumuman</strong>
+          <ul>
+            <li>CRUD berita: judul, isi, tanggal publish, penulis, lampiran (pdf).</li>
+            <li>Fitur publish/unpublish.</li>
+          </ul>
+        </li>
+
+        <li><strong>Laporan</strong>
+          <ul>
+            <li>Generate laporan per jamaah, per pembimbing, dan laporan keseluruhan (CSV/HTML/PDF).</li>
+            <li>Fitur cetak (print-friendly) dan export CSV.</li>
+          </ul>
+        </li>
+
+        <li><strong>Dashboard & Statistik</strong>
+          <ul>
+            <li>Statistik jumlah jamaah per tahun, jumlah pembimbing, status berkas, grafik ringkas.</li>
+          </ul>
+        </li>
+
+        <li><strong>Audit Trail</strong>
+          <ul>
+            <li>Mencatat aktivitas CRUD penting: siapa melakukan, kapan, dan data yang diubah.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3 class="mt-3">1.3 Kebutuhan Non-Fungsional (Rinci)</h3>
+      <ul>
+        <li><strong>Keamanan:</strong> HTTPS, password hashing, session timeout 30 menit, validasi input sisi server & client.</li>
+        <li><strong>Kinerja:</strong> Respon halaman &lt; 2s untuk dataset sampai 500 baris; index DB pada kolom pencarian (nama, NIK, tahun).</li>
+        <li><strong>Skalabilitas:</strong> Struktur modular untuk memudahkan migrasi ke framework jika perlu.</li>
+        <li><strong>Reliability:</strong> Backup harian otomatis DB, retention minimal 30 hari.</li>
+        <li><strong>Usability:</strong> Antarmuka sederhana, dokumentasi pengguna untuk admin.</li>
+        <li><strong>Kompatibilitas:</strong> Berjalan di PHP 8.x, MySQL 5.7+/MariaDB, server Apache / Nginx.</li>
+      </ul>
+
+      <h3 class="mt-3">1.4 Batasan & Ruang Lingkup</h3>
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Termasuk</h5>
+          <ul>
+            <li>CRUD jamaah/pembimbing/berita</li>
+            <li>Dashboard, laporan, login</li>
+            <li>Export CSV, Print</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h5>Tidak termasuk</h5>
+          <ul>
+            <li>Pembayaran online</li>
+            <li>Integrasi sistem pemerintahan (e.g. SISKOHAT)</li>
+            <li>Aplikasi mobile native</li>
+            <li>Tracking real-time selama keberangkatan</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="mt-3">1.5 Validasi Kebutuhan & Acceptance Criteria</h3>
+      <ul>
+        <li>Acceptance test dilakukan oleh admin & perwakilan pembimbing.</li>
+        <li>Contoh acceptance criteria:
+          <ul>
+            <li>Admin dapat menambahkan jamaah baru dengan minimal field wajib terisi (nama, NIK, tahun keberangkatan).</li>
+            <li>Fitur pencarian mengembalikan hasil relevan dalam 2 detik.</li>
+            <li>Export CSV berisi seluruh kolom utama dan dapat dibuka di Excel.</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Analysis -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title"><span class="check">✅</span> 2. Analysis (Analisis)</h2>
+
+      <h3 class="mt-3">2.1 Analisis Kelayakan</h3>
+      <p><strong>Teknis:</strong> Aplikasi berbasis PHP & MySQL yang ditemukan di folder project dapat langsung dijalankan pada stack standar (XAMPP / LAMP). Tidak ada kebutuhan hardware khusus.</p>
+      <p><strong>Finansial:</strong> Biaya rendah — hanya hosting + domain bila deploy ke production. Estimasi biaya bulanan (shared hosting) &lt; $10.</p>
+      <p><strong>Operasional:</strong> Admin membutuhkan pelatihan singkat 1–2 jam untuk memakai fitur CRUD dan laporan.</p>
+      <p><strong>Kesimpulan:</strong> Proyek <strong>LAYAK</strong> secara teknis, finansial, dan operasional.</p>
+
+      <h3 class="mt-3">2.2 Modeling & Diagram (Rencana)</h3>
+      <p>Diagram yang direkomendasikan dan ringkasan isinya:</p>
+      <ol>
+        <li><strong>Use Case Diagram:</strong> Menampilkan aktor (Admin, Pembimbing, Petugas) dan use case utama (manajemen jamaah, berita, laporan).</li>
+        <li><strong>ERD (Entity Relationship Diagram):</strong> Tabel inti: <code>jamaah</code>, <code>pembimbing</code>, <code>berita</code>, <code>users</code>, <code>audit_log</code>.</li>
+        <li><strong>Sequence Diagram:</strong> Contoh: alur pembuatan jamaah baru, verifikasi, dan penugasan pembimbing.</li>
+        <li><strong>Activity Diagram / Flowchart:</strong> Alur pendaftaran jamaah (input → validasi → penyimpanan → notifikasi).</li>
+      </ol>
+
+      <h4 class="mt-2">Contoh ERD (tekstual)</h4>
+      <pre><code>jamaah(id, nama, nik, tanggal_lahir, alamat, no_hp, tahun_keberangkatan, tanggal_keberangkatan, tanggal_kepulangan, pembimbing_id, status_berkas, foto_path, created_at, updated_at)
+
+pembimbing(id, nama, kode_pembimbing, no_hp, email, created_at, updated_at)
+
+users(id, username, password_hash, role, nama, email, created_at)
+
+berita(id, judul, isi, penulis_id, publish_at, status, attachment_path, created_at)
+
+audit_log(id, user_id, action, table_name, record_id, old_value, new_value, timestamp)
+</code></pre>
+
+      <h3 class="mt-3">2.3 Perencanaan Teknologi (Rinci)</h3>
+      <table class="table table-sm">
+        <thead>
+          <tr><th>Lapisan</th><th>Teknologi / Rekomendasi</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Frontend</td><td>HTML, Bootstrap 5, sedikit JS (vanilla) — atau jQuery jika sudah ada</td></tr>
+          <tr><td>Backend</td><td>PHP 8.x (Native / lightweight MVC jika ingin struktur)</td></tr>
+          <tr><td>Database</td><td>MySQL / MariaDB (InnoDB), indexing pada kolom pencarian</td></tr>
+          <tr><td>Auth</td><td>bcrypt password hashing, session-based auth</td></tr>
+          <tr><td>Deployment</td><td>Shared hosting / VPS (Apache + PHP-FPM) / Docker (opsional)</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="mt-3">2.4 Risiko & Mitigasi</h3>
+      <table class="table table-sm">
+        <thead><tr><th>Risiko</th><th>Konsekuensi</th><th>Mitigasi</th></tr></thead>
+        <tbody>
+          <tr><td>Kehilangan data</td><td>Operasional terhenti</td><td>Backup harian &amp; manual export; backup retention 30 hari</td></tr>
+          <tr><td>Password bocor</td><td>Akses tidak sah</td><td>Gunakan hashing (password_hash), kebijakan password, 2FA (opsional)</td></tr>
+          <tr><td>Input tidak tervalidasi</td><td>SQL injection / corrupt data</td><td>Gunakan prepared statements, validate &amp; sanitize input</td></tr>
+          <tr><td>Performa menurun</td><td>Query lambat</td><td>Index DB, batasi join berat, paging (limit/offset)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Detailed Design & Implementation Plan -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title">3. Detailed Design & Implementation Plan</h2>
+
+      <h3 class="mt-3">3.1 Struktur Direktori (Rekomendasi)</h3>
+      <pre><code>/app
+  /controllers
+  /models
+  /views
+/assets
+  /css
+  /js
+/uploads
+/config
+  database.php
+  config.php
+/public
+  index.php
+</code></pre>
+
+      <h3 class="mt-3">3.2 Database — Contoh Skema SQL (utama)</h3>
+      <pre><code>-- table users
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(100) UNIQUE NOT NULL,
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('admin','petugas','pembimbing') NOT NULL DEFAULT 'admin',
+  nama VARCHAR(150),
+  email VARCHAR(150),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- table pembimbing
+CREATE TABLE pembimbing (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(150) NOT NULL,
+  kode_pembimbing VARCHAR(50) UNIQUE,
+  no_hp VARCHAR(50),
+  email VARCHAR(150),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- table jamaah
+CREATE TABLE jamaah (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nama VARCHAR(200) NOT NULL,
+  nik VARCHAR(30) UNIQUE,
+  tanggal_lahir DATE,
+  alamat TEXT,
+  no_hp VARCHAR(50),
+  tahun_keberangkatan YEAR,
+  tanggal_keberangkatan DATE,
+  tanggal_kepulangan DATE,
+  pembimbing_id INT,
+  status_berkas ENUM('lengkap','proses','belum') DEFAULT 'proses',
+  foto_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL,
+  FOREIGN KEY (pembimbing_id) REFERENCES pembimbing(id) ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+-- table berita
+CREATE TABLE berita (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  judul VARCHAR(250) NOT NULL,
+  isi TEXT,
+  penulis_id INT,
+  publish_at DATETIME,
+  status ENUM('draft','published') DEFAULT 'draft',
+  attachment_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+
+-- table audit_log
+CREATE TABLE audit_log (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT,
+  action VARCHAR(50),
+  table_name VARCHAR(50),
+  record_id INT,
+  old_value TEXT,
+  new_value TEXT,
+  timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB;
+</code></pre>
+
+      <h3 class="mt-3">3.3 API Endpoints / Controller Actions (Contoh)</h3>
+      <ul>
+        <li><code>GET /jamaah</code> — list jamaah (paging & filter)</li>
+        <li><code>GET /jamaah/{id}</code> — detail jamaah</li>
+        <li><code>POST /jamaah</code> — tambah jamaah</li>
+        <li><code>PUT /jamaah/{id}</code> — update jamaah</li>
+        <li><code>DELETE /jamaah/{id}</code> — hapus jamaah</li>
+        <li>Serta endpoint untuk pembimbing, berita, laporan, auth</li>
+      </ul>
+
+      <h3 class="mt-3">3.4 Validasi & Test Plan (Ringkas)</h3>
+      <ol>
+        <li><strong>Unit Test:</strong> validasi fungsi helper, perhitungan tanggal_kepulangan.</li>
+        <li><strong>Integration Test:</strong> alur tambah jamaah sampai generate laporan.</li>
+        <li><strong>User Acceptance Test (UAT):</strong> checklist acceptance criteria (lihat 1.5).</li>
+      </ol>
+
+      <h3 class="mt-3">3.5 Deployment & Backup</h3>
+      <ul>
+        <li>Deployment ke shared hosting / VPS; konfigurasi virtual host / SSL (Let's Encrypt).</li>
+        <li>Backup database harian (mysqldump) ke folder terpisah dan sinkron ke cloud (opsional).</li>
+        <li>Restore procedure terdokumentasi.</li>
+      </ul>
+
+      <h3 class="mt-3">3.6 Security Checklist</h3>
+      <ul>
+        <li>Gunakan HTTPS.</li>
+        <li>Prepared statements (PDO) untuk query DB.</li>
+        <li>Validasi & sanitasi semua input.</li>
+        <li>Limit upload file & cek mime-type.</li>
+        <li>Role-based access control (RBAC) sederhana.</li>
+      </ul>
+    </div>
+
+    <!-- Additional Features: User Registrations & Transactions -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title">4. Fitur Tambahan: Daftar Haji untuk Pengguna & Transaksi</h2>
+
+      <h3 class="mt-3">4.1 Daftar Haji untuk Pengguna (Customer Onboarding)</h3>
+      <p>Menambahkan modul pendaftaran online untuk <strong>Pengguna / Calon Jamaah</strong> sehingga calon jamaah dapat mendaftar sendiri melalui formulir web. Fitur ini meliputi:</p>
+      <ul>
+        <li><strong>Form Pendaftaran Online:</strong> Nama lengkap, NIK, tanggal lahir, alamat, nomor telepon, email, pilihan paket / tahun keberangkatan, upload dokumen (KTP, paspor jika ada), dan persetujuan syarat & ketentuan.</li>
+        <li><strong>Validasi & Verifikasi:</strong> Validasi client-side & server-side; notifikasi ke admin untuk verifikasi berkas.</li>
+        <li><strong>Dashboard Pengguna:</strong> Pengguna dapat melihat status pendaftaran (terkirim, diverifikasi, ditolak), mengunduh bukti pendaftaran, dan melihat pengumuman khusus untuk pendaftar.</li>
+        <li><strong>Otentikasi Pengguna:</strong> Registrasi akun dengan email + password (password hashed), dan fitur reset password via email (opsional).</li>
+        <li><strong>Relasi ke Data Jamaah:</strong> Setelah diverifikasi oleh admin, record pendaftaran akan diubah menjadi entri pada tabel <code>jamaah</code> dan di-link-kan ke akun user (jika diperlukan).</li>
+        <li><strong>Notifikasi:</strong> Email/SMS notifikasi saat pendaftaran diterima/ditolak dan pengumuman penting.</li>
+      </ul>
+
+      <h3 class="mt-3">4.2 Transaksi (Pembayaran & Riwayat Transaksi)</h3>
+      <p>Modul transaksi menyimpan riwayat pembayaran yang berkaitan dengan pendaftaran jamaah. Dirancang untuk fleksibilitas (boleh integrasi payment gateway di roadmap).</p>
+      <h4>4.2.1 Entitas & Skema</h4>
+      <pre><code>-- table transaksi
+CREATE TABLE transaksi (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  jamaah_id INT NOT NULL,
+  user_id INT NULL,
+  amount DECIMAL(12,2) NOT NULL,
+  currency VARCHAR(10) DEFAULT 'IDR',
+  payment_method ENUM('cash','bank_transfer','va','card','offline') DEFAULT 'offline',
+  status ENUM('pending','paid','failed','refunded') DEFAULT 'pending',
+  reference VARCHAR(100),
+  bukti_path VARCHAR(255),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP NULL,
+  FOREIGN KEY (jamaah_id) REFERENCES jamaah(id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+</code></pre>
+
+      <h4 class="mt-2">4.2.2 Alur Transaksi</h4>
+      <ol>
+        <li>Pengguna/ Admin membuat tagihan untuk jamaah (amount, due date, reference).</li>
+        <li>Pengguna melakukan pembayaran: upload bukti transfer (jika offline) atau redirect ke payment gateway (opsional).</li>
+        <li>Sistem memvalidasi bukti (manual atau otomatis) dan mengubah status transaksi menjadi <em>paid</em> jika valid.</li>
+        <li>Generate invoice / kwitansi yang bisa diunduh (PDF) untuk setiap transaksi <em>paid</em>.</li>
+      </ol>
+
+      <h4 class="mt-2">4.2.3 Fitur Lain pada Modul Transaksi</h4>
+      <ul>
+        <li>Filter & pencarian transaksi (tanggal, jamaah, status, metode pembayaran).</li>
+        <li>Export laporan transaksi per periode (CSV / PDF).</li>
+        <li>Integrasi notifikasi (email/SMS) saat status berubah menjadi <em>paid</em> atau <em>failed</em>.</li>
+        <li>Rekonsiliasi manual oleh admin untuk mencocokkan bukti transfer.</li>
+        <li>Report ringkasan pemasukan per bulan / per tahun pada dashboard.</li>
+      </ul>
+
+      <h4 class="mt-2">4.2.4 Keamanan & Kepatuhan</h4>
+      <ul>
+        <li>Jangan menyimpan data kartu kredit sensitif di server (patuhi PCI-DSS jika menggunakan payment card processing).</li>
+        <li>Batasi ukuran upload bukti, cek mime-type, simpan di folder aman di server / cloud storage.</li>
+      </ul>
+
+      <h3 class="mt-3">4.3 Integrasi antara Pendaftaran & Transaksi</h3>
+      <p>Hubungkan alur: ketika pengguna mendaftar dan memilih paket yang memiliki biaya, sistem otomatis membuat <code>transaksi</code> bertatus <em>pending</em>. Setelah pembayaran diverifikasi maka jamaah dapat ditandai <em>terdaftar</em> penuh dan diberikan nomor registrasi.</p>
+
+      <h3 class="mt-3">4.4 Acceptance Criteria (untuk fitur ini)</h3>
+      <ul>
+        <li>Pengguna dapat mendaftar online dan melihat status pendaftaran di dashboard pengguna.</li>
+        <li>Sistem mencatat transaksi dengan status yang akurat dan admin dapat memverifikasi bukti transfer.</li>
+        <li>Invoice dapat diunduh untuk transaksi bertatus <em>paid</em>.</li>
+      </ul>
+    </div>
+
+    <!-- Appendices -->
+    <div class="card p-4 mb-4 shadow-sm">
+      <h2 class="section-title">Lampiran</h2>
+      <h4 class="mt-2">Lampiran A — Daftar Pertanyaan Wawancara Stakeholder</h4>
+      <ol>
+        <li>Apa data wajib yang selalu dikumpulkan dari setiap jamaah?</li>
+        <li>Siapa yang berwenang menambah / mengubah data jamaah?</li>
+        <li>Apakah ingin upload dokumen (KTP, paspor)?</li>
+        <li>Format laporan apa yang dibutuhkan (CSV, PDF)?</li>
+        <li>Apakah ada aturan otomatis tanggal kepulangan (+40 hari) atau berbeda per tahun?</li>
+      </ol>
+
+      <h4 class="mt-2">Lampiran B — Glossary (Istilah)</h4>
+      <ul>
+        <li><strong>Jamaah:</strong> Calon jemaah haji yang terdaftar.</li>
+        <li><strong>Pembimbing:</strong> Tour guide / pembimbing jamaah.</li>
+        <li><strong>Admin:</strong> Pengelola sistem.</li>
+      </ul>
+
+      <h4 class="mt-2">Lampiran C — Rencana Fitur Tambahan (Roadmap)</h4>
+      <ul>
+        <li>Integrasi pembayaran</li>
+        <li>Aplikasi mobile ringan (PWA)</li>
+        <li>Integrasi notifikasi SMS / WhatsApp</li>
+      </ul>
+
+      <p class="small-muted mt-3">Dokumen ini dihasilkan otomatis sebagai ringkasan SRS berdasarkan struktur proyek dan diskusi. Untuk versi yang dicetak (PDF/DOCX) atau tambahan diagram (mermaid/plantuml), minta saja — saya siap buatkan.</p>
+    </div>
+
+    <div class="text-center small-muted mb-5">Selesai &middot; Jika perlu, saya bisa export jadi PDF/DOCX atau tambahkan diagram visual (ERD/Use Case).</div>
+  </div>
+</body>
+</html>

@@ -25,7 +25,7 @@ if (!isset($_SESSION['id'])) {
     <div class="container">
         <div class="actions mb-4">
             <form method="GET" class="d-flex position-relative" action="" onsubmit="showLoading()">
-                <input type="text" class="form-control me-2" name="cari" placeholder="Cari nama/NIK jamaah..." value="<?php echo isset($_GET['cari']) ? htmlspecialchars($_GET['cari']) : ''; ?>">
+                <input type="text" class="form-control me-2" name="cari" placeholder="Cari nama/NIK/no porsi jamaah..." value="<?php echo isset($_GET['cari']) ? htmlspecialchars($_GET['cari']) : ''; ?>">
                 <button type="submit" class="btn btn-success"><i class="bi bi-search"></i> Cari</button>
                 <div id="loading-spinner">
                     <div class="spinner-border text-success" role="status">
@@ -46,7 +46,7 @@ if (!isset($_SESSION['id'])) {
             $filter = '';
             if (isset($_GET['cari']) && $_GET['cari'] != '') {
                 $cari = $conn->real_escape_string($_GET['cari']);
-                $filter = " WHERE j.nama_lengkap LIKE '%$cari%' OR j.nik LIKE '%$cari%'";
+                $filter = " WHERE j.nama_lengkap LIKE '%$cari%' OR j.nik LIKE '%$cari%' OR j.no_porsi LIKE '%$cari%'";
             }
             $sql = "SELECT j.*, p.nama_lengkap AS nama_pembimbing FROM jamaah_haji j LEFT JOIN pembimbing_haji p ON j.id_pembimbing = p.id" . $filter;
             $tampil = $conn->query($sql);
