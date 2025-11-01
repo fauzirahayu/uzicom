@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 25, 2025 at 06:23 AM
+-- Generation Time: Nov 01, 2025 at 09:11 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -80,6 +80,7 @@ CREATE TABLE `jamaah_2027` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -98,10 +99,10 @@ CREATE TABLE `jamaah_2027` (
 -- Dumping data for table `jamaah_2027`
 --
 
-INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(9, '', '1231232131321311', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 3),
-(11, '', '123123678001', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
-(13, '', '123123678001', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1);
+INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
+(9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', '', '', '2027-07-08', 'Lunas', '2027-08-17', 3),
+(11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
+(13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1);
 
 -- --------------------------------------------------------
 
@@ -113,6 +114,7 @@ CREATE TABLE `jamaah_2028` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -131,10 +133,10 @@ CREATE TABLE `jamaah_2028` (
 -- Dumping data for table `jamaah_2028`
 --
 
-INSERT INTO `jamaah_2028` (`id`, `foto`, `nik`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(12, '', '12312321313213', 'nurahman', 'Laki-laki', '2025-10-09', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2025-10-04', '', '2025-11-13', 1),
-(15, '', '12312321313213', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, NULL),
-(17, '', '123123678001', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', '', '2029-07-22', NULL);
+INSERT INTO `jamaah_2028` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
+(12, '', '12312321313213', '009882824', 'nurahman', 'Laki-laki', '2025-10-09', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2028-11-17', 'Lunas', '2028-12-27', 1),
+(15, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, NULL),
+(17, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', '', '2029-07-22', NULL);
 
 -- --------------------------------------------------------
 
@@ -146,6 +148,7 @@ CREATE TABLE `jamaah_2029` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -164,8 +167,8 @@ CREATE TABLE `jamaah_2029` (
 -- Dumping data for table `jamaah_2029`
 --
 
-INSERT INTO `jamaah_2029` (`id`, `foto`, `nik`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(3, '', '12312321313213', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', NULL, '', NULL, NULL);
+INSERT INTO `jamaah_2029` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
+(3, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', NULL, '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -177,6 +180,7 @@ CREATE TABLE `jamaah_haji` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -195,11 +199,11 @@ CREATE TABLE `jamaah_haji` (
 -- Dumping data for table `jamaah_haji`
 --
 
-INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
-(23, '', '12312321313213', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', '', '2025-11-20', 1),
-(24, '', '12312321313213', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 3),
-(28, '1760323340_ppp.PNG', '123123678001', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 3);
+INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
+(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
+(23, '', '12312321313213', '', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', '', '2025-11-20', 1),
+(24, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 3),
+(28, '1760323340_ppp.PNG', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 3);
 
 -- --------------------------------------------------------
 
