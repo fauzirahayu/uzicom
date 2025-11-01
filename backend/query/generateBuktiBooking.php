@@ -136,7 +136,7 @@ $html = '
         <div style="margin-top: 20px; text-align: center;">
             <h3>Foto Jamaah</h3>';
 if (!empty($row['foto'])) {
-    $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/jamaah_haji/uploads/' . $row['foto'];
+    $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/uzicom/uploads/' . $row['foto'];
     if (file_exists($imagePath)) {
         $imageData = base64_encode(file_get_contents($imagePath));
         $src = 'data:image/' . pathinfo($imagePath, PATHINFO_EXTENSION) . ';base64,' . $imageData;
@@ -152,7 +152,7 @@ $html .= '
         <div style="margin-top: 20px; text-align: center;">
             <h3>Foto Pembimbing (KBIH)</h3>';
 if (!empty($row['foto_pembimbing'])) {
-    $imagePathPembimbing = $_SERVER['DOCUMENT_ROOT'] . '/jamaah_haji/uploads/' . $row['foto_pembimbing'];
+    $imagePathPembimbing = $_SERVER['DOCUMENT_ROOT'] . '/uzicom/uploads/' . $row['foto_pembimbing'];
     if (file_exists($imagePathPembimbing)) {
         $imageDataPembimbing = base64_encode(file_get_contents($imagePathPembimbing));
         $srcPembimbing = 'data:image/' . pathinfo($imagePathPembimbing, PATHINFO_EXTENSION) . ';base64,' . $imageDataPembimbing;
