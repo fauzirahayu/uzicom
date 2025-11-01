@@ -39,10 +39,11 @@ include __DIR__ . '/../backend/query/read.php';
         <h5>Jamaah 2028</h5>
         <p><?php echo htmlspecialchars($jumlahJamaah2028 ?? 0); ?> - 30 orang</p>
       </a>
-      <a href="jamaah/jamaah4.php" style="text-decoration:none; color:inherit;" class="stat-card">
+      <a href="jamaah/jamaah3.php" style="text-decoration:none; color:inherit;" class="stat-card">
         <i class="bi bi-people-fill"></i>
-        <h5>Jamaah 2029</h5>
+        <h5>Jamaah 2028</h5>
         <p><?php echo htmlspecialchars($jumlahJamaah2029 ?? 0); ?> - 20 orang</p>
+      </a>
   </div>
 </body>
 </html>

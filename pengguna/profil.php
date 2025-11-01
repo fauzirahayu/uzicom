@@ -110,7 +110,6 @@ if (!$user) {
         <div class="mt-4 text-center">
             <a href="edit_profil.php" class="btn btn-primary me-2"><i class="bi bi-pencil"></i> Edit Profil</a>
             <a href="ubah_password.php" class="btn btn-warning me-2"><i class="bi bi-key"></i> Ubah Password</a>
-            <a href="index.php" class="btn btn-custom"><i class="bi bi-arrow-left"></i> Kembali ke Dashboard</a>
         </div>
     </div>
 </body>
