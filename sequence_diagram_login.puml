@@ -1,0 +1,43 @@
+@startuml Sequence Diagram Login
+
+title Sequence Diagram Login Sistem Manajemen Haji
+
+actor Admin as Admin
+actor Pengguna as User
+participant "index.php" as Index
+participant "proses_login.php" as Login
+participant "Database" as DB
+participant "sideMenu.php" as AdminMenu
+participant "sideMenu2.php" as UserMenu
+
+Admin -> Index: Akses halaman login
+Index -> Admin: Tampilkan form login
+
+Admin -> Index: Masukkan email dan password
+Index -> Login: Kirim POST data (email, password)
+
+Login -> DB: Query SELECT * FROM admin WHERE email=?
+DB --> Login: Return admin data
+
+alt Admin login berhasil
+    Login -> Login: Verify password dengan password_verify()
+    Login -> Login: Set session (id, nama, email, role='admin')
+    Login -> AdminMenu: Redirect to sideMenu.php
+    AdminMenu --> Admin: Tampilkan dashboard admin
+else Admin login gagal
+    Login -> Index: Redirect dengan alert "Email atau Password salah!"
+end
+
+Login -> DB: Query SELECT * FROM pengguna WHERE email=?
+DB --> Login: Return pengguna data
+
+alt Pengguna login berhasil
+    Login -> Login: Verify password dengan password_verify()
+    Login -> Login: Set session (id, nama, email, role='user')
+    Login -> UserMenu: Redirect to sideMenu2.php
+    UserMenu --> User: Tampilkan dashboard pengguna
+else Pengguna login gagal
+    Login -> Index: Redirect dengan alert "Email atau Password salah!"
+end
+
+@enduml

@@ -1,112 +1,153 @@
-@startuml ERD - Sistem Informasi Jamaah Haji
+@startuml ERD Sistem Manajemen Jamaah Haji
 
-entity "admin" as admin {
-  + id : int <<PK>>
+title Entity-Relationship Diagram (ERD) Sistem Manajemen Jamaah Haji
+
+' Entitas Admin
+entity "Admin" as admin {
+  * id : INT
   --
-  username : varchar(250)
-  email : varchar(250)
-  password : varchar(250)
+  username : VARCHAR(250)
+  email : VARCHAR(250)
+  password : VARCHAR(250)
 }
 
-entity "pengguna" as pengguna {
-  + id : int <<PK>>
+' Entitas Pengguna
+entity "Pengguna" as pengguna {
+  * id : INT
   --
-  username : varchar(250)
-  email : varchar(250)
-  password : varchar(250)
+  username : VARCHAR(250)
+  email : VARCHAR(250)
+  password : VARCHAR(250)
 }
 
-entity "jamaah_haji" as jamaah_haji {
-  + id : int <<PK>>
+' Entitas Pembimbing Haji
+entity "Pembimbing_Haji" as pembimbing {
+  * id : INT
   --
-  nama : varchar(255)
-  nik : varchar(20)
-  no_porsi : varchar(50)
-  tempat_lahir : varchar(100)
-  tanggal_lahir : date
-  jenis_kelamin : enum('L','P')
-  alamat : text
-  no_telepon : varchar(15)
-  email : varchar(100)
-  foto : varchar(255)
-  id_pembimbing : int <<FK>>
+  nama_lengkap : VARCHAR(250)
+  nik : VARCHAR(20)
+  telepon : VARCHAR(15)
+  email : VARCHAR(250)
+  alamat : TEXT
+  foto : VARCHAR(255)
+  keterangan : TEXT
 }
 
-entity "jamaah_2027" as jamaah_2027 {
-  + id : int <<PK>>
+' Entitas Jamaah Haji (untuk tahun 2026)
+entity "Jamaah_Haji" as jamaah_haji {
+  * id : INT
   --
-  nama : varchar(255)
-  nik : varchar(20)
-  no_porsi : varchar(50)
-  tempat_lahir : varchar(100)
-  tanggal_lahir : date
-  jenis_kelamin : enum('L','P')
-  alamat : text
-  no_telepon : varchar(15)
-  email : varchar(100)
-  foto : varchar(255)
-  id_pembimbing : int <<FK>>
+  id_pembimbing : INT (FK)
+  nama_lengkap : VARCHAR(250)
+  nik : VARCHAR(20)
+  no_porsi : VARCHAR(20)
+  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  tanggal_lahir : DATE
+  alamat : TEXT
+  telepon : VARCHAR(15)
+  no_paspor : VARCHAR(20)
+  golongan_darah : VARCHAR(5)
+  penyakit_bawaan : TEXT
+  jadwal_berangkat : DATE
+  data_pulang : DATE
+  foto : VARCHAR(255)
+  status : ENUM('Lunas', 'Belum lunas')
 }
 
-entity "jamaah_2028" as jamaah_2028 {
-  + id : int <<PK>>
+' Entitas Jamaah 2027
+entity "Jamaah_2027" as jamaah_2027 {
+  * id : INT
   --
-  nama : varchar(255)
-  nik : varchar(20)
-  no_porsi : varchar(50)
-  tempat_lahir : varchar(100)
-  tanggal_lahir : date
-  jenis_kelamin : enum('L','P')
-  alamat : text
-  no_telepon : varchar(15)
-  email : varchar(100)
-  foto : varchar(255)
-  id_pembimbing : int <<FK>>
+  id_pembimbing : INT (FK)
+  nama_lengkap : VARCHAR(250)
+  nik : VARCHAR(20)
+  no_porsi : VARCHAR(20)
+  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  tanggal_lahir : DATE
+  alamat : TEXT
+  telepon : VARCHAR(15)
+  no_paspor : VARCHAR(20)
+  golongan_darah : VARCHAR(5)
+  penyakit_bawaan : TEXT
+  jadwal_berangkat : DATE
+  data_pulang : DATE
+  foto : VARCHAR(255)
+  status : ENUM('Lunas', 'Belum lunas')
 }
 
-entity "jamaah_2029" as jamaah_2029 {
-  + id : int <<PK>>
+' Entitas Jamaah 2028
+entity "Jamaah_2028" as jamaah_2028 {
+  * id : INT
   --
-  nama : varchar(255)
-  nik : varchar(20)
-  no_porsi : varchar(50)
-  tempat_lahir : varchar(100)
-  tanggal_lahir : date
-  jenis_kelamin : enum('L','P')
-  alamat : text
-  no_telepon : varchar(15)
-  email : varchar(100)
-  foto : varchar(255)
-  id_pembimbing : int <<FK>>
+  id_pembimbing : INT (FK)
+  nama_lengkap : VARCHAR(250)
+  nik : VARCHAR(20)
+  no_porsi : VARCHAR(20)
+  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  tanggal_lahir : DATE
+  alamat : TEXT
+  telepon : VARCHAR(15)
+  no_paspor : VARCHAR(20)
+  golongan_darah : VARCHAR(5)
+  penyakit_bawaan : TEXT
+  jadwal_berangkat : DATE
+  data_pulang : DATE
+  foto : VARCHAR(255)
+  status : ENUM('Lunas', 'Belum lunas')
 }
 
-entity "pembimbing_haji" as pembimbing_haji {
-  + id : int <<PK>>
+' Entitas Jamaah 2029
+entity "Jamaah_2029" as jamaah_2029 {
+  * id : INT
   --
-  nama : varchar(255)
-  nik : varchar(20)
-  tempat_lahir : varchar(100)
-  tanggal_lahir : date
-  jenis_kelamin : enum('L','P')
-  alamat : text
-  no_telepon : varchar(15)
-  email : varchar(100)
-  foto : varchar(255)
+  id_pembimbing : INT (FK)
+  nama_lengkap : VARCHAR(250)
+  nik : VARCHAR(20)
+  no_porsi : VARCHAR(20)
+  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  tanggal_lahir : DATE
+  alamat : TEXT
+  telepon : VARCHAR(15)
+  no_paspor : VARCHAR(20)
+  golongan_darah : VARCHAR(5)
+  penyakit_bawaan : TEXT
+  jadwal_berangkat : DATE
+  data_pulang : DATE
+  foto : VARCHAR(255)
+  status : ENUM('Lunas', 'Belum lunas')
 }
 
-entity "berita" as berita {
-  + id : int <<PK>>
+' Entitas Berita
+entity "Berita" as berita {
+  * id : INT
   --
-  judul : varchar(255)
-  konten : text
-  tanggal_publikasi : date
-  penulis : varchar(100)
-  gambar : varchar(255)
+  judul : VARCHAR(255)
+  konten : TEXT
+  tanggal_publikasi : DATE
+  penulis : VARCHAR(100)
+  gambar : VARCHAR(255)
 }
 
-jamaah_haji }o--|| pembimbing_haji : "id_pembimbing"
-jamaah_2027 }o--|| pembimbing_haji : "id_pembimbing"
-jamaah_2028 }o--|| pembimbing_haji : "id_pembimbing"
-jamaah_2029 }o--|| pembimbing_haji : "id_pembimbing"
+' Relasi
+pembimbing ||--o{ jamaah_haji : "membimbing (1:N)"
+pembimbing ||--o{ jamaah_2027 : "membimbing (1:N)"
+pembimbing ||--o{ jamaah_2028 : "membimbing (1:N)"
+pembimbing ||--o{ jamaah_2029 : "membimbing (1:N)"
+
+admin -- berita : "mengelola"
+admin -- pembimbing : "mengelola"
+admin -- jamaah_haji : "mengelola"
+admin -- jamaah_2027 : "mengelola"
+admin -- jamaah_2028 : "mengelola"
+admin -- jamaah_2029 : "mengelola"
+
+' Pengguna melihat berita dan melihat data jamaah (relasi tidak langsung)
+pengguna -- berita : "melihat"
+pengguna -- jamaah_haji : "melihat data"
+pengguna -- jamaah_2027 : "melihat data"
+pengguna -- jamaah_2028 : "melihat data"
+pengguna -- jamaah_2029 : "melihat data"
+pengguna -- penbingbing : "melihat data"
 
 @enduml
+

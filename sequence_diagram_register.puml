@@ -1,0 +1,40 @@
+@startuml Sequence Diagram Register
+
+title Sequence Diagram Register Sistem Manajemen Haji
+
+actor Pengguna as User
+participant "daftar.php" as RegisterPage
+participant "proses_daftar_pengguna.php" as Register
+participant "Database" as DB
+participant "index.php" as LoginPage
+
+User -> RegisterPage: Akses halaman daftar
+RegisterPage -> User: Tampilkan form registrasi
+
+User -> RegisterPage: Masukkan nama, email, password, confirm_password
+RegisterPage -> Register: Kirim POST data
+
+Register -> Register: Validasi input (empty fields, password match, email format, password length)
+
+alt Validasi gagal
+    Register -> RegisterPage: Redirect dengan alert error
+else Validasi berhasil
+    Register -> DB: Query SELECT id FROM pengguna WHERE email=?
+    DB --> Register: Return hasil cek email
+
+    alt Email sudah terdaftar
+        Register -> RegisterPage: Redirect dengan alert "Email sudah terdaftar!"
+    else Email belum terdaftar
+        Register -> Register: Hash password dengan password_hash()
+        Register -> DB: INSERT INTO pengguna (username, email, password)
+        DB --> Register: Return insert result
+
+        alt Insert berhasil
+            Register -> LoginPage: Redirect dengan alert "Pendaftaran berhasil! Silakan login."
+        else Insert gagal
+            Register -> RegisterPage: Redirect dengan alert "Pendaftaran gagal!"
+        end
+    end
+end
+
+@enduml

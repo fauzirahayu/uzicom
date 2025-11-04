@@ -1,51 +1,84 @@
-@startuml Component Diagram - Sistem Informasi Jamaah Haji
+@startuml Component Diagram Sistem Manajemen Jamaah Haji
 
-[Web Browser] as Browser
+title Component Diagram Sistem Manajemen Jamaah Haji
 
-package "Frontend" {
-  [Admin Dashboard]
-  [User Dashboard]
-  [Jamaah Management]
-  [Pembimbing Management]
-  [Berita Management]
-  [Report Generator]
-  [Search Module]
-  [File Upload Module]
+skinparam backgroundColor #FEFEFE
+skinparam component {
+    BackgroundColor #FFFFFF
+    BorderColor #000000
+    BorderThickness 2
+    FontSize 11
 }
 
-package "Backend" {
-  [Authentication Module]
-  [Database Layer]
-  [Business Logic]
-  [PDF Generator]
-  [WhatsApp API]
+' Frontend Layer
+package "Frontend Layer" as FL #LightBlue {
+    [Login Page] as login
+    [Admin Dashboard] as admin_dash
+    [User Dashboard] as user_dash
+    [Jamaah Management] as jamaah_mgmt
+    [Pembimbing Management] as pembimbing_mgmt
+    [Berita Management] as berita_mgmt
+    [Laporan] as laporan
+    [Profil Management] as profil_mgmt
 }
 
-package "Database" {
-  [MySQL Database]
+' Backend Layer
+package "Backend Layer" as BL #LightGreen {
+    [Authentication Module] as auth
+    [Jamaah CRUD Module] as jamaah_crud
+    [Pembimbing CRUD Module] as pembimbing_crud
+    [Berita CRUD Module] as berita_crud
+    [Report Generator] as report_gen
+    [File Upload Handler] as file_upload
+    [Session Manager] as session_mgr
 }
 
-Browser --> [Admin Dashboard] : HTTP
-Browser --> [User Dashboard] : HTTP
-Browser --> [Jamaah Management] : HTTP
-Browser --> [Pembimbing Management] : HTTP
-Browser --> [Berita Management] : HTTP
-Browser --> [Report Generator] : HTTP
-Browser --> [Search Module] : HTTP
-Browser --> [File Upload Module] : HTTP
+' Data Layer
+package "Data Layer" as DL #LightYellow {
+    [Database Connection] as db_conn
+    [Admin Table] as admin_tbl
+    [Pengguna Table] as pengguna_tbl
+    [Pembimbing_Haji Table] as pembimbing_tbl
+    [Jamaah_Haji Table] as jamaah_haji_tbl
+    [Jamaah_2027 Table] as jamaah_2027_tbl
+    [Jamaah_2028 Table] as jamaah_2028_tbl
+    [Jamaah_2029 Table] as jamaah_2029_tbl
+    [Berita Table] as berita_tbl
+}
 
-[Admin Dashboard] --> [Authentication Module] : authenticate
-[User Dashboard] --> [Authentication Module] : authenticate
-[Jamaah Management] --> [Business Logic] : CRUD
-[Pembimbing Management] --> [Business Logic] : CRUD
-[Berita Management] --> [Business Logic] : CRUD
-[Report Generator] --> [PDF Generator] : generate
-[Search Module] --> [Business Logic] : search
-[File Upload Module] --> [Business Logic] : upload
+' Frontend to Backend connections
+login --> auth : authenticate
+admin_dash --> jamaah_crud : manage jamaah
+admin_dash --> pembimbing_crud : manage pembimbing
+admin_dash --> berita_crud : manage berita
+admin_dash --> report_gen : generate reports
+user_dash --> berita_crud : view berita
+user_dash --> jamaah_crud : view jamaah
+profil_mgmt --> auth : update profile
+jamaah_mgmt --> file_upload : upload foto
+pembimbing_mgmt --> file_upload : upload foto
+berita_mgmt --> file_upload : upload gambar
 
-[Business Logic] --> [Database Layer] : query
-[Business Logic] --> [WhatsApp API] : notify
-[Database Layer] --> [MySQL Database] : persist
-[PDF Generator] --> [Database Layer] : fetch
+' Backend to Data connections
+auth --> db_conn : connect
+jamaah_crud --> db_conn : CRUD operations
+pembimbing_crud --> db_conn : CRUD operations
+berita_crud --> db_conn : CRUD operations
+report_gen --> db_conn : query data
+
+' Data Layer internal connections
+db_conn --> admin_tbl : access
+db_conn --> pengguna_tbl : access
+db_conn --> pembimbing_tbl : access
+db_conn --> jamaah_haji_tbl : access
+db_conn --> jamaah_2027_tbl : access
+db_conn --> jamaah_2028_tbl : access
+db_conn --> jamaah_2029_tbl : access
+db_conn --> berita_tbl : access
+
+' Session management
+session_mgr --> auth : manage sessions
+session_mgr --> admin_dash : provide session data
+session_mgr --> user_dash : provide session data
 
 @enduml

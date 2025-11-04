@@ -1,0 +1,31 @@
+@startuml Sequence Diagram Add Pembimbing
+
+title Sequence Diagram Add Pembimbing Sistem Manajemen Haji
+
+actor Admin as Admin
+participant "pembimbing.php" as PembimbingPage
+participant "addPembimbing.php" as AddPembimbing
+participant "Database" as DB
+participant "pembimbing.php" as PembimbingList
+
+Admin -> PembimbingPage: Akses halaman pembimbing
+PembimbingPage -> Admin: Tampilkan form tambah pembimbing
+
+Admin -> PembimbingPage: Isi form dan submit
+PembimbingPage -> AddPembimbing: Kirim POST data (form data, foto)
+
+alt Foto diupload
+    AddPembimbing -> AddPembimbing: Upload foto ke /uploads
+end
+
+AddPembimbing -> DB: INSERT INTO pembimbing_haji (nama_lengkap, nik, telepon, email, alamat, foto, keterangan)
+DB --> AddPembimbing: Return insert result
+
+alt Insert berhasil
+    AddPembimbing -> PembimbingList: Redirect to pembimbing.php
+    PembimbingList --> Admin: Tampilkan list pembimbing
+else Insert gagal
+    AddPembimbing -> Admin: Tampilkan error message
+end
+
+@enduml

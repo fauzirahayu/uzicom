@@ -1,0 +1,47 @@
+@startuml Sequence Diagram Add Jamaah
+
+title Sequence Diagram Add Jamaah Sistem Manajemen Haji
+
+actor Admin as Admin
+participant "jamaah.php" as JamaahPage
+participant "add.php" as AddJamaah
+participant "Database" as DB
+participant "jamaah.php" as JamaahList
+
+Admin -> JamaahPage: Akses halaman jamaah
+JamaahPage -> Admin: Tampilkan form tambah jamaah
+
+Admin -> JamaahPage: Isi form dan submit
+JamaahPage -> AddJamaah: Kirim POST data (form data, foto)
+
+AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji WHERE id_pembimbing = ?
+DB --> AddJamaah: Return jumlah jamaah pembimbing
+
+alt Jumlah >= 20
+    AddJamaah -> JamaahPage: Redirect dengan alert "Pembimbing sudah membimbing 20 jamaah"
+else Jumlah < 20
+    AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji
+    DB --> AddJamaah: Return total jamaah
+
+    alt Total >= 50
+        AddJamaah -> JamaahPage: Redirect dengan alert "Jumlah jamaah sudah maksimal 50"
+    else Total < 50
+        AddJamaah -> AddJamaah: Hitung data_pulang (+40 hari dari jadwal_berangkat)
+
+        alt Foto diupload
+            AddJamaah -> AddJamaah: Upload foto ke /uploads
+        end
+
+        AddJamaah -> DB: INSERT INTO jamaah_haji (data fields)
+        DB --> AddJamaah: Return insert result
+
+        alt Insert berhasil
+            AddJamaah -> JamaahList: Redirect to jamaah.php
+            JamaahList --> Admin: Tampilkan list jamaah
+        else Insert gagal
+            AddJamaah -> Admin: Tampilkan error message
+        end
+    end
+end
+
+@enduml
