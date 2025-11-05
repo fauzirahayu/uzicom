@@ -1,0 +1,181 @@
+    @startuml
+
+    title Activity Diagram Sistem Manajemen Jamaah Haji Swimlane Vertical
+
+    scale 1.5
+    skinparam swimlaneWidth 300
+skinparam activityFontSize 18
+skinparam activityHeight 25
+skinparam activityWidth 180
+skinparam swimlaneTitleFontSize 20
+skinparam titleFontSize 24
+
+    |User|
+    |System|
+    |Admin|
+
+    start
+
+    |User|
+    :User/Admin mengakses halaman login;
+    if (Login sebagai Admin?) then (Ya)
+        :Masukkan email dan password;
+        |System|
+        :Kirim ke proses_login.php;
+        :Validasi dengan tabel admin;
+        if (Login berhasil?) then (Ya)
+            :Set session role='admin';
+            :Redirect ke sideMenu.php;
+            |Admin|
+            :Tampilkan dashboard admin;
+            if (Pilih menu?) then (Dashboard)
+                :Tampilkan statistik jamaah, pembimbing, berita;
+            elseif (Kelola Jamaah)
+                :Pilih tahun (2026-2029);
+                :Tampilkan list jamaah;
+                if (Tambah Jamaah?) then (Ya)
+                    :Isi form jamaah;
+                    :Upload foto (opsional);
+                    |System|
+                    :Validasi pembimbing (<20 jamaah);
+                    :Validasi total jamaah (<50);
+                    :Simpan ke database;
+                    |Admin|
+                    :Redirect ke list jamaah;
+                elseif (Edit Jamaah?) then (Ya)
+                    :Pilih jamaah;
+                    :Update data;
+                    |System|
+                    :Simpan perubahan;
+                elseif (Hapus Jamaah?) then (Ya)
+                    :Konfirmasi hapus;
+                    |System|
+                    :Hapus dari database;
+                elseif (Lihat Detail?) then (Ya)
+                    :Tampilkan detail jamaah;
+                endif
+            elseif (Kelola Pembimbing)
+                :Tampilkan list pembimbing;
+                if (Tambah Pembimbing?) then (Ya)
+                    :Isi form pembimbing;
+                    :Upload foto (opsional);
+                    |System|
+                    :Simpan ke database;
+                    |Admin|
+                    :Redirect ke list pembimbing;
+                elseif (Edit Pembimbing?) then (Ya)
+                    :Pilih pembimbing;
+                    :Update data;
+                    |System|
+                    :Simpan perubahan;
+                elseif (Hapus Pembimbing?) then (Ya)
+                    :Konfirmasi hapus;
+                    |System|
+                    :Hapus dari database;
+                elseif (Lihat Detail?) then (Ya)
+                    :Tampilkan detail pembimbing;
+                endif
+            elseif (Kelola Berita)
+                :Tampilkan list berita;
+                if (Tambah Berita?) then (Ya)
+                    :Isi form berita;
+                    :Upload gambar (opsional);
+                    |System|
+                    :Simpan ke database;
+                    |Admin|
+                    :Redirect ke list berita;
+                elseif (Edit Berita?) then (Ya)
+                    :Pilih berita;
+                    :Update data;
+                    |System|
+                    :Simpan perubahan;
+                elseif (Hapus Berita?) then (Ya)
+                    :Konfirmasi hapus;
+                    |System|
+                    :Hapus dari database;
+                elseif (Lihat Detail?) then (Ya)
+                    :Tampilkan detail berita;
+                endif
+            elseif (Laporan)
+                :Pilih jenis laporan;
+                |System|
+                :Generate laporan (PDF);
+                |Admin|
+                :Download laporan;
+            elseif (Tambah Admin)
+                :Isi form admin;
+                |System|
+                :Hash password;
+                :Simpan ke database;
+            elseif (Logout)
+                |System|
+                :Destroy session;
+                :Redirect ke login;
+            endif
+        else (Tidak)
+            :Tampilkan pesan error;
+            |User|
+            :Kembali ke login;
+        endif
+    else (Tidak - Login sebagai Pengguna)
+        :Masukkan email dan password;
+        |System|
+        :Kirim ke proses_login.php;
+        :Validasi dengan tabel pengguna;
+        if (Login berhasil?) then (Ya)
+            :Set session role='user';
+            :Redirect ke sideMenu2.php;
+            |User|
+            :Tampilkan dashboard pengguna;
+            if (Pilih menu?) then (Home)
+                :Tampilkan informasi umum;
+            elseif (Profil)
+                :Tampilkan data profil;
+                if (Edit Profil?) then (Ya)
+                    :Update data profil;
+                    |System|
+                    :Simpan perubahan;
+                elseif (Ubah Password?) then (Ya)
+                    :Masukkan password lama & baru;
+                    |System|
+                    :Validasi dan update;
+                endif
+            elseif (Tour Guide)
+                :Tampilkan list pembimbing;
+                :Lihat detail pembimbing;
+            elseif (Berita)
+                :Tampilkan list berita;
+                :Lihat detail berita;
+            elseif (Cara Daftar Haji)
+                :Tampilkan panduan pendaftaran;
+            elseif (Jamaah)
+                :Pilih tahun (2026-2029);
+                :Tampilkan list jamaah tahun tersebut;
+                :Lihat detail jamaah;
+            elseif (Logout)
+                |System|
+                :Destroy session;
+                :Redirect ke login;
+            endif
+        else (Tidak)
+            :Tampilkan pesan error;
+            :Kembali ke login;
+        endif
+    endif
+
+    if (Belum punya akun? (untuk pengguna)) then (Ya)
+        :Klik link daftar;
+        :Akses daftar.php;
+        :Isi form registrasi;
+        |System|
+        :Validasi input;
+        :Cek email unik;
+        :Hash password;
+        :Simpan ke tabel pengguna;
+        |User|
+        :Redirect ke login dengan pesan sukses;
+    endif
+
+    stop
+
+    @enduml
