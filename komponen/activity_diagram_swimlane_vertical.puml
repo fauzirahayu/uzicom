@@ -52,7 +52,7 @@ skinparam titleFontSize 24
                     |System|
                     :Hapus dari database;
                 elseif (Lihat Detail?) then (Ya)
-                    :Tampilkan detail jamaah;
+                    :Tampilkan detail jamaah (NIK: *** , no_porsi: ***);
                 endif
             elseif (Kelola Pembimbing)
                 :Tampilkan list pembimbing;
@@ -151,7 +151,7 @@ skinparam titleFontSize 24
             elseif (Jamaah)
                 :Pilih tahun (2026-2029);
                 :Tampilkan list jamaah tahun tersebut;
-                :Lihat detail jamaah;
+                :Lihat detail jamaah (NIK: *** , no_porsi: ***);
             elseif (Logout)
                 |System|
                 :Destroy session;

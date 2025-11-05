@@ -60,8 +60,8 @@ if (!isset($_SESSION['id'])) {
                                 <span class="card-icon"><i class="bi bi-person-fill"></i></span>
                                 <span class="card-title"><?php echo htmlspecialchars($data['nama_lengkap'] ?? ''); ?></span>
                             </div>
-                            <div class="card-text"><strong>NIK:</strong> <?php echo htmlspecialchars(substr($data['nik'] ?? '', 0, 1) . str_repeat('*', strlen($data['nik'] ?? '') - 2) . substr($data['nik'] ?? '', -1)); ?></div> 
-                            <div class="card-text"><strong>No Porsi:</strong> <?php echo isset($data['no_porsi']) && $data['no_porsi'] ? htmlspecialchars($data['no_porsi']) : '-'; ?></div>
+                            <div class="card-text"><strong>NIK:</strong> <?php $nik = $data['nik'] ?? ''; echo htmlspecialchars(strlen($nik) > 2 ? substr($nik, 0, 1) . str_repeat('*', strlen($nik) - 2) . substr($nik, -1) : $nik); ?></div>
+                            <div class="card-text"><strong>No Porsi:</strong> <?php $no_porsi = $data['no_porsi'] ?? ''; echo htmlspecialchars(strlen($no_porsi) > 2 ? substr($no_porsi, 0, 1) . str_repeat('*', strlen($no_porsi) - 2) . substr($no_porsi, -1) : $no_porsi); ?></div>
                             <div class="card-text"><strong>Jenis Kelamin:</strong> <?php echo htmlspecialchars($data['jenis_kelamin'] ?? ''); ?></div>
                             <div class="card-text"><strong>Tanggal Lahir:</strong> <?php echo htmlspecialchars($data['tanggal_lahir'] ?? ''); ?></div>
                             <div class="card-text"><strong>Alamat:</strong> <?php echo htmlspecialchars($data['alamat'] ?? ''); ?></div>
