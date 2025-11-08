@@ -44,7 +44,7 @@ if (!isset($_SESSION['id'])) {
             $filter = '';
             if (isset($_GET['cari']) && $_GET['cari'] != '') {
                 $cari = $conn->real_escape_string($_GET['cari']);
-                $filter = " WHERE j.nama_lengkap LIKE '%$cari%' OR j.nik LIKE '%$cari%'";
+                $filter = " WHERE j.nama_lengkap LIKE '%$cari%' OR j.nik LIKE '%$cari%' OR j.no_porsi LIKE '%$cari%' OR j.no_porsi LIKE '%$cari%'";
             }
             $sql = "SELECT j.*, p.nama_lengkap AS nama_pembimbing FROM jamaah_haji j LEFT JOIN pembimbing_haji p ON j.id_pembimbing = p.id" . $filter;
             $tampil = $conn->query($sql);
@@ -54,7 +54,7 @@ if (!isset($_SESSION['id'])) {
                     <div class="card card-jamaah">
                         <div class="card-body text-start">
                             <div class="text-center mb-3">
-                                <img src="../uploads/<?php echo htmlspecialchars($data['foto'] ?? ''); ?>" alt="Foto Jamaah" class="foto-jamaah">
+                                <img src="../../uploads/<?php echo htmlspecialchars($data['foto'] ?? ''); ?>" alt="Foto Jamaah" class="foto-jamaah">
                             </div>
                             <div class="d-flex align-items-center mb-2">
                                 <span class="card-icon"><i class="bi bi-person-fill"></i></span>

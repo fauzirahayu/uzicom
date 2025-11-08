@@ -12,30 +12,32 @@ skinparam component {
 
 ' Frontend Layer
 package "Frontend Layer" as FL #LightBlue {
-    [Login Page] as login
-    [Admin Dashboard] as admin_dash
-    [User Dashboard] as user_dash
-    [Jamaah Management] as jamaah_mgmt
-    [Pembimbing Management] as pembimbing_mgmt
-    [Berita Management] as berita_mgmt
-    [Laporan] as laporan
-    [Profil Management] as profil_mgmt
+    [tampilan login] as login
+    [sideMenu admin] as admin_dash
+    [sideMenu pengguna] as user_dash
+    [tampilan tahun jamaah] as jamaah_mgmt
+    [tampilan pembimbing] as pembimbing_mgmt
+    [tampilan berita] as berita_mgmt
+    [tampilan laporan] as laporan
+    [tampilan profil] as profil_mgmt
+    [tampilan register] as register
 }
 
 ' Backend Layer
 package "Backend Layer" as BL #LightGreen {
-    [Authentication Module] as auth
-    [Jamaah CRUD Module] as jamaah_crud
-    [Pembimbing CRUD Module] as pembimbing_crud
-    [Berita CRUD Module] as berita_crud
-    [Report Generator] as report_gen
+    [proses login] as auth_login
+    [proses daftar] as auth_register
+    [jamaah] as jamaah_crud
+    [pembimbing] as pembimbing_crud
+    [berita] as berita_crud
+    [generet bukti] as report_gen
     [File Upload Handler] as file_upload
     [Session Manager] as session_mgr
 }
 
 ' Data Layer
 package "Data Layer" as DL #LightYellow {
-    [Database Connection] as db_conn
+    [database] as db_conn
     [Admin Table] as admin_tbl
     [Pengguna Table] as pengguna_tbl
     [Pembimbing_Haji Table] as pembimbing_tbl
@@ -47,20 +49,22 @@ package "Data Layer" as DL #LightYellow {
 }
 
 ' Frontend to Backend connections
-login --> auth : authenticate
+login --> auth_login : authenticate
+register --> auth_register : register user
 admin_dash --> jamaah_crud : manage jamaah
 admin_dash --> pembimbing_crud : manage pembimbing
 admin_dash --> berita_crud : manage berita
 admin_dash --> report_gen : generate reports
 user_dash --> berita_crud : view berita
 user_dash --> jamaah_crud : view jamaah
-profil_mgmt --> auth : update profile
+profil_mgmt --> auth_login : update profile
 jamaah_mgmt --> file_upload : upload foto
 pembimbing_mgmt --> file_upload : upload foto
 berita_mgmt --> file_upload : upload gambar
 
 ' Backend to Data connections
-auth --> db_conn : connect
+auth_login --> db_conn : connect
+auth_register --> db_conn : connect
 jamaah_crud --> db_conn : CRUD operations
 pembimbing_crud --> db_conn : CRUD operations
 berita_crud --> db_conn : CRUD operations
@@ -77,7 +81,7 @@ db_conn --> jamaah_2029_tbl : access
 db_conn --> berita_tbl : access
 
 ' Session management
-session_mgr --> auth : manage sessions
+session_mgr --> auth_login : manage sessions
 session_mgr --> admin_dash : provide session data
 session_mgr --> user_dash : provide session data
 

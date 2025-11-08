@@ -9,6 +9,24 @@ if (isset($_POST['update'])) {
     $nik = $_POST['nik'];
     $no_porsi = $_POST['no_porsi'];
 
+    // Periksa apakah NIK sudah ada di semua tabel jamaah kecuali record ini sendiri
+    $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
+    $totalNIK = 0;
+    foreach ($tables as $table) {
+        $cekNIK = $conn->prepare("SELECT COUNT(*) FROM $table WHERE nik = ? AND id != ?");
+        $cekNIK->bind_param("si", $nik, $id);
+        $cekNIK->execute();
+        $cekNIK->bind_result($nikCount);
+        $cekNIK->fetch();
+        $totalNIK += $nikCount;
+        $cekNIK->close();
+    }
+    if ($totalNIK > 0) {
+        echo '<script>alert("NIK sudah terdaftar di tahun lain. Silakan gunakan NIK yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+        $conn->close();
+        exit();
+    }
+
     // Periksa apakah No Porsi sama dengan NIK
     if ($no_porsi == $nik) {
         echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';

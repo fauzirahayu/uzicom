@@ -3,10 +3,10 @@
 title Sequence Diagram Register Sistem Manajemen Haji
 
 actor Pengguna as User
-participant "daftar.php" as RegisterPage
-participant "proses_daftar_pengguna.php" as Register
+participant "tampilan daftar" as RegisterPage
+participant "proses daftar" as Register
 participant "Database" as DB
-participant "index.php" as LoginPage
+participant "tampilan login" as LoginPage
 
 User -> RegisterPage: Akses halaman daftar
 RegisterPage -> User: Tampilkan form registrasi

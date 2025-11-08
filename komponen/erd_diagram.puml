@@ -33,7 +33,7 @@ entity "Pembimbing_Haji" as pembimbing {
   keterangan : TEXT
 }
 
-' Entitas Jamaah Haji (untuk tahun 2026)
+' Entitas Jamaah Haji (untuk tahun Haji)
 entity "Jamaah_Haji" as jamaah_haji {
   * id : INT
   --
@@ -147,7 +147,7 @@ pengguna -- jamaah_haji : "melihat data"
 pengguna -- jamaah_2027 : "melihat data"
 pengguna -- jamaah_2028 : "melihat data"
 pengguna -- jamaah_2029 : "melihat data"
-pengguna -- penbingbing : "melihat data"
+pengguna -- pembimbing : "melihat data"
 
 @enduml
 

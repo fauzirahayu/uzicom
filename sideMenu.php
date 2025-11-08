@@ -25,7 +25,6 @@ if (!isset($_SESSION['id'])) {
         <a href="./contern/dasboard/" target="ContenFrame"><i class="bi bi-house-door-fill"></i>Home</a>
         <a href="./contern/JamaahHaji/tambahAdmin.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tambah Admin</a>
         <a href="./contern/jamaahHaji/kelola_akun.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Kelola Akun Admin</a>
-        <a href="./contern/jamaahHaji/kelola_pengguna.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Kelola Akun Pengguna</a>
         <a href="./contern/JamaahHaji/pembimbing.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tour Guide</a>
         <a href="./contern/jamaahHaji/berita/berita.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Berita</a>
         <a href="cara_daftar_haji.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Gimana Cara Daftar Haji ?</a>

@@ -46,7 +46,7 @@ if (!isset($_SESSION['id'])) {
             $filter = '';
             if (isset($_GET['cari']) && $_GET['cari'] != '') {
                 $cari = $conn->real_escape_string($_GET['cari']);
-                $filter = " WHERE nama_lengkap LIKE '%$cari%' OR nik LIKE '%$cari%'";
+                $filter = " WHERE j.nama_lengkap LIKE '%$cari%' OR j.nik LIKE '%$cari%' OR j.no_porsi LIKE '%$cari%'";
             }
             $sql = "SELECT j.*, p.nama_lengkap AS nama_pembimbing FROM jamaah_2027 j LEFT JOIN pembimbing_haji p ON j.id_pembimbing = p.id" . $filter;
             $tampil = $conn->query($sql);

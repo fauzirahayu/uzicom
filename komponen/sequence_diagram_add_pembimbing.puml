@@ -3,16 +3,20 @@
 title Sequence Diagram Add Pembimbing Sistem Manajemen Haji
 
 actor Admin as Admin
-participant "pembimbing.php" as PembimbingPage
-participant "addPembimbing.php" as AddPembimbing
+participant "tampilan pembimbing" as PembimbingPage
+participant "tampilan tambah pembimbing" as FormPage
+participant "proses add" as AddPembimbing
 participant "Database" as DB
-participant "pembimbing.php" as PembimbingList
+participant "contern/jamaahHaji/pembimbing.php" as PembimbingList
 
 Admin -> PembimbingPage: Akses halaman pembimbing
-PembimbingPage -> Admin: Tampilkan form tambah pembimbing
+PembimbingPage -> Admin: Tampilkan list pembimbing dengan tombol tambah
 
-Admin -> PembimbingPage: Isi form dan submit
-PembimbingPage -> AddPembimbing: Kirim POST data (form data, foto)
+Admin -> FormPage: Klik tombol tambah, akses tambahPembimbing
+FormPage -> Admin: Tampilkan form tambah pembimbing
+
+Admin -> FormPage: Isi form (nama, nik, telepon, email, alamat, keterangan) dan submit
+FormPage -> AddPembimbing: Kirim POST data (form data, foto)
 
 alt Foto diupload
     AddPembimbing -> AddPembimbing: Upload foto ke /uploads
@@ -22,7 +26,7 @@ AddPembimbing -> DB: INSERT INTO pembimbing_haji (nama_lengkap, nik, telepon, em
 DB --> AddPembimbing: Return insert result
 
 alt Insert berhasil
-    AddPembimbing -> PembimbingList: Redirect to pembimbing.php
+    AddPembimbing -> PembimbingList: Redirect to tampilan pembimbing
     PembimbingList --> Admin: Tampilkan list pembimbing
 else Insert gagal
     AddPembimbing -> Admin: Tampilkan error message

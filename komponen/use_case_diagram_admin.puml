@@ -1,77 +1,75 @@
 @startuml
-title Diagram Kasus Penggunaan Sistem Manajemen Haji
 left to right direction
 
-actor "Pengguna" as Pengguna
 actor "Admin" as Admin
 
 package "Sistem Manajemen Haji" {
+    ' Authentication
+    usecase "Login" as UC1
 
-    usecase "Masuk" as UC1
-    usecase "Daftar" as UC2
+    ' Dashboard
     usecase "Lihat Dashboard" as UC3
 
+    ' Jamaah Management
     usecase "Kelola Jamaah" as UC4
     usecase "Tambah Jamaah" as UC5
     usecase "Edit Jamaah" as UC6
     usecase "Hapus Jamaah" as UC7
     usecase "Lihat Jamaah" as UC8
 
+    ' Pembimbing Management
     usecase "Kelola Pembimbing" as UC9
     usecase "Tambah Pembimbing" as UC10
     usecase "Edit Pembimbing" as UC11
     usecase "Hapus Pembimbing" as UC12
     usecase "Lihat Pembimbing" as UC13
 
+    ' Admin Account Management
     usecase "Kelola Akun Admin" as UC14
     usecase "Tambah Admin" as UC15
     usecase "Edit Admin" as UC16
     usecase "Hapus Admin" as UC17
     usecase "Lihat Akun Admin" as UC18
 
-    usecase "Kelola Akun Pengguna" as UC19
-    usecase "Tambah Pengguna" as UC20
-    usecase "Edit Pengguna" as UC21
-    usecase "Hapus Pengguna" as UC22
-    usecase "Lihat Akun Pengguna" as UC23
-
+    ' News Management
     usecase "Kelola Berita" as UC24
     usecase "Tambah Berita" as UC25
     usecase "Edit Berita" as UC26
     usecase "Hapus Berita" as UC27
     usecase "Lihat Berita" as UC28
 
+    ' Reports and Uploads
     usecase "Generate Laporan" as UC29
-    usecase "Update Profil" as UC30
-    usecase "Ubah Password" as UC31
-    usecase "Lihat Jadwal" as UC32
-    usecase "Lihat Profil" as UC33
     usecase "Upload Foto" as UC34
     usecase "Generate Bukti Booking" as UC35
 
     ' Includes and Extends
-    UC4 ..> UC5 : include
-    UC4 ..> UC8 : include
+    UC3 ..> UC1 : include
+    UC4 ..> UC1 : include
+    UC9 ..> UC1 : include
+    UC14 ..> UC1 : include
+    UC24 ..> UC1 : include
+    UC29 ..> UC1 : include
+    UC34 ..> UC1 : include
+    UC35 ..> UC1 : include
+
+    UC5 ..> UC4 : include
+    UC8 ..> UC4 : include
     UC4 --> UC6 : <<extend>>
     UC4 --> UC7 : <<extend>>
 
-    UC9 ..> UC10 : include
-    UC9 ..> UC13 : include
+    UC10 ..> UC9 : include
+    UC13 ..> UC9 : include
     UC9 --> UC11 : <<extend>>
     UC9 --> UC12 : <<extend>>
 
-    UC14 ..> UC15 : include
-    UC14 ..> UC18 : include
+    UC15 ..> UC14 : include
+    UC18 ..> UC14 : include
     UC14 --> UC16 : <<extend>>
     UC14 --> UC17 : <<extend>>
 
-    UC19 ..> UC20 : include
-    UC19 ..> UC23 : include
-    UC19 --> UC21 : <<extend>>
-    UC19 --> UC22 : <<extend>>
-
-    UC24 ..> UC25 : include
-    UC24 ..> UC28 : include
+    UC25 ..> UC24 : include
+    UC28 ..> UC24 : include
     UC24 --> UC26 : <<extend>>
     UC24 --> UC27 : <<extend>>
 }
@@ -84,23 +82,9 @@ Admin --> UC3
 Admin --> UC4
 Admin --> UC9
 Admin --> UC14
-Admin --> UC19
+Admin --> UC24
 Admin --> UC29
 Admin --> UC34
 Admin --> UC35
-
-'
-' Pengguna relations
-'
-Pengguna --> UC1
-Pengguna --> UC2
-Pengguna --> UC3
-Pengguna --> UC8
-Pengguna --> UC18
-Pengguna --> UC20
-Pengguna --> UC21
-Pengguna --> UC22
-Pengguna --> UC23
-Pengguna --> UC24
 
 @enduml
