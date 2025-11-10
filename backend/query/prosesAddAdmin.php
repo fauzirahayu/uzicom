@@ -2,7 +2,7 @@
 include __DIR__ . '/../database.php';
 
 if (isset($_POST['tambah'])) {
-    $nama = $_POST['namaAdmin'];
+    $nama = $_POST['username'];
     $email = $_POST['email'];
     $password = $_POST['password'];
     $pass_hash = password_hash($password, PASSWORD_DEFAULT);

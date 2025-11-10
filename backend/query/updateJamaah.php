@@ -1,4 +1,3 @@
-
 <?php
 include __DIR__ . '/../database.php';
 
@@ -8,6 +7,29 @@ if (isset($_POST['update'])) {
     $nama_lengkap = $_POST['nama_lengkap'];
     $nik = $_POST['nik'];
     $no_porsi = $_POST['no_porsi'];
+
+    // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
+    $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
+        SELECT id FROM jamaah_haji WHERE id_pembimbing = ? AND id != ?
+        UNION ALL
+        SELECT id FROM jamaah_2027 WHERE id_pembimbing = ?
+        UNION ALL
+        SELECT id FROM jamaah_2028 WHERE id_pembimbing = ?
+        UNION ALL
+        SELECT id FROM jamaah_2029 WHERE id_pembimbing = ?
+    ) as all_jamaah");
+    $cekJumlah->bind_param("iiiii", $id_pembimbing, $id, $id_pembimbing, $id_pembimbing, $id_pembimbing);
+    $cekJumlah->execute();
+    $cekJumlah->bind_result($jumlahJamaah);
+    $cekJumlah->fetch();
+    $cekJumlah->close();
+    if ($jumlahJamaah >= 20) {
+        echo '<script>alert("Pembimbing ini sudah membimbing 20 jamaah. Silakan pilih pembimbing lain."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+        $conn->close();
+        exit();
+    } else {
+        echo '<script>alert("Jumlah jamaah yang dibimbing pembimbing ini: ' . $jumlahJamaah . '");</script>';
+    }
 
     // Periksa apakah NIK sudah ada di semua tabel jamaah kecuali record ini sendiri
     $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
@@ -40,7 +62,7 @@ if (isset($_POST['update'])) {
     foreach ($tables as $table) {
         $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
         $cekNoPorsi->bind_param("si", $no_porsi, $id);
-        $cekNoPorsi->execute();
+        $cekNIK->execute();
         $cekNoPorsi->bind_result($noPorsiCount);
         $cekNoPorsi->fetch();
         $totalNoPorsi += $noPorsiCount;

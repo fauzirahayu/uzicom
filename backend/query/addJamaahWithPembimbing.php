@@ -3,9 +3,17 @@ include __DIR__ . '/../database.php';
 
 if (isset($_POST['simpan'])) {
     $id_pembimbing = $_POST['id_pembimbing'] ?? null;
-    // Cek jumlah jamaah yang dibimbing pembimbing ini
-    $cekJumlah = $conn->prepare("SELECT COUNT(*) FROM jamaah_haji WHERE id_pembimbing = ?");
-    $cekJumlah->bind_param("i", $id_pembimbing);
+    // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
+    $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
+        SELECT id FROM jamaah_haji WHERE id_pembimbing = ?
+        UNION ALL
+        SELECT id FROM jamaah_2027 WHERE id_pembimbing = ?
+        UNION ALL
+        SELECT id FROM jamaah_2028 WHERE id_pembimbing = ?
+        UNION ALL
+        SELECT id FROM jamaah_2029 WHERE id_pembimbing = ?
+    ) as all_jamaah");
+    $cekJumlah->bind_param("iiii", $id_pembimbing, $id_pembimbing, $id_pembimbing, $id_pembimbing);
     $cekJumlah->execute();
     $cekJumlah->bind_result($jumlahJamaah);
     $cekJumlah->fetch();
@@ -14,12 +22,14 @@ if (isset($_POST['simpan'])) {
         echo '<script>alert("Pembimbing ini sudah membimbing 20 jamaah. Silakan pilih pembimbing lain."); window.location.href = "../../contern/jamaahHaji/index.php";</script>';
         $conn->close();
         exit();
+    } else {
+        echo '<script>alert("Jumlah jamaah yang dibimbing pembimbing ini: ' . $jumlahJamaah . '");</script>';
     }
     // Cek jumlah jamaah haji
     $result = $conn->query("SELECT COUNT(*) as total FROM jamaah_haji");
     $row = $result->fetch_assoc();
     if ($row['total'] >= 50) {
-        echo '<script>alert("Jumlah jamaah haji sudah mencapai batas maksimal 10 orang."); window.location.href = "../../contern/jamaahHaji/jamaah.php";</script>';
+        echo '<script>alert("Jumlah jamaah haji sudah mencapai batas maksimal 50 orang."); window.location.href = "../../contern/jamaahHaji/jamaah.php";</script>';
         exit;
     }
 
