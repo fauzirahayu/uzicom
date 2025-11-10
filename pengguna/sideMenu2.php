@@ -28,6 +28,7 @@ include '../backend/database.php';
         <a href="penbingbing.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tour Guide</a>
         <a href="../cara_daftar_haji.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Gimana Cara Daftar Haji ?</a>
         <a href="berita/berita.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Berita</a>
+        <a href="status/index.php" target="ContenFrame"><i class="bi bi-calendar-check"></i>Status</a>
         
         <a href="../backend/query/logout.php" style="position: absolute; bottom: 30px; left: 25px; width: 200px;">
             <i class="bi bi-box-arrow-right"></i> Keluar

@@ -103,6 +103,9 @@ if (!$user) {
                 <strong>Email:</strong> <?php echo htmlspecialchars($user['email'] ?? ''); ?>
             </div>
             <div class="profil-item">
+                <strong>NIK:</strong> <?php echo htmlspecialchars($user['nik'] ?? ''); ?>
+            </div>
+            <div class="profil-item">
                 <strong>Password:</strong> ******** (Untuk keamanan, password tidak ditampilkan)
             </div>
         </div>

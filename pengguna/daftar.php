@@ -39,6 +39,12 @@ if (isset($_SESSION['id'])) {
           </div>
 
           <div class="mb-3">
+            <label for="nik" class="form-label">NIK</label>
+            <input type="text" class="form-control" id="nik" name="nik" placeholder="Masukkan NIK Anda" required pattern="[0-9]{16}" maxlength="16" minlength="16">
+            <div class="invalid-feedback">NIK harus 16 digit angka.</div>
+          </div>
+
+          <div class="mb-3">
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan kata sandi" required minlength="6">
             <div class="invalid-feedback">Password minimal 6 karakter.</div>

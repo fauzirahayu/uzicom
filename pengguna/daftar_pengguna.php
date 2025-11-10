@@ -24,26 +24,26 @@ include __DIR__ . '/../backend/query/read.php';
     <p>Halo selamat datang di informasi Jamaah Haji plus kami!
     </p>
     <div class="d-flex justify-content-center flex-wrap">
-      <a href="jamaah/jamaah.php" style="text-decoration:none; color:inherit;" class="stat-card">
+      <div class="stat-card">
         <i class="bi bi-people-fill"></i>
         <h5>Jamaah 2026</h5>
         <p><?php echo htmlspecialchars($jumlahJamaah ?? 0); ?> - 50 orang</p>
-      </a>
-      <a href="jamaah/jamaah2.php" style="text-decoration:none; color:inherit;" class="stat-card">
+      </div>
+      <div class="stat-card">
         <i class="bi bi-people-fill"></i>
         <h5>Jamaah 2027</h5>
         <p><?php echo htmlspecialchars($jumlahJamaah2027 ?? 0); ?> - 70 orang</p>
-      </a>
-      <a href="jamaah/jamaah3.php" style="text-decoration:none; color:inherit;" class="stat-card">
+      </div>
+      <div class="stat-card">
         <i class="bi bi-people-fill"></i>
         <h5>Jamaah 2028</h5>
         <p><?php echo htmlspecialchars($jumlahJamaah2028 ?? 0); ?> - 30 orang</p>
-      </a>
-      <a href="jamaah/jamaah4.php" style="text-decoration:none; color:inherit;" class="stat-card">
+      </div>
+      <div class="stat-card">
         <i class="bi bi-people-fill"></i>
-        <h5>Jamaah 2028</h5>
-        <p><?php echo htmlspecialchars($jumlahJamaah2029 ?? 0); ?> - 20 orang</p>
-      </a>
+        <h5>Jamaah 2029</h5>
+        <p><?php echo htmlspecialchars($jumlahJamaah2029 ?? 0); ?> - 80 orang</p>
+      </div>
   </div>
 </body>
 </html>
