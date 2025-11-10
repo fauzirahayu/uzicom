@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 01, 2025 at 09:11 AM
+-- Generation Time: Nov 10, 2025 at 09:53 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -42,7 +42,7 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 (1, 'ge', 'ge@gmail.com', '$2y$10$eW8TSqUFuzEoIHrjwHOoheLzZuK9dszyihmXlRjFaLst3gipALdy6'),
 (2, 'gi', 'gi@gmail.com', '$2y$10$a6EJqMMPj2HF05cCvLjPvemyLivwNqwef304/vIDZAEACKTgYvsfi'),
 (3, 'gu', 'gu@gmail.com', '$2y$10$nJKT5B4zuUQFh0CCz0cG4.XEDJBvQlRFDrmU6vDWM8ApOmLb0VduO'),
-(4, 'aditya', 'di@gmail.com', '$2y$10$Izt5HYFAmdG.cLlsqyVls.sEpMhU40lQ1RL486/VTAZ1lnDplxfXG');
+(5, 'land', 'land@gmail.com', '$2y$10$y1w3mvQ3ERfZWmv0WUaj7eqb5yXgWUKL18OCx5VsDueB2F09RvwCi');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,8 @@ INSERT INTO `berita` (`id`, `judul`, `konten`, `tanggal_publikasi`, `penulis`, `
 (3, 'Raih Indeks Sangat Memuaskan, Menag Ungkap Tantangan Penyelenggaraan Haji 2025', 'Jakarta (PHU) – Indeks Kepuasan Jemaah Haji 2025 meraih indeks 88,64, Menteri Agama Nasaruddin Umar mengungkap berbagai tantangan dalam penyelenggaraannya, mulai dari perubahan regulasi Arab Saudi yang berulang kali hingga penerapan aturan teknis baru. Menurut Menag, semua itu menuntut petugas haji Indonesia beradaptasi cepat di lapangan.\r\n\r\n“Pernah satu hari itu tiga kali perubahan. Nah, kemampuan teman-teman Panitia (Petugas) Haji yang melakukan adaptasi dengan perubahan itu, ini yang kami apresiasi luar biasa,” ujar Nasaruddin Umar, Menteri Agama, dalam konferensi pers publikasi hasil Survei Kepuasan Jemaah Haji 2025 di Jakarta, Rabu (10/9/2025).\r\n\r\nPerubahan aturan itu dicontohkan Menag terkait pelaksananan Murur. Diungkapkannya, awalnya panitia sudah siap untuk pelaksanaan murur, namun terjadi perubahan aturan untuk tidak ada pelaksanaan murur. Menghadapi hal tersebut, panitia harus melakukan penyesuaian data dalam waktu yang sangat singkat. Namun, dengan berbagai pertimbangan yang dilakukan pembuat regulasi, dengan menimbang kondisi jemaah Indonesia, aturan berubah lagi dan murur dapat dilaksanakan.\r\n\r\nTantangan lainnya, lanjut Menag, masa transisi tahun ini diwarnai banyak aturan baru. “Dulu syarikah-nya hanya satu, sekarang ini menjadi delapan. Dulu pembatasan-pembatasannya tidak banyak ya, tapi sekarang ini banyak sekali pembatasan terutama menyangkut masalah rumah sakit, kemudian juga Nusuk. Arah lalu lintasnya pun banyak sekali berubah. Kemudian juga banyak sekali ketentuan-ketentuan yang lebih detail yang tidak pernah terjadi sebelumnya dan ini tiba-tiba ada,” jelasnya.\r\n\r\nMeski begitu, Menag menilai jajaran Kemenag berhasil melewati tantangan tersebut dengan baik. “Tapi dalam keadaan seperti ini pun alhamdulillah teman-teman dari Kementerian Agama mampu melewatinya dengan baik,” tegasnya.\r\n\r\n“(Saya) Berterima kasih kepada seluruh panitia dan semua pihak yang terlibat untuk membantu kelancaran pelaksanaan haji tahun ini. Rekan-rekan kami dari Amirul Hajj sampai kepada lembaga-lembaga yang terkait, TNI Polri yang berjasa di dalam upaya menertibkan jamaah kami, membantu jamaah kami yang membutuhkan pertolongan. Tentu yang paling penting juga adalah Badan Pusat Statistik yang telah melakukan penilaian sedemikian rupa,” pungkas Nasaruddin Umar.', '2024-10-05', 'Admin', '1757524173_00258915f1.jpg'),
 (4, 'Informasi Biaya Haji 2028', 'Biaya haji untuk tahun 2028 telah ditetapkan. Lihat detail biaya di halaman pembayaran. Biaya dasar haji sebesar Rp 50.000.000,- termasuk akomodasi, transportasi, dan konsumsi. Pembayaran dapat dilakukan melalui transfer bank atau aplikasi resmi.', '2024-10-01', 'Admin', 'berita4.jpg'),
 (6, 'Perkuat Sinergi Lintas Sektor, PHU Kemenag Tabalong Gelar Pembinaan PPIU/PIHK dan Sosialisasi Kebijakan Umrah', 'Jakarta (PHU) – Indeks Kepuasan Jemaah Haji 2025 meraih indeks 88,64, Menteri Agama Nasaruddin Umar mengungkap berbagai tantangan dalam penyelenggaraannya, mulai dari perubahan regulasi Arab Saudi yang berulang kali hingga penerapan aturan teknis baru. Menurut Menag, semua itu menuntut petugas haji Indonesia beradaptasi cepat di lapangan.\r\n\r\n“Pernah satu hari itu tiga kali perubahan. Nah, kemampuan teman-teman Panitia (Petugas) Haji yang melakukan adaptasi dengan perubahan itu, ini yang kami apresiasi luar biasa,” ujar Nasaruddin Umar, Menteri Agama, dalam konferensi pers publikasi hasil Survei Kepuasan Jemaah Haji 2025 di Jakarta, Rabu (10/9/2025).\r\n\r\nPerubahan aturan itu dicontohkan Menag terkait pelaksananan Murur. Diungkapkannya, awalnya panitia sudah siap untuk pelaksanaan murur, namun terjadi perubahan aturan untuk tidak ada pelaksanaan murur. Menghadapi hal tersebut, panitia harus melakukan penyesuaian data dalam waktu yang sangat singkat. Namun, dengan berbagai pertimbangan yang dilakukan pembuat regulasi, dengan menimbang kondisi jemaah Indonesia, aturan berubah lagi dan murur dapat dilaksanakan.\r\n\r\nTantangan lainnya, lanjut Menag, masa transisi tahun ini diwarnai banyak aturan baru. “Dulu syarikah-nya hanya satu, sekarang ini menjadi delapan. Dulu pembatasan-pembatasannya tidak banyak ya, tapi sekarang ini banyak sekali pembatasan terutama menyangkut masalah rumah sakit, kemudian juga Nusuk. Arah lalu lintasnya pun banyak sekali berubah. Kemudian juga banyak sekali ketentuan-ketentuan yang lebih detail yang tidak pernah terjadi sebelumnya dan ini tiba-tiba ada,” jelasnya.\r\n\r\nMeski begitu, Menag menilai jajaran Kemenag berhasil melewati tantangan tersebut dengan baik. “Tapi dalam keadaan seperti ini pun alhamdulillah teman-teman dari Kementerian Agama mampu melewatinya dengan baik,” tegasnya.\r\n\r\n“(Saya) Berterima kasih kepada seluruh panitia dan semua pihak yang terlibat untuk membantu kelancaran pelaksanaan haji tahun ini. Rekan-rekan kami dari Amirul Hajj sampai kepada lembaga-lembaga yang terkait, TNI Polri yang berjasa di dalam upaya menertibkan jamaah kami, membantu jamaah kami yang membutuhkan pertolongan. Tentu yang paling penting juga adalah Badan Pusat Statistik yang telah melakukan penilaian sedemikian rupa,” pungkas Nasaruddin Umar.\r\n\r\nBagikan', '2025-09-30', 'Mustrini Bella Vitiara', '1757524173_00258915f1.jpg'),
-(7, 'Raih Indeks Sangat Memuaskan, Menag Ungkap Tantangan Penyelenggaraan Haji 2025', 'Jakarta (PHU) – Indeks Kepuasan Jemaah Haji 2025 meraih indeks 88,64, Menteri Agama Nasaruddin Umar mengungkap berbagai tantangan dalam penyelenggaraannya, mulai dari perubahan regulasi Arab Saudi yang berulang kali hingga penerapan aturan teknis baru. Menurut Menag, semua itu menuntut petugas haji Indonesia beradaptasi cepat di lapangan.\r\n\r\n“Pernah satu hari itu tiga kali perubahan. Nah, kemampuan teman-teman Panitia (Petugas) Haji yang melakukan adaptasi dengan perubahan itu, ini yang kami apresiasi luar biasa,” ujar Nasaruddin Umar, Menteri Agama, dalam konferensi pers publikasi hasil Survei Kepuasan Jemaah Haji 2025 di Jakarta, Rabu (10/9/2025).\r\n\r\nPerubahan aturan itu dicontohkan Menag terkait pelaksananan Murur. Diungkapkannya, awalnya panitia sudah siap untuk pelaksanaan murur, namun terjadi perubahan aturan untuk tidak ada pelaksanaan murur. Menghadapi hal tersebut, panitia harus melakukan penyesuaian data dalam waktu yang sangat singkat. Namun, dengan berbagai pertimbangan yang dilakukan pembuat regulasi, dengan menimbang kondisi jemaah Indonesia, aturan berubah lagi dan murur dapat dilaksanakan.\r\n\r\nTantangan lainnya, lanjut Menag, masa transisi tahun ini diwarnai banyak aturan baru. “Dulu syarikah-nya hanya satu, sekarang ini menjadi delapan. Dulu pembatasan-pembatasannya tidak banyak ya, tapi sekarang ini banyak sekali pembatasan terutama menyangkut masalah rumah sakit, kemudian juga Nusuk. Arah lalu lintasnya pun banyak sekali berubah. Kemudian juga banyak sekali ketentuan-ketentuan yang lebih detail yang tidak pernah terjadi sebelumnya dan ini tiba-tiba ada,” jelasnya.\r\n\r\nMeski begitu, Menag menilai jajaran Kemenag berhasil melewati tantangan tersebut dengan baik. “Tapi dalam keadaan seperti ini pun alhamdulillah teman-teman dari Kementerian Agama mampu melewatinya dengan baik,” tegasnya.\r\n\r\n“(Saya) Berterima kasih kepada seluruh panitia dan semua pihak yang terlibat untuk membantu kelancaran pelaksanaan haji tahun ini. Rekan-rekan kami dari Amirul Hajj sampai kepada lembaga-lembaga yang terkait, TNI Polri yang berjasa di dalam upaya menertibkan jamaah kami, membantu jamaah kami yang membutuhkan pertolongan. Tentu yang paling penting juga adalah Badan Pusat Statistik yang telah melakukan penilaian sedemikian rupa,” pungkas Nasaruddin Umar.\r\n\r\nBagikan', '2025-10-01', 'Mustrini Bella Vitiara', '1761128331_1757524173_00258915f1.jpg');
+(7, 'Raih Indeks Sangat Memuaskan, Menag Ungkap Tantangan Penyelenggaraan Haji 2025', 'Jakarta (PHU) – Indeks Kepuasan Jemaah Haji 2025 meraih indeks 88,64, Menteri Agama Nasaruddin Umar mengungkap berbagai tantangan dalam penyelenggaraannya, mulai dari perubahan regulasi Arab Saudi yang berulang kali hingga penerapan aturan teknis baru. Menurut Menag, semua itu menuntut petugas haji Indonesia beradaptasi cepat di lapangan.\r\n\r\n“Pernah satu hari itu tiga kali perubahan. Nah, kemampuan teman-teman Panitia (Petugas) Haji yang melakukan adaptasi dengan perubahan itu, ini yang kami apresiasi luar biasa,” ujar Nasaruddin Umar, Menteri Agama, dalam konferensi pers publikasi hasil Survei Kepuasan Jemaah Haji 2025 di Jakarta, Rabu (10/9/2025).\r\n\r\nPerubahan aturan itu dicontohkan Menag terkait pelaksananan Murur. Diungkapkannya, awalnya panitia sudah siap untuk pelaksanaan murur, namun terjadi perubahan aturan untuk tidak ada pelaksanaan murur. Menghadapi hal tersebut, panitia harus melakukan penyesuaian data dalam waktu yang sangat singkat. Namun, dengan berbagai pertimbangan yang dilakukan pembuat regulasi, dengan menimbang kondisi jemaah Indonesia, aturan berubah lagi dan murur dapat dilaksanakan.\r\n\r\nTantangan lainnya, lanjut Menag, masa transisi tahun ini diwarnai banyak aturan baru. “Dulu syarikah-nya hanya satu, sekarang ini menjadi delapan. Dulu pembatasan-pembatasannya tidak banyak ya, tapi sekarang ini banyak sekali pembatasan terutama menyangkut masalah rumah sakit, kemudian juga Nusuk. Arah lalu lintasnya pun banyak sekali berubah. Kemudian juga banyak sekali ketentuan-ketentuan yang lebih detail yang tidak pernah terjadi sebelumnya dan ini tiba-tiba ada,” jelasnya.\r\n\r\nMeski begitu, Menag menilai jajaran Kemenag berhasil melewati tantangan tersebut dengan baik. “Tapi dalam keadaan seperti ini pun alhamdulillah teman-teman dari Kementerian Agama mampu melewatinya dengan baik,” tegasnya.\r\n\r\n“(Saya) Berterima kasih kepada seluruh panitia dan semua pihak yang terlibat untuk membantu kelancaran pelaksanaan haji tahun ini. Rekan-rekan kami dari Amirul Hajj sampai kepada lembaga-lembaga yang terkait, TNI Polri yang berjasa di dalam upaya menertibkan jamaah kami, membantu jamaah kami yang membutuhkan pertolongan. Tentu yang paling penting juga adalah Badan Pusat Statistik yang telah melakukan penilaian sedemikian rupa,” pungkas Nasaruddin Umar.\r\n\r\nBagikan', '2025-10-01', 'Mustrini Bella Vitiara', '1761128331_1757524173_00258915f1.jpg'),
+(8, 'gfhjfgh', 'fghjfghjgfhjg', '2025-11-10', 'sdfgdfs', '1762763657_pass.png');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,7 @@ CREATE TABLE `jamaah_2027` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -100,7 +101,7 @@ CREATE TABLE `jamaah_2027` (
 --
 
 INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', '', '', '2027-07-08', 'Lunas', '2027-08-17', 3),
+(9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', '', '', '2027-07-08', 'Lunas', '2027-08-17', 1),
 (11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
 (13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1);
 
@@ -114,7 +115,7 @@ CREATE TABLE `jamaah_2028` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -135,8 +136,8 @@ CREATE TABLE `jamaah_2028` (
 
 INSERT INTO `jamaah_2028` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (12, '', '12312321313213', '009882824', 'nurahman', 'Laki-laki', '2025-10-09', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2028-11-17', 'Lunas', '2028-12-27', 1),
-(15, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, NULL),
-(17, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', '', '2029-07-22', NULL);
+(15, '', '12312321313213', '0000012336', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', '2028-01-16', 'Lunas', '2028-02-25', 1),
+(17, '', '12312321313213', '0000012331', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', 'Lunas', '2029-07-22', 1);
 
 -- --------------------------------------------------------
 
@@ -148,7 +149,7 @@ CREATE TABLE `jamaah_2029` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -180,7 +181,7 @@ CREATE TABLE `jamaah_haji` (
   `id` int NOT NULL,
   `foto` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `no_porsi` varchar(30) COLLATE utf8mb4_general_ci NOT NULL,
+  `no_porsi` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nama_lengkap` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `jenis_kelamin` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `tanggal_lahir` date NOT NULL,
@@ -200,10 +201,15 @@ CREATE TABLE `jamaah_haji` (
 --
 
 INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
-(23, '', '12312321313213', '', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', '', '2025-11-20', 1),
-(24, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 3),
-(28, '1760323340_ppp.PNG', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 3);
+(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '0000012334', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
+(23, '', '12312321313215', '0000012335', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', '', '2025-11-20', 1),
+(24, '', '12312321313233', '0000012311', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 1),
+(28, '1760323340_ppp.PNG', '123123678044', '0000012344', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
+(29, '1762748990_pass.png', '123123678008', '0000012321', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Lunas', '2026-05-28', 1),
+(30, '1762749419_Annotation2025-10-06092038.png', '12312321313222', '0000012322', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Lunas', '2026-10-23', 1),
+(31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1231236780221', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
+(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', '', '', '', '2026-11-16', 'Lunas', '2026-12-26', 1),
+(33, '1762766115_uu.PNG', '1122223333311111', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 4);
 
 -- --------------------------------------------------------
 
@@ -229,7 +235,7 @@ CREATE TABLE `pembimbing_haji` (
 INSERT INTO `pembimbing_haji` (`id`, `nama_lengkap`, `nik`, `telepon`, `alamat`, `email`, `foto`, `keterangan`) VALUES
 (1, 'Agus Nurahman', '123465162543651', '02812366551', 'gak tau ah cape', 'mmm@gmail.com', '1759829713_smk-removebg-preview.png', 'dia suka becanda'),
 (3, 'asep kurdirman', '123123678001', '+62 851-4239-5637', 'KP teapal', 'gi@gmail.com', '1760406912_onic-kairi.jpg', 'halo semua nya'),
-(4, 'nurahman', '12312321313213', '11112333331', 'KP teapal', 'gi@gmail.com', '', '1231');
+(4, 'nurahman', '12312321313213', '11112333331', 'KP teapal', 'gi@gmail.com', '1762766865_pass.png', '1231');
 
 -- --------------------------------------------------------
 
@@ -241,6 +247,7 @@ CREATE TABLE `pengguna` (
   `id` int NOT NULL,
   `username` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nik` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -248,10 +255,11 @@ CREATE TABLE `pengguna` (
 -- Dumping data for table `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `username`, `email`, `password`) VALUES
-(1, 'uzo', 'uzo@gmail.com', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
-(2, 'hi', 'hi@gmail.com', '$2y$10$Qhou6pstEtPVaqUA58n2TeYtLi1r0km6JfQvWHwlaJ9Q1NC7ZIuOC'),
-(3, 'fauzi', 'mmm@gmail.com', '$2y$10$H0uVTvRQq1AiiOBEuvH7iuwcPjrJgQ576dnbkPNFu7Cb9s1mWbINS');
+INSERT INTO `pengguna` (`id`, `username`, `email`, `nik`, `password`) VALUES
+(1, 'uzo', 'uzo@gmail.com', '', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
+(2, 'hi', 'hu@gmail.com', '', '$2y$10$Qhou6pstEtPVaqUA58n2TeYtLi1r0km6JfQvWHwlaJ9Q1NC7ZIuOC'),
+(4, 'fauzi rahayu', 'fauzi@gmail.com', '', '$2y$10$ReXtyOHbvZ8BjZfuSDx/B.DcAS6EdSRTPPCy7S2.56Ij.EGfsMjny'),
+(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$8Cbfcrn0d8j.5e4Zs2n6j.N0ggupiEQiD3UwnZfwHfJ27G/e74doS');
 
 --
 -- Indexes for dumped tables
@@ -315,13 +323,13 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `berita`
 --
 ALTER TABLE `berita`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jamaah_2027`
@@ -345,7 +353,7 @@ ALTER TABLE `jamaah_2029`
 -- AUTO_INCREMENT for table `jamaah_haji`
 --
 ALTER TABLE `jamaah_haji`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `pembimbing_haji`
@@ -357,7 +365,7 @@ ALTER TABLE `pembimbing_haji`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables
