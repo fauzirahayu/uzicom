@@ -32,20 +32,35 @@ if (strlen($password) < 6) {
     exit();
 }
 
-// Cek apakah email sudah terdaftar
-$sql_check = "SELECT id FROM admin WHERE email=? LIMIT 1";
-$stmt_check = $conn->prepare($sql_check);
-$stmt_check->bind_param("s", $email);
-$stmt_check->execute();
-$hasil_check = $stmt_check->get_result();
+// Cek apakah email sudah terdaftar di tabel admin
+$sql_check_admin = "SELECT id FROM admin WHERE email=? LIMIT 1";
+$stmt_check_admin = $conn->prepare($sql_check_admin);
+$stmt_check_admin->bind_param("s", $email);
+$stmt_check_admin->execute();
+$hasil_check_admin = $stmt_check_admin->get_result();
 
-if ($hasil_check->num_rows > 0) {
-    echo "<script type='text/javascript'>alert('Email sudah terdaftar!');window.location.href='../../contern/jamaahHaji/daftarAdmin.php';</script>";
-    $stmt_check->close();
+if ($hasil_check_admin->num_rows > 0) {
+    echo "<script type='text/javascript'>alert('Email sudah terdaftar sebagai admin!');window.location.href='../../contern/jamaahHaji/daftarAdmin.php';</script>";
+    $stmt_check_admin->close();
     $conn->close();
     exit();
 }
-$stmt_check->close();
+$stmt_check_admin->close();
+
+// Cek apakah email sudah terdaftar di tabel pengguna
+$sql_check_pengguna = "SELECT id FROM pengguna WHERE email=? LIMIT 1";
+$stmt_check_pengguna = $conn->prepare($sql_check_pengguna);
+$stmt_check_pengguna->bind_param("s", $email);
+$stmt_check_pengguna->execute();
+$hasil_check_pengguna = $stmt_check_pengguna->get_result();
+
+if ($hasil_check_pengguna->num_rows > 0) {
+    echo "<script type='text/javascript'>alert('Email sudah terdaftar sebagai pengguna!');window.location.href='../../contern/jamaahHaji/daftarAdmin.php';</script>";
+    $stmt_check_pengguna->close();
+    $conn->close();
+    exit();
+}
+$stmt_check_pengguna->close();
 
 // Hash password
 $hashed_password = password_hash($password, PASSWORD_DEFAULT);

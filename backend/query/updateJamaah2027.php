@@ -9,6 +9,17 @@ if (isset($_POST['update'])) {
     $nik = $_POST['nik'];
     $no_porsi = $_POST['no_porsi'];
 
+    $jenis_kelamin = $_POST['jenis_kelamin'];
+    $tanggal_lahir = $_POST['tanggal_lahir'];
+    $alamat = $_POST['alamat'];
+    $telepon = $_POST['telepon'];
+    $no_paspor = $_POST['no_paspor'];
+
+    if (empty($id_pembimbing) || empty($nama_lengkap) || empty($nik) || empty($jenis_kelamin) || empty($tanggal_lahir) || empty($alamat) || empty($telepon) || empty($no_paspor)) {
+        echo "<script type='text/javascript'>alert('Semua field harus diisi!');window.location.href='../../contern/jamaahHaji/editJamaah2027.php?id=" . $id . "';</script>";
+        exit();
+    }
+
     // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
     $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
         SELECT id FROM jamaah_haji WHERE id_pembimbing = ? 

@@ -3,6 +3,19 @@ include __DIR__ . '/../database.php';
 
 if (isset($_POST['simpan'])) {
     $id_pembimbing = $_POST['id_pembimbing'] ?? null;
+    $nama_lengkap = $_POST['nama_lengkap'] ?? '';
+    $nik = $_POST['nik'] ?? '';
+    $jenis_kelamin = $_POST['jenis_kelamin'] ?? '';
+    $tanggal_lahir = $_POST['tanggal_lahir'] ?? '';
+    $alamat = $_POST['alamat'] ?? '';
+    $telepon = $_POST['telepon'] ?? '';
+    $no_paspor = $_POST['no_paspor'] ?? '';
+
+    if (empty($id_pembimbing) || empty($nama_lengkap) || empty($nik) || empty($jenis_kelamin) || empty($tanggal_lahir) || empty($alamat) || empty($telepon) || empty($no_paspor)) {
+        echo "<script type='text/javascript'>alert('Semua field harus diisi!');window.location.href='../../contern/jamaahHaji/index.php';</script>";
+        exit();
+    }
+
     // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
     $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
         SELECT id FROM jamaah_haji WHERE id_pembimbing = ?
@@ -56,28 +69,30 @@ if (isset($_POST['simpan'])) {
         exit();
     }
 
-    // Periksa apakah No Porsi sama dengan NIK
-    if ($no_porsi == $nik) {
+    // Periksa apakah No Porsi sama dengan NIK (hanya jika no_porsi tidak "-")
+    if ($no_porsi != '-' && $no_porsi == $nik) {
         echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/index.php";</script>';
         $conn->close();
         exit();
     }
 
-    // Periksa apakah No Porsi sudah ada di semua tabel jamaah
-    $totalNoPorsi = 0;
-    foreach ($tables as $table) {
-        $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ?");
-        $cekNoPorsi->bind_param("s", $no_porsi);
-        $cekNoPorsi->execute();
-        $cekNoPorsi->bind_result($noPorsiCount);
-        $cekNoPorsi->fetch();
-        $totalNoPorsi += $noPorsiCount;
-        $cekNoPorsi->close();
-    }
-    if ($totalNoPorsi > 0) {
-        echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/index.php";</script>';
-        $conn->close();
-        exit();
+    // Periksa apakah No Porsi sudah ada di semua tabel jamaah (hanya jika no_porsi tidak "-")
+    if ($no_porsi != '-') {
+        $totalNoPorsi = 0;
+        foreach ($tables as $table) {
+            $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ?");
+            $cekNoPorsi->bind_param("s", $no_porsi);
+            $cekNoPorsi->execute();
+            $cekNoPorsi->bind_result($noPorsiCount);
+            $cekNoPorsi->fetch();
+            $totalNoPorsi += $noPorsiCount;
+            $cekNoPorsi->close();
+        }
+        if ($totalNoPorsi > 0) {
+            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/index.php";</script>';
+            $conn->close();
+            exit();
+        }
     }
 
     $jenis_kelamin = $_POST['jenis_kelamin'] ?? '';
@@ -97,7 +112,13 @@ if (isset($_POST['simpan'])) {
         $date->modify('+40 days');
         $data_pulang = $date->format('Y-m-d');
     }
-    $status = $_POST['status'] ?? '';
+    $status = $_POST['status'] ?? 'belum lunas';
+
+    // Jika status belum lunas, ubah no_porsi menjadi "-"
+    if ($status === 'belum lunas') {
+        $no_porsi = '-';
+    }
+
     $name_file = '';
     if (isset($_FILES['foto']) && $_FILES['foto']['error'] === UPLOAD_ERR_OK) {
         $name_file = basename($_FILES['foto']['name']);

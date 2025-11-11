@@ -8,6 +8,11 @@ if (isset($_POST['update'])) {
     $nik = $_POST['nik'];
     $no_porsi = $_POST['no_porsi'];
 
+    if (empty($id_pembimbing) || empty($nama_lengkap) || empty($nik)) {
+        echo "<script type='text/javascript'>alert('Semua field harus diisi!');window.location.href='../../contern/jamaahHaji/editJamaah.php?id=" . $id . "';</script>";
+        exit();
+    }
+
     // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
     $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
         SELECT id FROM jamaah_haji WHERE id_pembimbing = ? AND id != ?
@@ -49,29 +54,31 @@ if (isset($_POST['update'])) {
         exit();
     }
 
-    // Periksa apakah No Porsi sama dengan NIK
-    if ($no_porsi == $nik) {
+    // Periksa apakah No Porsi sama dengan NIK (hanya jika no_porsi tidak "-")
+    if ($no_porsi != '-' && $no_porsi == $nik) {
         echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
         $conn->close();
         exit();
     }
 
-    // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri
-    $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
-    $totalNoPorsi = 0;
-    foreach ($tables as $table) {
-        $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
-        $cekNoPorsi->bind_param("si", $no_porsi, $id);
-        $cekNIK->execute();
-        $cekNoPorsi->bind_result($noPorsiCount);
-        $cekNoPorsi->fetch();
-        $totalNoPorsi += $noPorsiCount;
-        $cekNoPorsi->close();
-    }
-    if ($totalNoPorsi > 0) {
-        echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-        $conn->close();
-        exit();
+    // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri (hanya jika no_porsi tidak "-")
+    if ($no_porsi != '-') {
+        $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
+        $totalNoPorsi = 0;
+        foreach ($tables as $table) {
+            $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
+            $cekNoPorsi->bind_param("si", $no_porsi, $id);
+            $cekNoPorsi->execute();
+            $cekNoPorsi->bind_result($noPorsiCount);
+            $cekNoPorsi->fetch();
+            $totalNoPorsi += $noPorsiCount;
+            $cekNoPorsi->close();
+        }
+        if ($totalNoPorsi > 0) {
+            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+            $conn->close();
+            exit();
+        }
     }
 
     $jenis_kelamin = $_POST['jenis_kelamin'];
@@ -82,6 +89,7 @@ if (isset($_POST['update'])) {
     $golongan_darah = $_POST['golongan_darah'];
     $penyakit_bawaan = $_POST['penyakit_bawaan'];
     $jadwal_berangkat = $_POST['jadwal_berangkat'];
+    $status = $_POST['status'] ?? 'belum lunas'; // Default jika tidak ada
     // Hitung data_pulang otomatis 40 hari setelah jadwal_berangkat
     $data_pulang = null;
     if (!empty($jadwal_berangkat)) {
@@ -110,7 +118,12 @@ if (isset($_POST['update'])) {
         $foto = $foto_lama; // Gunakan foto lama jika tidak upload baru
     }
 
-    // Query update termasuk foto dan data_pulang
+    // Jika status belum lunas, ubah no_porsi menjadi "-"
+    if ($status === 'belum lunas') {
+        $no_porsi = '-';
+    }
+
+    // Query update termasuk foto, data_pulang, dan status
     $sql = "UPDATE jamaah_haji SET
         id_pembimbing='$id_pembimbing',
         nama_lengkap='$nama_lengkap',
@@ -125,7 +138,8 @@ if (isset($_POST['update'])) {
         penyakit_bawaan='$penyakit_bawaan',
         jadwal_berangkat='$jadwal_berangkat',
         data_pulang=" . ($data_pulang ? "'$data_pulang'" : "NULL") . ",
-        foto='$foto'
+        foto='$foto',
+        status='$status'
         WHERE id=$id";
 
     if ($conn->query($sql)) {

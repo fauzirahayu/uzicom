@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 10, 2025 at 09:53 AM
+-- Generation Time: Nov 11, 2025 at 02:09 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -42,7 +42,8 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 (1, 'ge', 'ge@gmail.com', '$2y$10$eW8TSqUFuzEoIHrjwHOoheLzZuK9dszyihmXlRjFaLst3gipALdy6'),
 (2, 'gi', 'gi@gmail.com', '$2y$10$a6EJqMMPj2HF05cCvLjPvemyLivwNqwef304/vIDZAEACKTgYvsfi'),
 (3, 'gu', 'gu@gmail.com', '$2y$10$nJKT5B4zuUQFh0CCz0cG4.XEDJBvQlRFDrmU6vDWM8ApOmLb0VduO'),
-(5, 'land', 'land@gmail.com', '$2y$10$y1w3mvQ3ERfZWmv0WUaj7eqb5yXgWUKL18OCx5VsDueB2F09RvwCi');
+(5, 'land', 'land@gmail.com', '$2y$10$y1w3mvQ3ERfZWmv0WUaj7eqb5yXgWUKL18OCx5VsDueB2F09RvwCi'),
+(6, 'hayu', 'hayu@gmail.com', '$2y$10$j0aTHF3duwsTDfJUWGYAourVMs1J8BSsIA4787IWrLMpqU.gstRK.');
 
 -- --------------------------------------------------------
 
@@ -101,7 +102,7 @@ CREATE TABLE `jamaah_2027` (
 --
 
 INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', '', '', '2027-07-08', 'Lunas', '2027-08-17', 1),
+(9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', '', '2027-07-08', 'Lunas', '2027-08-17', 1),
 (11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
 (13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1);
 
@@ -202,14 +203,14 @@ CREATE TABLE `jamaah_haji` (
 
 INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '0000012334', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
-(23, '', '12312321313215', '0000012335', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', '', '2025-11-20', 1),
+(23, '', '12312321313215', '-', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', 'Belum lunas', '2025-11-20', 4),
 (24, '', '12312321313233', '0000012311', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 1),
 (28, '1760323340_ppp.PNG', '123123678044', '0000012344', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
-(29, '1762748990_pass.png', '123123678008', '0000012321', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Lunas', '2026-05-28', 1),
+(29, '1762748990_pass.png', '123123678008', '-', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Belum lunas', '2026-05-28', 1),
 (30, '1762749419_Annotation2025-10-06092038.png', '12312321313222', '0000012322', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Lunas', '2026-10-23', 1),
 (31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1231236780221', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
-(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', '', '', '', '2026-11-16', 'Lunas', '2026-12-26', 1),
-(33, '1762766115_uu.PNG', '1122223333311111', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 4);
+(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 1),
+(33, '1762766115_uu.PNG', '1122223333311111', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3);
 
 -- --------------------------------------------------------
 
@@ -323,7 +324,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `berita`
