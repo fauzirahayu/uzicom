@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 11, 2025 at 02:09 AM
+-- Generation Time: Nov 12, 2025 at 02:59 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -104,7 +104,9 @@ CREATE TABLE `jamaah_2027` (
 INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', '', '2027-07-08', 'Lunas', '2027-08-17', 1),
 (11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
-(13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1);
+(13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1),
+(14, '1762910059_rpl.png', '1122223333311133', '-', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'kasep', '2027-11-13', 'Belum lunas', '2027-12-23', 1),
+(15, '1762911029_STARRT.PNG', '12312367800222221', '-', 'aditya', 'Laki-laki', '2025-11-05', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2027-10-17', 'Belum lunas', '2027-11-26', 3);
 
 -- --------------------------------------------------------
 
@@ -137,7 +139,7 @@ CREATE TABLE `jamaah_2028` (
 
 INSERT INTO `jamaah_2028` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (12, '', '12312321313213', '009882824', 'nurahman', 'Laki-laki', '2025-10-09', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2028-11-17', 'Lunas', '2028-12-27', 1),
-(15, '', '12312321313213', '0000012336', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', '2028-01-16', 'Lunas', '2028-02-25', 1),
+(15, '', '12312321313213', '-', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', '2028-01-16', 'Belum lunas', '2028-02-25', 1),
 (17, '', '12312321313213', '0000012331', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', 'Lunas', '2029-07-22', 1);
 
 -- --------------------------------------------------------
@@ -170,7 +172,7 @@ CREATE TABLE `jamaah_2029` (
 --
 
 INSERT INTO `jamaah_2029` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(3, '', '12312321313213', '', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', NULL, '', NULL, NULL);
+(3, '', '12312321313213', '-', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2029-01-18', 'Belum lunas', '2029-02-27', 1);
 
 -- --------------------------------------------------------
 
@@ -205,11 +207,11 @@ INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jen
 (19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '0000012334', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
 (23, '', '12312321313215', '-', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', 'Belum lunas', '2025-11-20', 4),
 (24, '', '12312321313233', '0000012311', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 1),
-(28, '1760323340_ppp.PNG', '123123678044', '0000012344', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
+(28, '1760323340_ppp.PNG', '123123678044', '-', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
 (29, '1762748990_pass.png', '123123678008', '-', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Belum lunas', '2026-05-28', 1),
-(30, '1762749419_Annotation2025-10-06092038.png', '12312321313222', '0000012322', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Lunas', '2026-10-23', 1),
+(30, '1762749419_Annotation2025-10-06092038.png', '12312321313222', '-', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Belum lunas', '2026-10-23', 1),
 (31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1231236780221', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
-(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 1),
+(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 3),
 (33, '1762766115_uu.PNG', '1122223333311111', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3);
 
 -- --------------------------------------------------------
@@ -248,7 +250,7 @@ CREATE TABLE `pengguna` (
   `id` int NOT NULL,
   `username` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `email` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `nik` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `nik` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `password` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -336,7 +338,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `jamaah_2027`
 --
 ALTER TABLE `jamaah_2027`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `jamaah_2028`
