@@ -1,38 +1,59 @@
 @startuml Sequence Diagram Register
 
-title Sequence Diagram Register Sistem Manajemen Haji
+title Sequence Diagram - Register Pengguna Sistem Manajemen Haji
 
-actor Pengguna as User
-participant "tampilan daftar" as RegisterPage
-participant "proses daftar" as Register
+actor User
+participant "Halaman Daftar\n(pengguna/daftar.php)" as RegisterPage
+participant "proses_daftar_pengguna.php" as RegisterProcess
 participant "Database" as DB
-participant "tampilan login" as LoginPage
+participant "Halaman Login\n(index.php)" as LoginPage
 
 User -> RegisterPage: Akses halaman daftar
-RegisterPage -> User: Tampilkan form registrasi
+RegisterPage -> User: Tampilkan form registrasi (nama, email, NIK, password, confirm_password)
 
-User -> RegisterPage: Masukkan nama, email, password, confirm_password
-RegisterPage -> Register: Kirim POST data
+User -> RegisterPage: Isi form dan submit
+RegisterPage -> RegisterProcess: POST: nama, email, nik, password, confirm_password
 
-Register -> Register: Validasi input (empty fields, password match, email format, password length)
+RegisterProcess -> RegisterProcess: Trim dan escape input
 
-alt Validasi gagal
-    Register -> RegisterPage: Redirect dengan alert error
-else Validasi berhasil
-    Register -> DB: Query SELECT id FROM pengguna WHERE email=?
-    DB --> Register: Return hasil cek email
-
-    alt Email sudah terdaftar
-        Register -> RegisterPage: Redirect dengan alert "Email sudah terdaftar!"
-    else Email belum terdaftar
-        Register -> Register: Hash password dengan password_hash()
-        Register -> DB: INSERT INTO pengguna (username, email, password)
-        DB --> Register: Return insert result
-
-        alt Insert berhasil
-            Register -> LoginPage: Redirect dengan alert "Pendaftaran berhasil! Silakan login."
-        else Insert gagal
-            Register -> RegisterPage: Redirect dengan alert "Pendaftaran gagal!"
+RegisterProcess -> RegisterProcess: Validasi semua field tidak boleh kosong
+alt Ada field kosong
+    RegisterProcess -> RegisterPage: Redirect dengan alert "Semua field harus diisi!"
+else Semua field terisi
+    RegisterProcess -> RegisterProcess: Cek password == confirm_password
+    alt Password tidak cocok
+        RegisterProcess -> RegisterPage: Redirect dengan alert "Password tidak cocok!"
+    else Password cocok
+        RegisterProcess -> RegisterProcess: Validasi format email dengan FILTER_VALIDATE_EMAIL
+        alt Email format tidak valid
+            RegisterProcess -> RegisterPage: Redirect dengan alert "Format email tidak valid!"
+        else Email format valid
+            RegisterProcess -> RegisterProcess: Cek panjang password >= 6
+            alt Password < 6 karakter
+                RegisterProcess -> RegisterPage: Redirect dengan alert "Password minimal 6 karakter!"
+            else Password >= 6 karakter
+                RegisterProcess -> RegisterProcess: Validasi NIK harus 16 digit dengan regex
+                alt NIK tidak valid
+                    RegisterProcess -> RegisterPage: Redirect dengan alert "NIK harus 16 digit angka!"
+                else NIK valid
+                    RegisterProcess -> DB: SELECT id FROM pengguna WHERE email=?
+                    DB --> RegisterProcess: Return hasil cek email
+                    
+                    alt Email sudah terdaftar
+                        RegisterProcess -> RegisterPage: Redirect dengan alert "Email sudah terdaftar!"
+                    else Email belum terdaftar
+                        RegisterProcess -> RegisterProcess: Hash password dengan password_hash()
+                        RegisterProcess -> DB: INSERT INTO pengguna (username, email, nik, password)
+                        DB --> RegisterProcess: Return insert result
+                        
+                        alt Insert berhasil
+                            RegisterProcess -> LoginPage: Redirect dengan alert "Pendaftaran berhasil! Silakan login."
+                        else Insert gagal
+                            RegisterProcess -> RegisterPage: Redirect dengan alert "Pendaftaran gagal!"
+                        end
+                    end
+                end
+            end
         end
     end
 end

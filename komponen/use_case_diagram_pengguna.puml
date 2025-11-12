@@ -5,37 +5,37 @@ actor "Pengguna" as Pengguna
 
 package "Sistem Manajemen Haji" {
     ' Authentication
-    usecase "login" as UC1
+    usecase "Login" as UC1
     usecase "Daftar" as UC2
 
     ' Dashboard
     usecase "Lihat Dashboard" as UC3
 
-    ' View Only
-    usecase "Lihat Jamaah" as UC8
-    usecase "Lihat Akun Admin" as UC18
-    usecase "Lihat Akun Pengguna" as UC23
-    usecase "Lihat Berita" as UC28
+    ' View Jamaah Data
+    usecase "Lihat Profil Jamaah" as UC8
+
+    ' View Other Data
+    usecase "Lihat Pembimbing" as UC24
+    usecase "Lihat Berita" as UC25
+    usecase "Lihat Panduan Daftar" as UC26
+    usecase "Lihat Status" as UC27
 
     ' Profile Management
-    usecase "Update Profil" as UC30
-    usecase "Ubah Password" as UC31
-    usecase "Lihat Jadwal" as UC32
-    usecase "Lihat Profil" as UC33
-    usecase "Validasi Data" as UC34
+    usecase "Lihat Profil Pengguna" as UC28
+    usecase "Edit Profil Pengguna" as UC29
+    usecase "Ubah Password" as UC30
 
     ' Includes
     UC3 ..> UC1 : include
     UC8 ..> UC1 : include
-    UC18 ..> UC1 : include
-    UC23 ..> UC1 : include
+    UC24 ..> UC1 : include
+    UC25 ..> UC1 : include
+    UC26 ..> UC1 : include
+    UC27 ..> UC1 : include
     UC28 ..> UC1 : include
+    UC29 ..> UC1 : include
     UC30 ..> UC1 : include
-    UC31 ..> UC1 : include
-    UC32 ..> UC1 : include
-    UC33 ..> UC1 : include
     UC1 ..> UC2 : include
-    UC2 ..> UC34 : include
 }
 
 '
@@ -45,12 +45,12 @@ Pengguna --> UC1
 Pengguna --> UC2
 Pengguna --> UC3
 Pengguna --> UC8
-Pengguna --> UC18
-Pengguna --> UC23
+Pengguna --> UC24
+Pengguna --> UC25
+Pengguna --> UC26
+Pengguna --> UC27
 Pengguna --> UC28
+Pengguna --> UC29
 Pengguna --> UC30
-Pengguna --> UC31
-Pengguna --> UC32
-Pengguna --> UC33
 
 @enduml

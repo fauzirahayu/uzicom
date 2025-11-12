@@ -36,50 +36,7 @@ if (isset($_POST['update'])) {
         echo '<script>alert("Jumlah jamaah yang dibimbing pembimbing ini: ' . $jumlahJamaah . '");</script>';
     }
 
-    // Periksa apakah NIK sudah ada di semua tabel jamaah kecuali record ini sendiri
-    $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
-    $totalNIK = 0;
-    foreach ($tables as $table) {
-        $cekNIK = $conn->prepare("SELECT COUNT(*) FROM $table WHERE nik = ? AND id != ?");
-        $cekNIK->bind_param("si", $nik, $id);
-        $cekNIK->execute();
-        $cekNIK->bind_result($nikCount);
-        $cekNIK->fetch();
-        $totalNIK += $nikCount;
-        $cekNIK->close();
-    }
-    if ($totalNIK > 0) {
-        echo '<script>alert("NIK sudah terdaftar di tahun lain. Silakan gunakan NIK yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-        $conn->close();
-        exit();
-    }
 
-    // Periksa apakah No Porsi sama dengan NIK (hanya jika no_porsi tidak "-")
-    if ($no_porsi != '-' && $no_porsi == $nik) {
-        echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-        $conn->close();
-        exit();
-    }
-
-    // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri (hanya jika no_porsi tidak "-")
-    if ($no_porsi != '-') {
-        $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
-        $totalNoPorsi = 0;
-        foreach ($tables as $table) {
-            $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
-            $cekNoPorsi->bind_param("si", $no_porsi, $id);
-            $cekNoPorsi->execute();
-            $cekNoPorsi->bind_result($noPorsiCount);
-            $cekNoPorsi->fetch();
-            $totalNoPorsi += $noPorsiCount;
-            $cekNoPorsi->close();
-        }
-        if ($totalNoPorsi > 0) {
-            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-            $conn->close();
-            exit();
-        }
-    }
 
     $jenis_kelamin = $_POST['jenis_kelamin'];
     $tanggal_lahir = $_POST['tanggal_lahir'];
@@ -121,6 +78,36 @@ if (isset($_POST['update'])) {
     // Jika status belum lunas, ubah no_porsi menjadi "-"
     if ($status === 'belum lunas') {
         $no_porsi = '-';
+    }
+
+    // Validasi duplikat no_porsi hanya untuk status 'lunas'
+    if ($status === 'lunas') {
+        // Periksa apakah No Porsi sama dengan NIK (hanya jika no_porsi tidak "-")
+        if ($no_porsi != '-' && $no_porsi == $nik) {
+            echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+            $conn->close();
+            exit();
+        }
+
+        // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri (hanya jika no_porsi tidak "-")
+        if ($no_porsi != '-') {
+            $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
+            $totalNoPorsi = 0;
+            foreach ($tables as $table) {
+                $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
+                $cekNoPorsi->bind_param("si", $no_porsi, $id);
+                $cekNoPorsi->execute();
+                $cekNoPorsi->bind_result($noPorsiCount);
+                $cekNoPorsi->fetch();
+                $totalNoPorsi += $noPorsiCount;
+                $cekNoPorsi->close();
+            }
+            if ($totalNoPorsi > 0) {
+                echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+                $conn->close();
+                exit();
+            }
+        }
     }
 
     // Query update termasuk foto, data_pulang, dan status

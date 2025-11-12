@@ -1,35 +1,51 @@
 @startuml Sequence Diagram Add Pembimbing
 
-title Sequence Diagram Add Pembimbing Sistem Manajemen Haji
+title Sequence Diagram - Tambah Pembimbing Haji
 
-actor Admin as Admin
-participant "tampilan pembimbing" as PembimbingPage
-participant "tampilan tambah pembimbing" as FormPage
-participant "proses add" as AddPembimbing
+actor Admin
+participant "List Pembimbing\n(pembimbing.php)" as PembimbingList
+participant "Form Pembimbing\n(tambahPembimbing.php)" as FormPage
+participant "addPembimbing.php" as AddProcess
+participant "Upload Handler" as Upload
 participant "Database" as DB
-participant "contern/jamaahHaji/pembimbing.php" as PembimbingList
 
-Admin -> PembimbingPage: Akses halaman pembimbing
-PembimbingPage -> Admin: Tampilkan list pembimbing dengan tombol tambah
+Admin -> PembimbingList: Akses halaman pembimbing
+PembimbingList -> Admin: Tampilkan list pembimbing dengan tombol tambah
 
-Admin -> FormPage: Klik tombol tambah, akses tambahPembimbing
-FormPage -> Admin: Tampilkan form tambah pembimbing
+Admin -> FormPage: Klik tombol tambah
+FormPage -> Admin: Tampilkan form tambah pembimbing (nama, NIK, telepon, email, alamat, foto, keterangan)
 
-Admin -> FormPage: Isi form (nama, nik, telepon, email, alamat, keterangan) dan submit
-FormPage -> AddPembimbing: Kirim POST data (form data, foto)
+Admin -> FormPage: Isi form dan submit
+FormPage -> AddProcess: POST: nama_lengkap, nik, telepon, email, alamat, keterangan, file foto
 
-alt Foto diupload
-    AddPembimbing -> AddPembimbing: Upload foto ke /uploads
+AddProcess -> AddProcess: Cek isset($_POST['tambah'])
+
+alt File foto diupload
+    AddProcess -> Upload: Process upload file
+    
+    Upload -> Upload: Validasi file tidak error (UPLOAD_ERR_OK)
+    Upload -> Upload: Buat directory /uploads jika tidak ada
+    Upload -> Upload: Buat filename dengan timestamp + sanitasi nama
+    Upload -> Upload: Move uploaded file ke /uploads/
+    
+    alt Upload berhasil
+        Upload --> AddProcess: Return filename
+    else Upload gagal
+        Upload -> Admin: Alert "Gagal upload file"
+        AddProcess -> AddProcess: Exit process
+    end
+else Tidak ada file foto
+    AddProcess -> AddProcess: Set name_file = '' (kosong)
 end
 
-AddPembimbing -> DB: INSERT INTO pembimbing_haji (nama_lengkap, nik, telepon, email, alamat, foto, keterangan)
-DB --> AddPembimbing: Return insert result
+AddProcess -> DB: INSERT INTO pembimbing_haji (nama_lengkap, nik, telepon, email, alamat, foto, keterangan)
+DB --> AddProcess: Return insert result
 
 alt Insert berhasil
-    AddPembimbing -> PembimbingList: Redirect to tampilan pembimbing
-    PembimbingList --> Admin: Tampilkan list pembimbing
+    AddProcess -> PembimbingList: Redirect ke halaman pembimbing
+    PembimbingList --> Admin: Tampilkan list pembimbing (pembimbing baru ada di list)
 else Insert gagal
-    AddPembimbing -> Admin: Tampilkan error message
+    AddProcess -> Admin: Tampilkan error message
 end
 
 @enduml

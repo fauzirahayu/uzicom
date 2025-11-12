@@ -9,50 +9,37 @@ skinparam class {
     BackgroundColor #FFFFFF
     BorderColor #000000
     BorderThickness 2
-    FontSize 11
+    FontSize 10
 }
 
-package "Infrastructure Layer" as Infra {
+package "Database" as DB {
     class Database {
         - host: string
         - user: string
         - pass: string
         - db: string
         - conn: mysqli
-        + __construct()
-        + connect(): mysqli
     }
 }
 
-package "User Classes" as Users {
+package "User Entities" as Users {
     class Admin {
         - id: int
         - username: string
         - email: string
         - password: string
-        + login(username: string, password: string): bool
-        + logout(): void
-        + manageJamaah(): void
-        + managePembimbing(): void
-        + manageBerita(): void
-        + generateReport(): void
     }
 
     class Pengguna {
         - id: int
         - username: string
         - email: string
+        - nik: string
         - password: string
-        + register(username: string, email: string, password: string): bool
-        + login(username: string, password: string): bool
-        + logout(): void
-        + viewJamaah(): void
-        + viewBerita(): void
-        + updateProfile(): void
     }
 }
 
-package "Entity Classes" as Entities {
+package "Master Data Entities" as Masters {
     class PembimbingHaji {
         - id: int
         - nama_lengkap: string
@@ -62,10 +49,19 @@ package "Entity Classes" as Entities {
         - email: string
         - foto: string
         - keterangan: string
-        + getDetails(): array
-        + updateDetails(): void
     }
 
+    class Berita {
+        - id: int
+        - judul: string
+        - konten: string
+        - tanggal_publikasi: date
+        - penulis: string
+        - gambar: string
+    }
+}
+
+package "Jamaah Data (by Year)" as Jamaah {
     class JamaahHaji {
         - id: int
         - foto: string
@@ -83,9 +79,6 @@ package "Entity Classes" as Entities {
         - status: string
         - data_pulang: date
         - id_pembimbing: int
-        + getDetails(): array
-        + updateDetails(): void
-        + uploadFoto(): void
     }
 
     class Jamaah2027 {
@@ -105,9 +98,6 @@ package "Entity Classes" as Entities {
         - status: string
         - data_pulang: date
         - id_pembimbing: int
-        + getDetails(): array
-        + updateDetails(): void
-        + uploadFoto(): void
     }
 
     class Jamaah2028 {
@@ -127,9 +117,6 @@ package "Entity Classes" as Entities {
         - status: string
         - data_pulang: date
         - id_pembimbing: int
-        + getDetails(): array
-        + updateDetails(): void
-        + uploadFoto(): void
     }
 
     class Jamaah2029 {
@@ -149,51 +136,24 @@ package "Entity Classes" as Entities {
         - status: string
         - data_pulang: date
         - id_pembimbing: int
-        + getDetails(): array
-        + updateDetails(): void
-        + uploadFoto(): void
-    }
-
-    class Berita {
-        - id: int
-        - judul: string
-        - konten: string
-        - tanggal_publikasi: date
-        - penulis: string
-        - gambar: string
-        + getDetails(): array
-        + updateDetails(): void
-        + uploadGambar(): void
     }
 }
 
 ' Relationships
-Infra.Database --> Users.Admin : connects
-Infra.Database --> Users.Pengguna : connects
-Infra.Database --> Entities.PembimbingHaji : connects
-Infra.Database --> Entities.JamaahHaji : connects
-Infra.Database --> Entities.Jamaah2027 : connects
-Infra.Database --> Entities.Jamaah2028 : connects
-Infra.Database --> Entities.Jamaah2029 : connects
-Infra.Database --> Entities.Berita : connects
+Masters.PembimbingHaji --> Jamaah.JamaahHaji : guides
+Masters.PembimbingHaji --> Jamaah.Jamaah2027 : guides
+Masters.PembimbingHaji --> Jamaah.Jamaah2028 : guides
+Masters.PembimbingHaji --> Jamaah.Jamaah2029 : guides
 
-Users.Admin --> Entities.JamaahHaji : manages
-Users.Admin --> Entities.Jamaah2027 : manages
-Users.Admin --> Entities.Jamaah2028 : manages
-Users.Admin --> Entities.Jamaah2029 : manages
-Users.Admin --> Entities.PembimbingHaji : manages
-Users.Admin --> Entities.Berita : manages
+Users.Admin --> Jamaah.JamaahHaji : manages
+Users.Admin --> Jamaah.Jamaah2027 : manages
+Users.Admin --> Jamaah.Jamaah2028 : manages
+Users.Admin --> Jamaah.Jamaah2029 : manages
+Users.Admin --> Masters.PembimbingHaji : manages
+Users.Admin --> Masters.Berita : manages
 
-Users.Pengguna --> Entities.JamaahHaji : views
-Users.Pengguna --> Entities.Jamaah2027 : views
-Users.Pengguna --> Entities.Jamaah2028 : views
-Users.Pengguna --> Entities.Jamaah2029 : views
-Users.Pengguna --> Entities.PembimbingHaji : views
-Users.Pengguna --> Entities.Berita : views
 
-Entities.PembimbingHaji --> Entities.JamaahHaji : guides
-Entities.PembimbingHaji --> Entities.Jamaah2027 : guides
-Entities.PembimbingHaji --> Entities.Jamaah2028 : guides
-Entities.PembimbingHaji --> Entities.Jamaah2029 : guides
+Users.Pengguna --> Masters.PembimbingHaji : views
+Users.Pengguna --> Masters.Berita : views
 
 @enduml

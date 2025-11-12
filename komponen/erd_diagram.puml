@@ -4,7 +4,7 @@ title Entity-Relationship Diagram (ERD) Sistem Manajemen Jamaah Haji
 
 ' Entitas Admin
 entity "Admin" as admin {
-  * id : INT
+  * id : INT (PK)
   --
   username : VARCHAR(250)
   email : VARCHAR(250)
@@ -13,113 +13,114 @@ entity "Admin" as admin {
 
 ' Entitas Pengguna
 entity "Pengguna" as pengguna {
-  * id : INT
+  * id : INT (PK)
   --
   username : VARCHAR(250)
   email : VARCHAR(250)
+  nik : VARCHAR(20)
   password : VARCHAR(250)
 }
 
 ' Entitas Pembimbing Haji
 entity "Pembimbing_Haji" as pembimbing {
-  * id : INT
+  * id : INT (PK)
   --
-  nama_lengkap : VARCHAR(250)
-  nik : VARCHAR(20)
-  telepon : VARCHAR(15)
-  email : VARCHAR(250)
-  alamat : TEXT
+  nama_lengkap : VARCHAR(100)
+  nik : VARCHAR(30)
+  telepon : VARCHAR(30)
+  alamat : VARCHAR(255)
+  email : VARCHAR(100)
   foto : VARCHAR(255)
   keterangan : TEXT
 }
 
-' Entitas Jamaah Haji (untuk tahun Haji)
+' Entitas Jamaah Haji (untuk tahun standar)
 entity "Jamaah_Haji" as jamaah_haji {
-  * id : INT
+  * id : INT (PK)
   --
   id_pembimbing : INT (FK)
-  nama_lengkap : VARCHAR(250)
+  foto : VARCHAR(100)
   nik : VARCHAR(20)
-  no_porsi : VARCHAR(20)
-  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  no_porsi : VARCHAR(30)
+  nama_lengkap : VARCHAR(100)
+  jenis_kelamin : VARCHAR(20)
   tanggal_lahir : DATE
-  alamat : TEXT
-  telepon : VARCHAR(15)
+  alamat : VARCHAR(200)
+  telepon : VARCHAR(30)
   no_paspor : VARCHAR(20)
   golongan_darah : VARCHAR(5)
-  penyakit_bawaan : TEXT
+  penyakit_bawaan : VARCHAR(100)
   jadwal_berangkat : DATE
+  status : VARCHAR(250)
   data_pulang : DATE
-  foto : VARCHAR(255)
-  status : ENUM('Lunas', 'Belum lunas')
 }
 
 ' Entitas Jamaah 2027
 entity "Jamaah_2027" as jamaah_2027 {
-  * id : INT
+  * id : INT (PK)
   --
   id_pembimbing : INT (FK)
-  nama_lengkap : VARCHAR(250)
+  foto : VARCHAR(100)
   nik : VARCHAR(20)
-  no_porsi : VARCHAR(20)
-  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  no_porsi : VARCHAR(30)
+  nama_lengkap : VARCHAR(100)
+  jenis_kelamin : VARCHAR(20)
   tanggal_lahir : DATE
-  alamat : TEXT
-  telepon : VARCHAR(15)
+  alamat : VARCHAR(200)
+  telepon : VARCHAR(30)
   no_paspor : VARCHAR(20)
   golongan_darah : VARCHAR(5)
-  penyakit_bawaan : TEXT
+  penyakit_bawaan : VARCHAR(100)
   jadwal_berangkat : DATE
+  status : VARCHAR(250)
   data_pulang : DATE
-  foto : VARCHAR(255)
-  status : ENUM('Lunas', 'Belum lunas')
 }
 
 ' Entitas Jamaah 2028
 entity "Jamaah_2028" as jamaah_2028 {
-  * id : INT
+  * id : INT (PK)
   --
   id_pembimbing : INT (FK)
-  nama_lengkap : VARCHAR(250)
+  foto : VARCHAR(100)
   nik : VARCHAR(20)
-  no_porsi : VARCHAR(20)
-  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  no_porsi : VARCHAR(30)
+  nama_lengkap : VARCHAR(100)
+  jenis_kelamin : VARCHAR(20)
   tanggal_lahir : DATE
-  alamat : TEXT
-  telepon : VARCHAR(15)
+  alamat : VARCHAR(200)
+  telepon : VARCHAR(30)
   no_paspor : VARCHAR(20)
   golongan_darah : VARCHAR(5)
-  penyakit_bawaan : TEXT
+  penyakit_bawaan : VARCHAR(100)
   jadwal_berangkat : DATE
+  status : VARCHAR(250)
   data_pulang : DATE
-  foto : VARCHAR(255)
-  status : ENUM('Lunas', 'Belum lunas')
 }
 
 ' Entitas Jamaah 2029
 entity "Jamaah_2029" as jamaah_2029 {
-  * id : INT
+  * id : INT (PK)
   --
   id_pembimbing : INT (FK)
-  nama_lengkap : VARCHAR(250)
+  foto : VARCHAR(100)
   nik : VARCHAR(20)
-  no_porsi : VARCHAR(20)
-  jenis_kelamin : ENUM('Laki-laki', 'Perempuan')
+  no_porsi : VARCHAR(30)
+  nama_lengkap : VARCHAR(100)
+  jenis_kelamin : VARCHAR(20)
   tanggal_lahir : DATE
-  alamat : TEXT
-  telepon : VARCHAR(15)
+  alamat : VARCHAR(200)
+  telepon : VARCHAR(30)
   no_paspor : VARCHAR(20)
   golongan_darah : VARCHAR(5)
-  penyakit_bawaan : TEXT
+  penyakit_bawaan : VARCHAR(100)
   jadwal_berangkat : DATE
+  status : VARCHAR(250)
   data_pulang : DATE
-  foto : VARCHAR(255)
-  status : ENUM('Lunas', 'Belum lunas')
 }
 
 ' Entitas Berita
 entity "Berita" as berita {
-  * id : INT
+  * id : INT (PK)
   --
   judul : VARCHAR(255)
   konten : TEXT
@@ -128,26 +129,23 @@ entity "Berita" as berita {
   gambar : VARCHAR(255)
 }
 
-' Relasi
-pembimbing ||--o{ jamaah_haji : "membimbing (1:N)"
-pembimbing ||--o{ jamaah_2027 : "membimbing (1:N)"
-pembimbing ||--o{ jamaah_2028 : "membimbing (1:N)"
-pembimbing ||--o{ jamaah_2029 : "membimbing (1:N)"
+' Relasi Pembimbing ke Jamaah
+pembimbing ||--o{ jamaah_haji : "membimbing"
+pembimbing ||--o{ jamaah_2027 : "membimbing"
+pembimbing ||--o{ jamaah_2028 : "membimbing"
+pembimbing ||--o{ jamaah_2029 : "membimbing"
 
-admin -- berita : "mengelola"
-admin -- pembimbing : "mengelola"
-admin -- jamaah_haji : "mengelola"
-admin -- jamaah_2027 : "mengelola"
-admin -- jamaah_2028 : "mengelola"
-admin -- jamaah_2029 : "mengelola"
+' Relasi Admin mengelola
+admin ||--o{ berita : "mengelola"
+admin ||--o{ pembimbing : "mengelola"
+admin ||--o{ jamaah_haji : "mengelola"
+admin ||--o{ jamaah_2027 : "mengelola"
+admin ||--o{ jamaah_2028 : "mengelola"
+admin ||--o{ jamaah_2029 : "mengelola"
 
-' Pengguna melihat berita dan melihat data jamaah (relasi tidak langsung)
-pengguna -- berita : "melihat"
-pengguna -- jamaah_haji : "melihat data"
-pengguna -- jamaah_2027 : "melihat data"
-pengguna -- jamaah_2028 : "melihat data"
-pengguna -- jamaah_2029 : "melihat data"
-pengguna -- pembimbing : "melihat data"
+' Relasi Pengguna melihat
+pengguna }o--|| berita : "melihat"
+pengguna }o--|| pembimbing : "melihat data"
 
 @enduml
 

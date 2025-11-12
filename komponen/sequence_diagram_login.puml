@@ -1,43 +1,52 @@
 @startuml Sequence Diagram Login
 
-title Sequence Diagram Login Sistem Manajemen Haji
+title Sequence Diagram - Login Sistem Manajemen Haji
 
-actor Admin as Admin
-actor Pengguna as User
-participant "tampilan login" as Index
-participant "proses login" as Login
+actor User
+participant "Halaman Login\n(index.php)" as LoginPage
+participant "proses_login.php" as LoginProcess
 participant "Database" as DB
-participant "sideMenu admin" as AdminMenu
-participant "sideMenu penguna" as UserMenu
+participant "Admin Dashboard\n(sideMenu.php)" as AdminDash
+participant "User Dashboard\n(sideMenu2.php)" as UserDash
 
-Admin -> Index: Akses halaman login
-Index -> Admin: Tampilkan form login
+User -> LoginPage: Akses halaman login
+LoginPage -> User: Tampilkan form login (email, password)
 
-Admin -> Index: Masukkan email dan password
-Index -> Login: Kirim POST data (email, password)
+User -> LoginPage: Masukkan email dan password, submit
+LoginPage -> LoginProcess: POST: email, password
 
-Login -> DB: Query SELECT * FROM admin WHERE email=?
-DB --> Login: Return admin data
+LoginProcess -> LoginProcess: Trim dan escape input
 
-alt Admin login berhasil
-    Login -> Login: Verify password dengan password_verify()
-    Login -> Login: Set session (id, nama, email, role='admin')
-    Login -> AdminMenu: Redirect to sideMenu admin
-    AdminMenu --> Admin: Tampilkan dashboard admin
-else Admin login gagal
-    Login -> Index: Redirect dengan alert "Email atau Password salah!"
-end
+LoginProcess -> DB: SELECT * FROM admin WHERE email=?
+DB --> LoginProcess: Return admin record (jika ada)
 
-Login -> DB: Query SELECT * FROM pengguna WHERE email=?
-DB --> Login: Return pengguna data
-
-alt Pengguna login berhasil
-    Login -> Login: Verify password dengan password_verify()
-    Login -> Login: Set session (id, nama, email, role='user')
-    Login -> UserMenu: Redirect to pengguna/sideMenu pengguna
-    UserMenu --> User: Tampilkan dashboard pengguna
-else Pengguna login gagal
-    Login -> Index: Redirect dengan alert "Email atau Password salah!"
+alt Admin ditemukan
+    LoginProcess -> LoginProcess: password_verify(password, hashed_password)
+    
+    alt Password benar
+        LoginProcess -> LoginProcess: Set session (id, nama, email, role='admin')
+        LoginProcess -> AdminDash: Redirect ke sideMenu.php
+        AdminDash --> User: Tampilkan dashboard admin
+    else Password salah
+        LoginProcess -> LoginProcess: Check tabel pengguna
+    end
+else Admin tidak ditemukan
+    LoginProcess -> DB: SELECT * FROM pengguna WHERE email=?
+    DB --> LoginProcess: Return pengguna record (jika ada)
+    
+    alt Pengguna ditemukan
+        LoginProcess -> LoginProcess: password_verify(password, hashed_password)
+        
+        alt Password benar
+            LoginProcess -> LoginProcess: Set session (id, nama, email, role='user')
+            LoginProcess -> UserDash: Redirect ke pengguna/sideMenu2.php
+            UserDash --> User: Tampilkan dashboard pengguna
+        else Password salah
+            LoginProcess -> LoginPage: Redirect dengan alert "Email atau Password salah!"
+        end
+    else Pengguna tidak ditemukan
+        LoginProcess -> LoginPage: Redirect dengan alert "Email atau Password salah!"
+    end
 end
 
 @enduml

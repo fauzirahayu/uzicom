@@ -17,7 +17,7 @@ start
 
 |Pengguna|
 :Masuk ke halaman login;
-if (Login sebagai Admin?) then (Ya)
+if (Pilih akun?) then (Admin)
     :Masukkan email dan password;
     |Sistem|
     :Validasi login admin;
@@ -26,72 +26,89 @@ if (Login sebagai Admin?) then (Ya)
         :Redirect ke dashboard admin;
         |Admin|
         :Tampilkan menu utama;
-        if (Pilih Home/Dashboard?) then (Ya)
+        if (Pilih menu?) then (Dashboard)
             :Tampilkan statistik;
-            if (Lihat Jamaah?) then (Ya)
-                :Pilih tahun (2026-2029);
-                :Tampilkan list jamaah;
-            endif
-        elseif (Pilih Tambah Admin?) then (Ya)
-            :Isi form admin;
-            |Sistem|
-            :Simpan admin baru;
-        elseif (Pilih Kelola Akun Admin?) then (Ya)
-            :Tampilkan list admin;
-            if (Edit/Hapus?) then (Ya)
-                :Pilih admin;
-                :Update/Hapus data;
-                |Sistem|
-                :Proses perubahan;
-            endif
-        elseif (Pilih Kelola Jamaah?) then (Ya)
-            :Pilih tahun;
+        elseif (Kelola Jamaah) then
+            :Pilih tahun (2026-2029);
             :Tampilkan list jamaah;
-            if (Tambah?) then (Ya)
+            if (Aksi?) then (Tambah)
                 :Isi form jamaah;
                 |Sistem|
                 :Validasi & simpan;
-            elseif (Edit?) then (Ya)
+            elseif (Edit) then
                 :Update jamaah;
                 |Sistem|
                 :Simpan perubahan;
-            elseif (Hapus?) then (Ya)
+            elseif (Hapus) then
                 :Konfirmasi hapus;
                 |Sistem|
                 :Hapus data;
-            elseif (Detail?) then (Ya)
+            elseif (Lihat Detail) then
                 :Tampilkan detail;
             endif
-        elseif (Pilih Tour Guide?) then (Ya)
+        elseif (Kelola Pembimbing) then
             :Tampilkan list pembimbing;
-            if (CRUD Pembimbing?) then (Ya)
-                :Tambah/Edit/Hapus pembimbing;
+            if (Aksi?) then (Tambah)
+                :Isi form pembimbing;
                 |Sistem|
-                :Proses;
+                :Simpan pembimbing;
+            elseif (Edit) then
+                :Update pembimbing;
+                |Sistem|
+                :Simpan perubahan;
+            elseif (Hapus) then
+                :Hapus pembimbing;
+                |Sistem|
+                :Proses hapus;
             endif
-        elseif (Pilih Berita?) then (Ya)
+        elseif (Kelola Akun Admin) then
+            :Tampilkan list admin;
+            if (Aksi?) then (Tambah)
+                :Isi form admin;
+                |Sistem|
+                :Simpan admin baru;
+            elseif (Edit) then
+                :Update admin;
+                |Sistem|
+                :Simpan perubahan;
+            elseif (Hapus) then
+                :Hapus admin;
+                |Sistem|
+                :Proses hapus;
+            endif
+        elseif (Kelola Berita) then
             :Tampilkan list berita;
-            if (CRUD Berita?) then (Ya)
-                :Tambah/Edit/Hapus berita;
+            if (Aksi?) then (Tambah)
+                :Isi form berita;
                 |Sistem|
-                :Proses;
+                :Simpan berita;
+            elseif (Edit) then
+                :Update berita;
+                |Sistem|
+                :Simpan perubahan;
+            elseif (Hapus) then
+                :Hapus berita;
+                |Sistem|
+                :Proses hapus;
             endif
-        elseif (Pilih Panduan?) then (Ya)
-            :Tampilkan cara daftar haji;
-        elseif (Pilih Laporan?) then (Ya)
-            :Pilih laporan;
+        elseif (Generate Laporan) then
             |Sistem|
-            :Generate & download;
-        elseif (Pilih Logout?) then (Ya)
+            :Generate laporan;
+            :Download file;
+        elseif (Generate Bukti Booking) then
             |Sistem|
-            :Logout;
+            :Generate bukti booking;
+            :Download PDF;
+        elseif (Logout) then
+            |Sistem|
+            :Logout session;
         endif
     else (Tidak)
-        :Error login;
+        :Tampilkan error;
         |Pengguna|
         :Kembali ke login;
     endif
-else (Login sebagai Pengguna)
+else (Pengguna)
     :Masukkan email dan password;
     |Sistem|
     :Validasi login pengguna;
@@ -104,28 +121,35 @@ else (Login sebagai Pengguna)
         case (Home)
             :Tampilkan info umum;
             if (Lihat Jamaah?) then (Ya)
-                :Pilih tahun;
                 :Tampilkan list jamaah;
             endif
         case (Profil)
-            :Tampilkan profil;
+            :Tampilkan profil pengguna;
             if (Edit?) then (Ya)
-                :Update profil/password;
+                :Update profil;
                 |Sistem|
-                :Simpan;
+                :Simpan profil;
+            endif
+        case (Ubah Password)
+            if (Edit?) then (Ya)
+                :Update password;
+                |Sistem|
+                :Simpan password;
             endif
         case (Tour Guide)
             :Tampilkan pembimbing;
         case (Berita)
             :Tampilkan berita;
-        case (Panduan)
-            :Tampilkan cara daftar;
+        case (Gimana Cara Daftar Haji?)
+            :Tampilkan panduan daftar;
+        case (Status)
+            :Tampilkan status pendaftaran;
         case (Logout)
             |Sistem|
             :Logout;
         endswitch
     else (Tidak)
-        :Error login;
+        :Tampilkan error;
         :Kembali ke login;
     endif
 endif
@@ -137,6 +161,7 @@ if (Belum punya akun?) then (Ya)
     |Sistem|
     :Validasi & simpan;
     :Redirect ke login;
+else (Tidak)
 endif
 
 stop

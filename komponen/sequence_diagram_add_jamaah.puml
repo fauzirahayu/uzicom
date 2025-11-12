@@ -1,64 +1,71 @@
 @startuml Sequence Diagram Add Jamaah
 
-title Sequence Diagram Add Jamaah Sistem Manajemen Haji
+title Sequence Diagram - Tambah Jamaah Haji
 
-actor Admin as Admin
-participant "tampilantahun jamaah" as JamaahPage
-participant "tampilan tambah jamaah" as FormPage
-participant "proses add" as AddJamaah
+actor Admin
+participant "Form Jamaah" as Form
+participant "addJamaahWithPembimbing.php" as Process
 participant "Database" as DB
-participant "tampilan tahun jamaah" as JamaahList
 
-Admin -> JamaahPage: Akses halaman jamaah
-JamaahPage -> Admin: Tampilkan list jamaah dengan tombol tambah
+Admin -> Form: Akses form tambah jamaah
+Form -> Admin: Tampilkan form dengan pilihan pembimbing
 
-Admin -> FormPage: Klik tombol tambah
-FormPage -> Admin: Tampilkan form tambah jamaah
+Admin -> Form: Isi data (nama, NIK, no_porsi, pembimbing, dll) dan submit
+Form -> Process: POST: id_pembimbing, nama_lengkap, nik, no_porsi, status, etc
 
-Admin -> FormPage: Isi form (nama, nik, no_porsi, dll) dan submit
-FormPage -> AddJamaah: Kirim POST data (form data, foto)
+Process -> Process: Validasi field harus terisi
 
-AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji WHERE id_pembimbing = ?
-DB --> AddJamaah: Return jumlah jamaah pembimbing
-
-alt Jumlah >= 20
-    AddJamaah -> FormPage: Redirect dengan alert "Pembimbing sudah membimbing 20 jamaah"
-else Jumlah < 20
-    AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji
-    DB --> AddJamaah: Return total jamaah
-
-    alt Total >= 50
-        AddJamaah -> JamaahPage: Redirect dengan alert "Jumlah jamaah sudah maksimal 50"
-    else Total < 50
-        AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji WHERE nik = ?
-        DB --> AddJamaah: Return count NIK
-
-        alt NIK sudah ada
-            AddJamaah -> FormPage: Redirect dengan alert "NIK sudah terdaftar"
-        else NIK belum ada
-            AddJamaah -> DB: Query SELECT COUNT(*) FROM jamaah_haji WHERE no_porsi = ?
-            DB --> AddJamaah: Return count no_porsi
-
-            alt No Porsi sudah ada
-                AddJamaah -> FormPage: Redirect dengan alert "No Porsi sudah terdaftar"
-            else No Porsi belum ada
-                alt No Porsi == NIK
-                    AddJamaah -> FormPage: Redirect dengan alert "No Porsi tidak boleh sama dengan NIK"
-                else No Porsi != NIK
-                    AddJamaah -> AddJamaah: Hitung data_pulang (+40 hari dari jadwal_berangkat)
-
-                    alt Foto diupload
-                        AddJamaah -> AddJamaah: Upload foto ke /uploads
-                    end
-
-                    AddJamaah -> DB: INSERT INTO jamaah_haji (data fields)
-                    DB --> AddJamaah: Return insert result
-
-                    alt Insert berhasil
-                        AddJamaah -> JamaahList: Redirect to tampilan tambah jamaah
-                        JamaahList --> Admin: Tampilkan list jamaah
-                    else Insert gagal
-                        AddJamaah -> Admin: Tampilkan error message
+alt Jika ada field kosong
+    Process -> Admin: Alert "Semua field harus diisi!"
+    Process -> Form: Redirect ke form
+else Semua field terisi
+    Process -> DB: SELECT COUNT(*) dari semua tabel jamaah WHERE id_pembimbing = ?
+    DB --> Process: Return jumlah jamaah dibimbing pembimbing
+    
+    alt Jumlah jamaah >= 20
+        Process -> Admin: Alert "Pembimbing sudah membimbing 20 jamaah"
+        Process -> Form: Redirect ke form
+    else Jumlah < 20
+        Process -> DB: SELECT COUNT(*) FROM jamaah_haji
+        DB --> Process: Return total jamaah haji
+        
+        alt Total jamaah_haji >= 50
+            Process -> Admin: Alert "Jumlah jamaah haji sudah maksimal 50"
+            Process -> Form: Redirect ke form
+        else Total < 50
+            Process -> Process: Cek status jamaah
+            
+            alt Status = 'belum lunas'
+                Process -> Process: Set no_porsi = '-'
+            else Status = 'lunas'
+                alt no_porsi == NIK
+                    Process -> Admin: Alert "No Porsi tidak boleh sama dengan NIK"
+                    Process -> Form: Redirect ke form
+                else no_porsi != NIK
+                    Process -> DB: SELECT COUNT(*) FROM semua tabel WHERE no_porsi = ?
+                    DB --> Process: Return count no_porsi
+                    
+                    alt no_porsi sudah ada
+                        Process -> Admin: Alert "No Porsi sudah terdaftar"
+                        Process -> Form: Redirect ke form
+                    else no_porsi belum ada
+                        Process -> Process: Hitung data_pulang (+40 hari dari jadwal_berangkat)
+                        
+                        alt Foto diupload
+                            Process -> Process: Upload foto ke /uploads dengan nama timestamp
+                        else Tidak ada foto
+                            Process -> Process: Set foto = ''
+                        end
+                        
+                        Process -> DB: INSERT INTO jamaah_haji (all data fields)
+                        DB --> Process: Return insert result
+                        
+                        alt Insert berhasil
+                            Process -> Admin: Alert "Jamaah berhasil ditambahkan"
+                            Process -> Form: Redirect ke list jamaah
+                        else Insert gagal
+                            Process -> Admin: Alert "Error: Gagal menambahkan jamaah"
+                        end
                     end
                 end
             end
