@@ -1,0 +1,109 @@
+@startuml
+title Diagram Aktivitas Pengguna - Sistem Manajemen Haji
+
+scale 1.5
+skinparam swimlaneWidth 250
+skinparam activityFontSize 12
+skinparam activityHeight 20
+skinparam activityWidth 150
+skinparam swimlaneTitleFontSize 16
+skinparam titleFontSize 18
+
+|Pengguna|
+|Sistem|
+|Database|
+
+start
+
+|Pengguna|
+:Masuk ke halaman login (index.php);
+:Masukkan email dan password;
+|Sistem|
+:Validasi login (proses_login.php);
+|Database|
+:Ambil data pengguna;
+|Sistem|
+:Periksa kredensial;
+if (Login berhasil?) then (Ya)
+    :Set session user;
+    :Redirect ke dashboard user (pengguna/jamaah.php);
+    |Pengguna|
+    :Tampilkan menu;
+    switch (Pilih Menu)
+    case (Home/Dashboard)
+        :Tampilkan info umum & list jamaah (pengguna/jamaah.php);
+        |Sistem|
+        :Ambil data jamaah (read-only, data tersembunyi sebagian);
+        |Database|
+        :Return data jamaah;
+        if (Cari?) then (Ya)
+            :Input nama/NIK;
+            |Sistem|
+            :Filter data;
+            |Database|
+            :Return hasil pencarian;
+        endif
+    case (Profil)
+        :Tampilkan profil (pengguna/profil.php);
+        |Sistem|
+        :Ambil data profil;
+        |Database|
+        :Return data profil;
+        if (Edit?) then (Ya)
+            :Update profil (pengguna/edit_profil.php);
+            |Sistem|
+            :Validasi & update (update_profil.php);
+            |Database|
+            :Update data profil;
+        endif
+    case (Ubah Password)
+        :Update password (pengguna/ubah_password.php);
+        |Sistem|
+        :Validasi & hash password (update_password.php);
+        |Database|
+        :Update password;
+    case (Tour Guide/Pembimbing)
+        :Tampilkan list pembimbing (pengguna/penbingbing.php);
+        |Sistem|
+        :Ambil data pembimbing;
+        |Database|
+        :Return data pembimbing;
+    case (Berita)
+        :Tampilkan berita (pengguna/berita/berita.php);
+        |Sistem|
+        :Ambil data berita;
+        |Database|
+        :Return data berita;
+    case (Gimana Cara Daftar Haji?)
+        :Tampilkan panduan (cara_daftar_haji.php);
+    case (Status)
+        :Tampilkan status pendaftaran (pengguna/status/index.php);
+        |Sistem|
+        :Ambil status pendaftaran;
+        |Database|
+        :Return status;
+    case (Logout)
+        |Sistem|
+        :Logout;
+    endswitch
+else (Tidak)
+    :Tampilkan error;
+    |Pengguna|
+    :Kembali ke login;
+endif
+
+if (Belum punya akun?) then (Ya)
+    |Pengguna|
+    :Klik daftar (pengguna/daftar.php);
+    :Isi form registrasi;
+    |Sistem|
+    :Validasi & simpan (proses_daftar_pengguna.php);
+    |Database|
+    :Insert data pengguna;
+    :Redirect ke login;
+else (Tidak)
+endif
+
+stop
+
+@enduml

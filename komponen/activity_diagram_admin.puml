@@ -20,6 +20,10 @@ start
 :Masukkan email dan password;
 |Sistem|
 :Validasi login (proses_login.php);
+|Database|
+:Ambil data admin;
+|Sistem|
+:Periksa kredensial;
 if (Login berhasil?) then (Ya)
     :Set session admin;
     :Redirect ke dashboard admin (contern/dasboard/index.php);
@@ -29,14 +33,14 @@ if (Login berhasil?) then (Ya)
     case (Dashboard)
         :Tampilkan statistik jamaah per tahun;
         |Sistem|
-        :Query jumlah jamaah per tahun;
+        :Ambil data statistik;
         |Database|
         :Return data jamaah;
     case (Kelola Jamaah)
         :Pilih tahun (2026-2029);
         :Tampilkan list jamaah (jamaah.php, jamaah2027.php, dll);
         |Sistem|
-        :Query data jamaah;
+        :Ambil data jamaah;
         |Database|
         :Return data jamaah;
         if (Aksi?) then (Tambah)
@@ -61,20 +65,20 @@ if (Login berhasil?) then (Ya)
         elseif (Lihat Detail) then
             :Tampilkan detail jamaah (detailJamaah.php);
             |Sistem|
-            :Query detail jamaah;
+            :Ambil detail jamaah;
             |Database|
             :Return detail jamaah;
         elseif (Cari) then
             :Input nama/NIK;
             |Sistem|
-            :Filter query;
+            :Filter data;
             |Database|
             :Return hasil pencarian;
         endif
     case (Kelola Pembimbing)
         :Tampilkan list pembimbing (pembimbing.php);
         |Sistem|
-        :Query data pembimbing;
+        :Ambil data pembimbing;
         |Database|
         :Return data pembimbing;
         if (Aksi?) then (Tambah)
@@ -99,7 +103,7 @@ if (Login berhasil?) then (Ya)
     case (Kelola Akun Admin)
         :Tampilkan list admin (kelola_akun.php);
         |Sistem|
-        :Query data admin;
+        :Ambil data admin;
         |Database|
         :Return data admin;
         if (Aksi?) then (Tambah)
@@ -124,7 +128,7 @@ if (Login berhasil?) then (Ya)
     case (Kelola Berita)
         :Tampilkan list berita (berita/berita.php);
         |Sistem|
-        :Query data berita;
+        :Ambil data berita;
         |Database|
         :Return data berita;
         if (Aksi?) then (Tambah)
@@ -149,7 +153,7 @@ if (Login berhasil?) then (Ya)
     case (Generate Laporan)
         :Pilih filter laporan (laporan.php);
         |Sistem|
-        :Query data laporan;
+        :Ambil data laporan;
         |Database|
         :Return data laporan;
         :Generate laporan PDF/Excel;
@@ -157,7 +161,7 @@ if (Login berhasil?) then (Ya)
     case (Generate Bukti Booking)
         :Pilih jamaah;
         |Sistem|
-        :Query data jamaah;
+        :Ambil data jamaah;
         |Database|
         :Return data jamaah;
         :Generate bukti booking PDF (generateBuktiBooking.php);
@@ -170,112 +174,6 @@ else (Tidak)
     :Tampilkan error;
     |Admin|
     :Kembali ke login;
-endif
-
-stop
-
-@enduml
-
-@startuml
-title Diagram Aktivitas Pengguna - Sistem Manajemen Haji
-
-scale 1.5
-skinparam swimlaneWidth 250
-skinparam activityFontSize 12
-skinparam activityHeight 20
-skinparam activityWidth 150
-skinparam swimlaneTitleFontSize 16
-skinparam titleFontSize 18
-
-|Pengguna|
-|Sistem|
-|Database|
-
-start
-
-|Pengguna|
-:Masuk ke halaman login (index.php);
-:Masukkan email dan password;
-|Sistem|
-:Validasi login (proses_login.php);
-if (Login berhasil?) then (Ya)
-    :Set session user;
-    :Redirect ke dashboard user (pengguna/jamaah.php);
-    |Pengguna|
-    :Tampilkan menu;
-    switch (Pilih Menu)
-    case (Home/Dashboard)
-        :Tampilkan info umum & list jamaah (pengguna/jamaah.php);
-        |Sistem|
-        :Query data jamaah (read-only, data tersembunyi sebagian);
-        |Database|
-        :Return data jamaah;
-        if (Cari?) then (Ya)
-            :Input nama/NIK;
-            |Sistem|
-            :Filter query;
-            |Database|
-            :Return hasil pencarian;
-        endif
-    case (Profil)
-        :Tampilkan profil (pengguna/profil.php);
-        |Sistem|
-        :Query data profil;
-        |Database|
-        :Return data profil;
-        if (Edit?) then (Ya)
-            :Update profil (pengguna/edit_profil.php);
-            |Sistem|
-            :Validasi & update (update_profil.php);
-            |Database|
-            :Update data profil;
-        endif
-    case (Ubah Password)
-        :Update password (pengguna/ubah_password.php);
-        |Sistem|
-        :Validasi & hash password (update_password.php);
-        |Database|
-        :Update password;
-    case (Tour Guide/Pembimbing)
-        :Tampilkan list pembimbing (pengguna/penbingbing.php);
-        |Sistem|
-        :Query data pembimbing;
-        |Database|
-        :Return data pembimbing;
-    case (Berita)
-        :Tampilkan berita (pengguna/berita/berita.php);
-        |Sistem|
-        :Query data berita;
-        |Database|
-        :Return data berita;
-    case (Gimana Cara Daftar Haji?)
-        :Tampilkan panduan (cara_daftar_haji.php);
-    case (Status)
-        :Tampilkan status pendaftaran (pengguna/status/index.php);
-        |Sistem|
-        :Query status pendaftaran;
-        |Database|
-        :Return status;
-    case (Logout)
-        |Sistem|
-        :Logout;
-    endswitch
-else (Tidak)
-    :Tampilkan error;
-    |Pengguna|
-    :Kembali ke login;
-endif
-
-if (Belum punya akun?) then (Ya)
-    |Pengguna|
-    :Klik daftar (pengguna/daftar.php);
-    :Isi form registrasi;
-    |Sistem|
-    :Validasi & simpan (proses_daftar_pengguna.php);
-    |Database|
-    :Insert data pengguna;
-    :Redirect ke login;
-else (Tidak)
 endif
 
 stop

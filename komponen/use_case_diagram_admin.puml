@@ -6,6 +6,9 @@ actor "Admin" as Admin
 package "Sistem Manajemen Haji" {
     ' Authentication
     usecase "Login" as UC1
+    usecase "Regeister" as UC2
+    usecase "masukan email" as UC40
+    usecase "masukan password" as UC41
 
     ' Dashboard
     usecase "Lihat Dashboard" as UC3
@@ -16,8 +19,6 @@ package "Sistem Manajemen Haji" {
     usecase "Edit Jamaah" as UC6
     usecase "Hapus Jamaah" as UC7
     usecase "Lihat Jamaah" as UC8
-    usecase "Validasi Duplikat No Porsi untuk Jamaah Lunas" as UC36
-    usecase "Set No Porsi ke '-' untuk Jamaah Belum Lunas" as UC37
 
     ' Pembimbing Management
     usecase "Kelola Pembimbing" as UC9
@@ -46,6 +47,9 @@ package "Sistem Manajemen Haji" {
     usecase "Generate Bukti Booking" as UC35
 
     ' Includes and Extends
+    UC1 ..> UC2 : include
+    UC40 --> UC2
+    UC41 --> UC2
     UC3 ..> UC1 : include
     UC4 ..> UC1 : include
     UC9 ..> UC1 : include
@@ -59,10 +63,6 @@ package "Sistem Manajemen Haji" {
     UC8 ..> UC4 : include
     UC4 --> UC6 : <<extend>>
     UC4 --> UC7 : <<extend>>
-    UC36 ..> UC5 : include
-    UC37 ..> UC5 : include
-    UC36 ..> UC6 : include
-    UC37 ..> UC6 : include
 
     UC10 ..> UC9 : include
     UC13 ..> UC9 : include
@@ -83,7 +83,7 @@ package "Sistem Manajemen Haji" {
 '
 ' Admin relations
 '
-Admin --> UC1
+
 Admin --> UC3
 Admin --> UC4
 Admin --> UC9
