@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 12, 2025 at 02:59 AM
+-- Generation Time: Nov 13, 2025 at 08:09 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -106,7 +106,9 @@ INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jen
 (11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
 (13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1),
 (14, '1762910059_rpl.png', '1122223333311133', '-', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'kasep', '2027-11-13', 'Belum lunas', '2027-12-23', 1),
-(15, '1762911029_STARRT.PNG', '12312367800222221', '-', 'aditya', 'Laki-laki', '2025-11-05', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2027-10-17', 'Belum lunas', '2027-11-26', 3);
+(15, '1762911029_STARRT.PNG', '12312367800222221', '-', 'aditya', 'Laki-laki', '2025-11-05', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2027-10-17', 'Belum lunas', '2027-11-26', 3),
+(16, '1762997632_piiiii.webp', '1111111111111114', '-', 'upa', 'Perempuan', '2025-10-31', 'KP malela', '11', 'B 21651', 'o', 'gak ada', '2027-08-14', 'Belum lunas', '2027-09-23', 1),
+(17, '1762997681_back1.jpg', '1111111111111115', '-', 'upa', 'Laki-laki', '2025-10-31', 'KP malela', '11', 'B 21651', 'o', 'gak ada', '2027-12-18', 'Belum lunas', '2028-01-27', 3);
 
 -- --------------------------------------------------------
 
@@ -209,10 +211,10 @@ INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jen
 (24, '', '12312321313233', '0000012311', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 1),
 (28, '1760323340_ppp.PNG', '123123678044', '-', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
 (29, '1762748990_pass.png', '123123678008', '-', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Belum lunas', '2026-05-28', 1),
-(30, '1762749419_Annotation2025-10-06092038.png', '12312321313222', '-', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Belum lunas', '2026-10-23', 1),
-(31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1231236780221', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
-(32, '', '12312367800154', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 3),
-(33, '1762766115_uu.PNG', '1122223333311111', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3);
+(30, '1762749419_Annotation2025-10-06092038.png', '1122223333311122', '-', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Belum lunas', '2026-10-23', 1),
+(31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1122223333311123', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
+(32, '', '1122223333311111', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 3),
+(33, '1762766115_uu.PNG', '1111111111111113', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3);
 
 -- --------------------------------------------------------
 
@@ -262,7 +264,10 @@ INSERT INTO `pengguna` (`id`, `username`, `email`, `nik`, `password`) VALUES
 (1, 'uzo', 'uzo@gmail.com', '', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
 (2, 'hi', 'hu@gmail.com', '', '$2y$10$Qhou6pstEtPVaqUA58n2TeYtLi1r0km6JfQvWHwlaJ9Q1NC7ZIuOC'),
 (4, 'fauzi rahayu', 'fauzi@gmail.com', '', '$2y$10$ReXtyOHbvZ8BjZfuSDx/B.DcAS6EdSRTPPCy7S2.56Ij.EGfsMjny'),
-(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$8Cbfcrn0d8j.5e4Zs2n6j.N0ggupiEQiD3UwnZfwHfJ27G/e74doS');
+(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$8Cbfcrn0d8j.5e4Zs2n6j.N0ggupiEQiD3UwnZfwHfJ27G/e74doS'),
+(9, 'aopa', 'apa@gmail.com', '1111111111111113', '$2y$10$DOhVkPT2jqz5kVj1b2wQMeD95HIj93Uv8oAjo5OZvZjk2bBADqOWa'),
+(10, 'si', 'si@gmail.com', '1122223333311123', '$2y$10$3I/Go0LesJr8FHZX4Tpps.g.Fet5JyGICig5Dni0MFGkU0N2gACbK'),
+(11, 'so', 'so@gmail.com', '1122223333311122', '$2y$10$4jyiRMxQ1T98Yjt6KtvOhONWJJ6CnfpjSJf1LfSQKZlAMLMaI8I/q');
 
 --
 -- Indexes for dumped tables
@@ -338,7 +343,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `jamaah_2027`
 --
 ALTER TABLE `jamaah_2027`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `jamaah_2028`
@@ -368,7 +373,7 @@ ALTER TABLE `pembimbing_haji`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
