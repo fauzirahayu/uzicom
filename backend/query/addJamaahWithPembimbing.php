@@ -16,6 +16,30 @@ if (isset($_POST['simpan'])) {
         exit();
     }
 
+    // Validasi NIK dan Telepon tidak boleh negatif
+    if ($nik < 0 || $telepon < 0) {
+        echo "<script type='text/javascript'>alert('NIK dan Nomor Telepon tidak boleh negatif!');window.location.href='../../contern/jamaahHaji/index.php';</script>";
+        exit();
+    }
+
+    // Validasi NIK tidak boleh sama dengan NIK pembimbing atau jamaah lain di semua tabel
+    $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029', 'pembimbing_haji'];
+    $totalNik = 0;
+    foreach ($tables as $table) {
+        $cekNik = $conn->prepare("SELECT COUNT(*) FROM $table WHERE nik = ?");
+        $cekNik->bind_param("s", $nik);
+        $cekNik->execute();
+        $cekNik->bind_result($nikCount);
+        $cekNik->fetch();
+        $totalNik += $nikCount;
+        $cekNik->close();
+    }
+    if ($totalNik > 0) {
+        echo '<script>alert("NIK sudah terdaftar. Silakan gunakan NIK yang berbeda."); window.location.href = "../../contern/jamaahHaji/index.php";</script>';
+        $conn->close();
+        exit();
+    }
+
     // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
     $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
         SELECT id FROM jamaah_haji WHERE id_pembimbing = ?
@@ -84,6 +108,7 @@ if (isset($_POST['simpan'])) {
                 $conn->close();
                 exit();
             }
+
         }
     }
 

@@ -85,11 +85,11 @@ $data = $result->fetch_assoc();
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">NIK</label>
-                  <input type="text" class="form-control" name="nik" value="<?php echo htmlspecialchars($data['nik']); ?>" required />
+                  <input type="number" class="form-control" name="nik" value="<?php echo htmlspecialchars($data['nik']); ?>" min="0" required />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Telepon</label>
-                  <input type="text" class="form-control" name="telepon" value="<?php echo htmlspecialchars($data['telepon']); ?>" />
+                  <input type="number" class="form-control" name="telepon" value="<?php echo htmlspecialchars($data['telepon']); ?>" min="0" />
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Email</label>

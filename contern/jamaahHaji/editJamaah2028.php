@@ -96,7 +96,7 @@ $data = mysqli_fetch_assoc($tampil);
             </div>
             <div class="col-md-6">
               <label for="nik" class="form-label">NIK</label>
-              <input type="text" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" required />
+              <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" min="0" required />
             </div>
             <div class="col-md-6">
               <label for="no_porsi" class="form-label">No Porsi</label>
@@ -120,7 +120,7 @@ $data = mysqli_fetch_assoc($tampil);
             </div>
             <div class="col-md-6">
               <label for="telepon" class="form-label">Telepon</label>
-              <input type="text" class="form-control" id="telepon" name="telepon" value="<?= $data['telepon'] ?>" required />
+              <input type="number" class="form-control" id="telepon" name="telepon" value="<?= $data['telepon'] ?>" min="0" required />
             </div>
             <div class="col-md-6">
               <label for="no_paspor" class="form-label">No Paspor</label>

@@ -43,7 +43,7 @@ if (!isset($_SESSION['id'])) {
                             </div>
                             <div class="col-md-6">
                                 <label for="nik" class="form-label">NIK</label>
-                                <input type="text" class="form-control" id="nik" name="nik" required>
+                                <input type="number" class="form-control" id="nik" name="nik" min="0" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="no_porsi" class="form-label">No Porsi</label>
@@ -67,7 +67,7 @@ if (!isset($_SESSION['id'])) {
                             </div>
                             <div class="col-md-6">
                                 <label for="telepon" class="form-label">Telepon</label>
-                                <input type="text" class="form-control" id="telepon" name="telepon" required>
+                                <input type="number" class="form-control" id="telepon" name="telepon" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="no_paspor" class="form-label">No Paspor</label>

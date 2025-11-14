@@ -13,6 +13,30 @@ if (isset($_POST['update'])) {
         exit();
     }
 
+    // Validasi NIK dan Telepon tidak boleh negatif
+    if ($nik < 0 || $telepon < 0) {
+        echo "<script type='text/javascript'>alert('NIK dan Nomor Telepon tidak boleh negatif!');window.location.href='../../contern/jamaahHaji/editJamaah.php?id=" . $id . "';</script>";
+        exit();
+    }
+
+    // Validasi NIK tidak boleh sama dengan NIK pembimbing atau jamaah lain di semua tabel, kecuali NIK sendiri
+    $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029', 'pembimbing_haji'];
+    $totalNik = 0;
+    foreach ($tables as $table) {
+        $cekNik = $conn->prepare("SELECT COUNT(*) FROM $table WHERE nik = ? AND id != ?");
+        $cekNik->bind_param("si", $nik, $id);
+        $cekNik->execute();
+        $cekNik->bind_result($nikCount);
+        $cekNik->fetch();
+        $totalNik += $nikCount;
+        $cekNik->close();
+    }
+    if ($totalNik > 0) {
+        echo '<script>alert("NIK sudah terdaftar. Silakan gunakan NIK yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+        $conn->close();
+        exit();
+    }
+
     // Cek jumlah jamaah yang dibimbing pembimbing ini dari semua tabel
     $cekJumlah = $conn->prepare("SELECT COUNT(*) as total FROM (
         SELECT id FROM jamaah_haji WHERE id_pembimbing = ? AND id != ?
@@ -102,12 +126,12 @@ if (isset($_POST['update'])) {
                 $totalNoPorsi += $noPorsiCount;
                 $cekNoPorsi->close();
             }
-            if ($totalNoPorsi > 0) {
-                echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-                $conn->close();
-                exit();
-            }
+        if ($totalNoPorsi > 0) {
+            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+            $conn->close();
+            exit();
         }
+    }
     }
 
     // Query update termasuk foto, data_pulang, dan status
