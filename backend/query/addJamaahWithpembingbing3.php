@@ -75,6 +75,26 @@ if (isset($_POST['simpan'])) {
     $no_porsi = $_POST['no_porsi'] ?? '';
     $status = $_POST['status'] ?? 'belum lunas';
 
+    $no_porsi = trim($no_porsi);
+    if ($no_porsi != '' && $no_porsi != '-') {
+        $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
+        $totalNoPorsi = 0;
+        foreach ($tables as $table) {
+            $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ?");
+            $cekNoPorsi->bind_param("s", $no_porsi);
+            $cekNoPorsi->execute();
+            $cekNoPorsi->bind_result($noPorsiCount);
+            $cekNoPorsi->fetch();
+            $totalNoPorsi += $noPorsiCount;
+            $cekNoPorsi->close();
+        }
+        if ($totalNoPorsi > 0) {
+            echo '<script>alert("No Porsi sudah terdaftar di seluruh tahun. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/tambahJamaah2028.php";</script>';
+            $conn->close();
+            exit();
+        }
+    }
+
     // Jika status belum lunas, ubah no_porsi menjadi "-"
     if ($status === 'belum lunas') {
         $no_porsi = '-';
@@ -87,27 +107,6 @@ if (isset($_POST['simpan'])) {
             echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/tambahJamaah2028.php";</script>';
             $conn->close();
             exit();
-        }
-
-        // Periksa apakah No Porsi sudah ada di semua tabel jamaah (hanya jika no_porsi tidak "-")
-        if ($no_porsi != '-') {
-            $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
-            $totalNoPorsi = 0;
-            foreach ($tables as $table) {
-                $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ?");
-                $cekNoPorsi->bind_param("s", $no_porsi);
-                $cekNoPorsi->execute();
-                $cekNoPorsi->bind_result($noPorsiCount);
-                $cekNoPorsi->fetch();
-                $totalNoPorsi += $noPorsiCount;
-                $cekNoPorsi->close();
-            }
-            if ($totalNoPorsi > 0) {
-                echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/tambahJamaah2028.php";</script>';
-                $conn->close();
-                exit();
-            }
-
         }
     }
 

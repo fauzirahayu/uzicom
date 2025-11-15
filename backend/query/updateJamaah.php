@@ -99,6 +99,26 @@ if (isset($_POST['update'])) {
         $foto = $foto_lama; // Gunakan foto lama jika tidak upload baru
     }
 
+    $no_porsi = trim($no_porsi);
+    if ($no_porsi != '' && $no_porsi != '-') {
+        $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
+        $totalNoPorsi = 0;
+        foreach ($tables as $table) {
+            $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
+            $cekNoPorsi->bind_param("si", $no_porsi, $id);
+            $cekNoPorsi->execute();
+            $cekNoPorsi->bind_result($noPorsiCount);
+            $cekNoPorsi->fetch();
+            $totalNoPorsi += $noPorsiCount;
+            $cekNoPorsi->close();
+        }
+        if ($totalNoPorsi > 0) {
+            echo '<script>alert("No Porsi sudah terdaftar di seluruh tahun. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
+            $conn->close();
+            exit();
+        }
+    }
+
     // Jika status belum lunas, ubah no_porsi menjadi "-"
     if ($status === 'belum lunas') {
         $no_porsi = '-';
@@ -112,26 +132,6 @@ if (isset($_POST['update'])) {
             $conn->close();
             exit();
         }
-
-        // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri (hanya jika no_porsi tidak "-")
-        if ($no_porsi != '-') {
-            $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
-            $totalNoPorsi = 0;
-            foreach ($tables as $table) {
-                $cekNoPorsi = $conn->prepare("SELECT COUNT(*) FROM $table WHERE no_porsi = ? AND id != ?");
-                $cekNoPorsi->bind_param("si", $no_porsi, $id);
-                $cekNoPorsi->execute();
-                $cekNoPorsi->bind_result($noPorsiCount);
-                $cekNoPorsi->fetch();
-                $totalNoPorsi += $noPorsiCount;
-                $cekNoPorsi->close();
-            }
-        if ($totalNoPorsi > 0) {
-            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah.php?id=' . $id . '";</script>';
-            $conn->close();
-            exit();
-        }
-    }
     }
 
     // Query update termasuk foto, data_pulang, dan status

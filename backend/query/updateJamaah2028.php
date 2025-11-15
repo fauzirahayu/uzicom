@@ -111,21 +111,8 @@ if (isset($_POST['update'])) {
         $foto = $foto_lama; // Gunakan foto lama jika tidak upload baru
     }
 
-    // Jika status belum lunas, ubah no_porsi menjadi "-"
-    if ($status === 'belum lunas') {
-        $no_porsi = '-';
-    }
-
-    // Validasi duplikat no_porsi hanya untuk status 'lunas'
-    if ($status === 'lunas') {
-        // Periksa apakah No Porsi sama dengan NIK
-        if ($no_porsi == $nik) {
-            echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah2028.php?id=' . $id . '";</script>';
-            $conn->close();
-            exit();
-        }
-
-        // Periksa apakah No Porsi sudah ada di semua tabel jamaah kecuali record ini sendiri
+    $no_porsi = trim($no_porsi);
+    if ($no_porsi != '' && $no_porsi != '-') {
         $tables = ['jamaah_haji', 'jamaah_2027', 'jamaah_2028', 'jamaah_2029'];
         $totalNoPorsi = 0;
         foreach ($tables as $table) {
@@ -138,7 +125,22 @@ if (isset($_POST['update'])) {
             $cekNoPorsi->close();
         }
         if ($totalNoPorsi > 0) {
-            echo '<script>alert("No Porsi sudah terdaftar di tahun lain. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah2028.php?id=' . $id . '";</script>';
+            echo '<script>alert("No Porsi sudah terdaftar di seluruh tahun. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah2028.php?id=' . $id . '";</script>';
+            $conn->close();
+            exit();
+        }
+    }
+
+    // Jika status belum lunas, ubah no_porsi menjadi "-"
+    if ($status === 'belum lunas') {
+        $no_porsi = '-';
+    }
+
+    // Validasi duplikat no_porsi hanya untuk status 'lunas'
+    if ($status === 'lunas') {
+        // Periksa apakah No Porsi sama dengan NIK
+        if ($no_porsi == $nik) {
+            echo '<script>alert("No Porsi tidak boleh sama dengan NIK. Silakan gunakan No Porsi yang berbeda."); window.location.href = "../../contern/jamaahHaji/editJamaah2028.php?id=' . $id . '";</script>';
             $conn->close();
             exit();
         }

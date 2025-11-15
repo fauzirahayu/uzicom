@@ -28,8 +28,7 @@
                                 <span class="card-icon"><i class="bi bi-person-fill"></i></span>
                                 <span class="card-title"><?php echo htmlspecialchars($data['nama_lengkap'] ?? ''); ?></span>
                             </div>
-                            <div class="card-text"><strong>NIK:</strong> <?php echo htmlspecialchars(substr($data['nik'] ?? '', 0, 1) . str_repeat('*', strlen($data['nik'] ?? '') - 2) . substr($data['nik'] ?? '', -1)); ?></div>
-                            <div class="card-text"><strong>Telepon:</strong> <?php echo htmlspecialchars(substr($data['telepon'] ?? '', 0, 1) . str_repeat('*', strlen($data['telepon'] ?? '') - 2) . substr($data['telepon'] ?? '', -1)); ?></div>
+                            <div class="card-text"><strong>Telepon:</strong> <?php echo htmlspecialchars($data['telepon'] ?? '' ); ?></div>
                             <div class="card-text"><strong>Email:</strong> <?php echo htmlspecialchars($data['email'] ?? ''); ?></div>
                             <div class="card-text"><strong>Alamat:</strong> <?php echo htmlspecialchars($data['alamat'] ?? ''); ?></div>
                             <div class="card-text"><strong>Keterangan:</strong> <?php echo htmlspecialchars($data['keterangan'] ?? ''); ?></div>
