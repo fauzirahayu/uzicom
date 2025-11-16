@@ -6,17 +6,11 @@ if (isset($_POST['tambah'])) {
     $email = htmlspecialchars(trim($_POST['email']));
     $password = $_POST['password'];
 
-    // Validasi input
-    if (empty($nama) || empty($email) || empty($password)) {
-        echo "<script>alert('Semua field harus diisi!'); window.location='../../contern/jamaahHaji/tambahAdmin.php';</script>";
-        exit();
-    }
-
-    // Validasi email format
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo "<script>alert('Format email tidak valid!'); window.location='../../contern/jamaahHaji/tambahAdmin.php';</script>";
-        exit();
-    }
+    // // Validasi email format
+    // if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    //     echo "<script>alert('Format email tidak valid!'); window.location='../../contern/jamaahHaji/tambahAdmin.php';</script>";
+    //     exit();
+    // }
 
     // Validasi panjang password
     if (strlen($password) < 6) {
@@ -63,7 +57,7 @@ if (isset($_POST['tambah'])) {
     $stmt->bind_param("sss", $nama, $email, $pass_hash);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Admin berhasil ditambahkan!'); window.location='../../contern/jamaahHaji/tambahAdmin.php';</script>";
+        echo "<script>alert('Admin berhasil ditambahkan!'); window.location='../../contern/jamaahHaji/kelola_akun.php';</script>";
     } else {
         echo "<script>alert('Gagal menambahkan admin!'); window.location='../../contern/jamaahHaji/tambahAdmin.php';</script>";
     }
