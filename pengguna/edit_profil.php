@@ -110,6 +110,11 @@ $conn->close();
             </div>
 
             <div class="mb-3">
+                <label for="nik" class="form-label">NIK</label>
+                <input type="number" class="form-control" id="nik" name="nik" value="<?php echo htmlspecialchars($user['nik'] ?? ''); ?>" required>
+            </div>
+
+            <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($user['email'] ?? ''); ?>" required>
             </div>
