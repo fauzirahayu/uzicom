@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2025 at 08:09 AM
+-- Generation Time: Nov 18, 2025 at 02:18 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -43,7 +43,8 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
 (2, 'gi', 'gi@gmail.com', '$2y$10$a6EJqMMPj2HF05cCvLjPvemyLivwNqwef304/vIDZAEACKTgYvsfi'),
 (3, 'gu', 'gu@gmail.com', '$2y$10$nJKT5B4zuUQFh0CCz0cG4.XEDJBvQlRFDrmU6vDWM8ApOmLb0VduO'),
 (5, 'land', 'land@gmail.com', '$2y$10$y1w3mvQ3ERfZWmv0WUaj7eqb5yXgWUKL18OCx5VsDueB2F09RvwCi'),
-(6, 'hayu', 'hayu@gmail.com', '$2y$10$j0aTHF3duwsTDfJUWGYAourVMs1J8BSsIA4787IWrLMpqU.gstRK.');
+(6, 'hayu', 'hayu@gmail.com', '$2y$10$j0aTHF3duwsTDfJUWGYAourVMs1J8BSsIA4787IWrLMpqU.gstRK.'),
+(7, '', 'lall@gmail.com', '$2y$10$RctA8ySbGFmdkMbZFRcPgujx8DJvLXB77/4d5pbro1w6Yg7BRqcXm');
 
 -- --------------------------------------------------------
 
@@ -103,12 +104,15 @@ CREATE TABLE `jamaah_2027` (
 
 INSERT INTO `jamaah_2027` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (9, '', '1231232131321311', '0098828211', 'sudan', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', '', '2027-07-08', 'Lunas', '2027-08-17', 1),
-(11, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', NULL, '', NULL, 1),
-(13, '', '123123678001', '', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1),
+(11, '', '123123678012', '0098828211', 'sudan', 'Laki-laki', '2025-10-11', 'KP teapal', '11112333331', 'B 21651', '', '', '2027-01-19', 'Lunas', '2027-02-28', 1),
+(13, '', '123123678013', '0098828211', 'sudan', 'Laki-laki', '2025-10-01', 'kp babakan ', '08927556145', 'B 12367', '', '', '2026-06-10', 'Belum lunas', '2026-07-20', 1),
 (14, '1762910059_rpl.png', '1122223333311133', '-', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'kasep', '2027-11-13', 'Belum lunas', '2027-12-23', 1),
 (15, '1762911029_STARRT.PNG', '12312367800222221', '-', 'aditya', 'Laki-laki', '2025-11-05', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2027-10-17', 'Belum lunas', '2027-11-26', 3),
 (16, '1762997632_piiiii.webp', '1111111111111114', '-', 'upa', 'Perempuan', '2025-10-31', 'KP malela', '11', 'B 21651', 'o', 'gak ada', '2027-08-14', 'Belum lunas', '2027-09-23', 1),
-(17, '1762997681_back1.jpg', '1111111111111115', '-', 'upa', 'Laki-laki', '2025-10-31', 'KP malela', '11', 'B 21651', 'o', 'gak ada', '2027-12-18', 'Belum lunas', '2028-01-27', 3);
+(17, '1762997681_back1.jpg', '-1111111111111115', '-', 'upa', 'Laki-laki', '2025-10-31', 'KP malela', '11', 'B 21651', 'o', 'gak ada', '2027-12-18', 'Belum lunas', '2028-01-27', 3),
+(18, '1763110005_xiofan.webp', '1234567654323488', '-', 'nurahman', 'Laki-laki', '2025-11-01', 'KP teapal', '02812366551', 'B 21651', 'B', 'gak ada', '2027-12-19', 'Lunas', '2028-01-28', 5),
+(19, '1763111423_xiofan.webp', '1234567654323456', '-', 'nurahman', 'Perempuan', '2025-11-01', 'KP teapal', '02812366551', 'B 21651', 'B', 'rrr', '2027-12-19', 'Belum lunas', '2028-01-28', 3),
+(20, '', '1231232131321311', '0000012334', 'nurahman', 'Laki-laki', '2025-11-06', 'KP teapal', '02812366551', 'B 21651', 'B', 'gak ada', '2027-12-19', 'Belum lunas', '2028-01-28', 1);
 
 -- --------------------------------------------------------
 
@@ -142,7 +146,7 @@ CREATE TABLE `jamaah_2028` (
 INSERT INTO `jamaah_2028` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
 (12, '', '12312321313213', '009882824', 'nurahman', 'Laki-laki', '2025-10-09', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2028-11-17', 'Lunas', '2028-12-27', 1),
 (15, '', '12312321313213', '-', 'nurahman', 'Laki-laki', '2025-10-15', 'KP teapal', '11112333331', 'B 21651', '', '', '2028-01-16', 'Belum lunas', '2028-02-25', 1),
-(17, '', '12312321313213', '0000012331', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', 'Lunas', '2029-07-22', 1);
+(17, '', '12312321313231', '0000012331', 'sudan', 'Laki-laki', '2025-10-04', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2029-06-12', 'Lunas', '2029-07-22', 1);
 
 -- --------------------------------------------------------
 
@@ -174,7 +178,10 @@ CREATE TABLE `jamaah_2029` (
 --
 
 INSERT INTO `jamaah_2029` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(3, '', '12312321313213', '-', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2029-01-18', 'Belum lunas', '2029-02-27', 1);
+(3, '', '12312321313213', '-', 'nurahman', 'Laki-laki', '2025-10-10', 'KP teapal', '11112333331', 'B 21651', 'B', 'QQQ', '2029-01-18', 'Belum lunas', '2029-02-27', 1),
+(5, '1763189819_Annotation2025-10-06092038.png', '1111111111112222', '0000012334', 'asep kurdirman', 'Perempuan', '2025-11-01', 'gak tau ah cape', '12312313131231', 'B 21651', 'B', 'dgf', '2029-12-16', 'Lunas', '2030-01-25', 1),
+(6, '1763189971_pngtree-background-bendera-merah-putih-indonesia-image_760372.jpg', '1111111111111122', '0000012334', 'asep kurdirman', 'Laki-laki', '2025-11-01', 'gak tau ah cape', '1111111111111', 'B 21651', 'B', 'kasep', '2029-12-18', 'Lunas', '2030-01-27', 1),
+(7, '1763190266_51e1c1fc6f50743937e62fca9b942694_t.jpeg', '11111111111111321', '-', 'asep kurdirman', 'Laki-laki', '2025-11-01', 'KP teapal', '121312132132132', 'B 21651', 'B', 'ocd', '2029-12-18', 'Belum lunas', '2030-01-27', 1);
 
 -- --------------------------------------------------------
 
@@ -206,15 +213,17 @@ CREATE TABLE `jamaah_haji` (
 --
 
 INSERT INTO `jamaah_haji` (`id`, `foto`, `nik`, `no_porsi`, `nama_lengkap`, `jenis_kelamin`, `tanggal_lahir`, `alamat`, `telepon`, `no_paspor`, `golongan_darah`, `penyakit_bawaan`, `jadwal_berangkat`, `status`, `data_pulang`, `id_pembimbing`) VALUES
-(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313213', '0000012334', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '11', 'B 21651', 'B', 'gak ada', '2027-08-13', '', '2027-09-22', 1),
-(23, '', '12312321313215', '-', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '+62 851-4239-5637', 'B 21651', 'o', 'kasep', '2025-10-11', 'Belum lunas', '2025-11-20', 4),
-(24, '', '12312321313233', '0000012311', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '+62 857-2095-8285', 'B 21651', '', '', '2025-10-11', '', '2025-11-20', 1),
+(19, '1760170108_esok_lebih_baik-removebg-preview.png', '12312321313232', '0000012334', 'nurahman', 'Laki-laki', '2025-10-25', 'KP teapal', '111111', 'B 21651', 'B', 'gak ada', '2027-08-13', 'Lunas', '2027-09-22', 1),
+(23, '', '12312321313215', '0000012334', 'aditya', 'Laki-laki', '2007-12-04', 'KP malela', '231231231232131', 'B 21651', 'o', 'kasep', '2025-10-11', 'Lunas', '2025-11-20', 4),
+(24, '', '12312321313233', '0000012334', 'nurahman', 'Laki-laki', '2025-10-10', 'gak tau ah cape', '02812366551', 'B 21651', '', '', '2025-10-11', 'Lunas', '2025-11-20', 1),
 (28, '1760323340_ppp.PNG', '123123678044', '-', 'sudan', 'Laki-laki', '2025-10-07', 'kp babakan ', '+62 831-5599-0900', 'B 12367', 'B', 'gak ada', '2026-09-14', 'Belum lunas', '2026-10-24', 1),
 (29, '1762748990_pass.png', '123123678008', '-', 'asep kurdirman', 'Laki-laki', '2025-10-30', 'KP teapal', '11', 'B 12367', 'B', 'gak ada', '2026-04-18', 'Belum lunas', '2026-05-28', 1),
 (30, '1762749419_Annotation2025-10-06092038.png', '1122223333311122', '-', 'aditya', 'Laki-laki', '2025-11-01', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-09-13', 'Belum lunas', '2026-10-23', 1),
 (31, '1762750143_png-transparent-dashboard-grid-menu-menu-icon-dashboard-line-style-icon.png', '1122223333311123', '-', 'nurahman', 'Perempuan', '2025-10-30', 'kp babakan ', '08927556145', 'B 12367', 'B', 'gak ada', '2026-12-19', 'Belum lunas', '2027-01-28', 1),
 (32, '', '1122223333311111', '211', 'ezz', 'Laki-laki', '2025-11-06', 'df', 'dfg', 'B 12367', 'B', 'gak ada', '2026-11-16', 'Lunas', '2026-12-26', 3),
-(33, '1762766115_uu.PNG', '1111111111111113', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3);
+(33, '1762766115_uu.PNG', '1111111111111113', '00000121122', 'aditya', 'Perempuan', '2025-11-04', 'KP malela', '08927556145', 'B 21651', 'B', 'gak ada', '2026-12-19', 'Lunas', '2027-01-28', 3),
+(34, '1763107879_huang.webp', '1234567654323456', 'rrrr', 'rrrrr', 'Laki-laki', '2021-01-14', 'rrr', 'rrr', 'rrr', 'rrr', 'rrr', '2026-06-06', 'Lunas', '2026-07-16', 1),
+(35, '1763109845_xiofan.jpeg', '-12345676543234221', '-0000012355', 'Agus Nurahman', 'Laki-laki', '2025-10-30', 'KP teapal', '622313222111', 'B 21651', 'B', 'gak ada', '2026-12-17', 'Lunas', '2027-01-26', 5);
 
 -- --------------------------------------------------------
 
@@ -238,9 +247,11 @@ CREATE TABLE `pembimbing_haji` (
 --
 
 INSERT INTO `pembimbing_haji` (`id`, `nama_lengkap`, `nik`, `telepon`, `alamat`, `email`, `foto`, `keterangan`) VALUES
-(1, 'Agus Nurahman', '123465162543651', '02812366551', 'gak tau ah cape', 'mmm@gmail.com', '1759829713_smk-removebg-preview.png', 'dia suka becanda'),
-(3, 'asep kurdirman', '123123678001', '+62 851-4239-5637', 'KP teapal', 'gi@gmail.com', '1760406912_onic-kairi.jpg', 'halo semua nya'),
-(4, 'nurahman', '12312321313213', '11112333331', 'KP teapal', 'gi@gmail.com', '1762766865_pass.png', '1231');
+(1, 'Agus Nurahman', '1234567654323456', '02812366551', 'gak tau ah cape', 'mmm@gmail.com', '1759829713_smk-removebg-preview.png', 'dia suka becanda'),
+(3, 'asep kurdirman', '123123678001', '02812366551', 'KP teapal', 'gi@gmail.com', '1760406912_onic-kairi.jpg', 'halo semua nya'),
+(4, 'nurahman', '12312321313213', '11112333331', 'KP teapal', 'gi@gmail.com', '1762766865_pass.png', '1231'),
+(5, 'rrrrr', '123456765432345', '12312213', 'rrr', 'ew@gmail.com', '1763107925_xiofan.jpeg', '5555'),
+(7, 'nurahman', '1234567654323456', '02812366551', 'KP teapal', 'ew@gmail.com', '1763111617_xiofan.jpeg', 'kk');
 
 -- --------------------------------------------------------
 
@@ -261,13 +272,17 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `username`, `email`, `nik`, `password`) VALUES
-(1, 'uzo', 'uzo@gmail.com', '', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
+(1, 'uzo', 'uzo@gmail.com', '2222222222222222', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
 (2, 'hi', 'hu@gmail.com', '', '$2y$10$Qhou6pstEtPVaqUA58n2TeYtLi1r0km6JfQvWHwlaJ9Q1NC7ZIuOC'),
 (4, 'fauzi rahayu', 'fauzi@gmail.com', '', '$2y$10$ReXtyOHbvZ8BjZfuSDx/B.DcAS6EdSRTPPCy7S2.56Ij.EGfsMjny'),
-(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$8Cbfcrn0d8j.5e4Zs2n6j.N0ggupiEQiD3UwnZfwHfJ27G/e74doS'),
+(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$VvjvtDyXzmX5wv9fnabAN.6RKvdw/7s9IeyzAKGM8o5xzvGhQQxoe'),
 (9, 'aopa', 'apa@gmail.com', '1111111111111113', '$2y$10$DOhVkPT2jqz5kVj1b2wQMeD95HIj93Uv8oAjo5OZvZjk2bBADqOWa'),
 (10, 'si', 'si@gmail.com', '1122223333311123', '$2y$10$3I/Go0LesJr8FHZX4Tpps.g.Fet5JyGICig5Dni0MFGkU0N2gACbK'),
-(11, 'so', 'so@gmail.com', '1122223333311122', '$2y$10$4jyiRMxQ1T98Yjt6KtvOhONWJJ6CnfpjSJf1LfSQKZlAMLMaI8I/q');
+(11, 'so', 'so@gmail.com', '1122223333311122', '$2y$10$4jyiRMxQ1T98Yjt6KtvOhONWJJ6CnfpjSJf1LfSQKZlAMLMaI8I/q'),
+(12, 'rr', 'rr@gmail.com', '1234567654323456', '$2y$10$LvSIAiIXGSSLqqHSiF2aaOqckNvYmPY/nCwMls5eidJUSf92mPpBa'),
+(13, 'fauzirahayu', 'fauzirahayu089@gmail.com', '1233333333333333', '$2y$10$hFWlRA6rsdp8m5hOezCfIOWPWhSGpWGFv6ulyaWn4KOaWNAIBeN7u'),
+(14, 'howww', 'howw@gmail.com', '7777777777777777', '$2y$10$G0NnxABWdtNnKVCsEW69Oen4N1BLycgY139qFa.EItpeObjr6z5.u'),
+(15, 'lu', 'lu@gmail.com', '0000000000000000', '$2y$10$nhIqXAJ1EK7LLJwlUHYawuE.Wmwfkqgf2cF2/VCxRlVczbM.orTBe');
 
 --
 -- Indexes for dumped tables
@@ -289,7 +304,8 @@ ALTER TABLE `berita`
 -- Indexes for table `jamaah_2027`
 --
 ALTER TABLE `jamaah_2027`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_pembimbing` (`id`);
 
 --
 -- Indexes for table `jamaah_2028`
@@ -302,7 +318,7 @@ ALTER TABLE `jamaah_2028`
 --
 ALTER TABLE `jamaah_2029`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `fk_pembimbing` (`id_pembimbing`) USING BTREE;
+  ADD KEY `fk_pembimbing` (`id_pembimbing`);
 
 --
 -- Indexes for table `jamaah_haji`
@@ -331,7 +347,7 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `berita`
@@ -343,7 +359,7 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `jamaah_2027`
 --
 ALTER TABLE `jamaah_2027`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `jamaah_2028`
@@ -355,25 +371,25 @@ ALTER TABLE `jamaah_2028`
 -- AUTO_INCREMENT for table `jamaah_2029`
 --
 ALTER TABLE `jamaah_2029`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `jamaah_haji`
 --
 ALTER TABLE `jamaah_haji`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `pembimbing_haji`
 --
 ALTER TABLE `pembimbing_haji`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Constraints for dumped tables

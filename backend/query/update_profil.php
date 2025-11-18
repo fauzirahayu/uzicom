@@ -54,9 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (empty($errors)) {
         // Update data pengguna
-        $sql_update = "UPDATE pengguna SET nama = ?, nik = ?, email = ? WHERE id = ?";
+        $sql_update = "UPDATE pengguna SET username = ?, nik = ?, email = ? WHERE id = ?";
         $stmt_update = $conn->prepare($sql_update);
-        $stmt_update->bind_param("ssi", $nama,$nik , $email, $user_id);
+        $stmt_update->bind_param("sssi", $nama, $nik, $email, $user_id);
 
         if ($stmt_update->execute()) {
             $_SESSION['success'] = "Profil berhasil diperbarui.";

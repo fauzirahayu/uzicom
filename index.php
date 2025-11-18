@@ -37,6 +37,7 @@
               <input type="checkbox" id="remember">
               <label for="remember">Ingat aku</label>
             </div>
+            <a href="forgot_password.php" class="text-decoration-none">Lupa Password?</a>
           </div>
 
           <button type="submit" class="btn btn-custom w-100 mb-3" name="login">Log in</button>
