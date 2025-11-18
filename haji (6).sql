@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2025 at 02:18 AM
+-- Generation Time: Nov 18, 2025 at 02:37 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -272,15 +272,15 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `username`, `email`, `nik`, `password`) VALUES
-(1, 'uzo', 'uzo@gmail.com', '2222222222222222', '$2y$10$7ZY42vbP1EF8zrHBglenI.YWii380cXIvU88zKAOztMS7l8AbstHe'),
+(1, 'uzo', 'uzo@gmail.com', '2222222222222222', '$2y$10$N86O60S72VRGUeZ.2jOzR.D8kGH.1b19cty9vGJX383kvnNw/VBQO'),
 (2, 'hi', 'hu@gmail.com', '', '$2y$10$Qhou6pstEtPVaqUA58n2TeYtLi1r0km6JfQvWHwlaJ9Q1NC7ZIuOC'),
 (4, 'fauzi rahayu', 'fauzi@gmail.com', '', '$2y$10$ReXtyOHbvZ8BjZfuSDx/B.DcAS6EdSRTPPCy7S2.56Ij.EGfsMjny'),
-(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$VvjvtDyXzmX5wv9fnabAN.6RKvdw/7s9IeyzAKGM8o5xzvGhQQxoe'),
+(8, 'eww', 'ew@gmail.com', '1122223333311111', '$2y$10$H03fu6vQcGOaGCnjTxb3pOjozU7RCInVJz8pZ1UYgovLNiSrSF7Ze'),
 (9, 'aopa', 'apa@gmail.com', '1111111111111113', '$2y$10$DOhVkPT2jqz5kVj1b2wQMeD95HIj93Uv8oAjo5OZvZjk2bBADqOWa'),
 (10, 'si', 'si@gmail.com', '1122223333311123', '$2y$10$3I/Go0LesJr8FHZX4Tpps.g.Fet5JyGICig5Dni0MFGkU0N2gACbK'),
 (11, 'so', 'so@gmail.com', '1122223333311122', '$2y$10$4jyiRMxQ1T98Yjt6KtvOhONWJJ6CnfpjSJf1LfSQKZlAMLMaI8I/q'),
 (12, 'rr', 'rr@gmail.com', '1234567654323456', '$2y$10$LvSIAiIXGSSLqqHSiF2aaOqckNvYmPY/nCwMls5eidJUSf92mPpBa'),
-(13, 'fauzirahayu', 'fauzirahayu089@gmail.com', '1233333333333333', '$2y$10$hFWlRA6rsdp8m5hOezCfIOWPWhSGpWGFv6ulyaWn4KOaWNAIBeN7u'),
+(13, 'fauzirahayu', 'fauzirahayu089@gmail.com', '1233333333333333', '$2y$10$7Ux3LtSiHsyCQSlmZZ/3tecXhha5JytQRfuTUEwP.nFcWgEkMaeCy'),
 (14, 'howww', 'howw@gmail.com', '7777777777777777', '$2y$10$G0NnxABWdtNnKVCsEW69Oen4N1BLycgY139qFa.EItpeObjr6z5.u'),
 (15, 'lu', 'lu@gmail.com', '0000000000000000', '$2y$10$nhIqXAJ1EK7LLJwlUHYawuE.Wmwfkqgf2cF2/VCxRlVczbM.orTBe');
 
