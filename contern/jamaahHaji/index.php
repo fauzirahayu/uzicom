@@ -71,11 +71,24 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="golongan_darah" class="form-label">Golongan Darah</label>
-                                <input type="text" class="form-control" id="golongan_darah" name="golongan_darah">
+                                <select class="form-select" id="golongan_darah" name="golongan_darah">
+                                    <option value="" selected disabled>Pilih Golongan Darah</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="AB">AB</option>
+                                    <option value="O">O</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="penyakit_bawaan" class="form-label">Penyakit Bawaan</label>
                                 <input type="text" class="form-control" id="penyakit_bawaan" name="penyakit_bawaan">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status" name="status" required>
+                                    <option value="Lunas">Lunas</option>
+                                    <option value="Belum lunas">Belum lunas</option>
+                                </select>
                             </div>
                             <div class="col-md-6">
                                 <label for="jadwal_berangkat" class="form-label">Jadwal Berangkat</label>
@@ -104,14 +117,7 @@
                                     </div>
                                 </div>
                                 <input type="hidden" id="jadwal_berangkat" name="jadwal_berangkat">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="status" class="form-label">Status</label>
-                                <select class="form-select" id="status" name="status" required>
-                                    <option value="Lunas">Lunas</option>
-                                    <option value="Belum lunas">Belum lunas</option>
-                                </select>
-                            </div>
+                                </div>
                             <div class="col-md-6">
                                 <label for="foto" class="form-label">Foto Jamaah</label>
                                 <input type="file" class="form-control" id="foto" name="foto" accept="image/*" onchange="previewImage(event)">

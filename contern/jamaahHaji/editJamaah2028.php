@@ -127,9 +127,15 @@ $data = mysqli_fetch_assoc($tampil);
               <input type="text" class="form-control" id="no_paspor" name="no_paspor" value="<?= $data['no_paspor'] ?>" />
             </div>
             <div class="col-md-6">
-              <label for="golongan_darah" class="form-label">Golongan Darah</label>
-              <input type="text" class="form-control" id="golongan_darah" name="golongan_darah" value="<?= $data['golongan_darah'] ?>" />
-            </div>
+                <label for="golongan_darah" class="form-label">Golongan Darah</label>
+                <select class="form-select" id="golongan_darah" name="golongan_darah">
+                  <option value="" disabled>Pilih Golongan Darah</option>
+                  <option value="A" <?= $data['golongan_darah'] == 'A' ? 'selected' : '' ?>>A</option>
+                  <option value="B" <?= $data['golongan_darah'] == 'B' ? 'selected' : '' ?>>B</option>
+                  <option value="AB" <?= $data['golongan_darah'] == 'AB' ? 'selected' : '' ?>>AB</option>
+                  <option value="O" <?= $data['golongan_darah'] == 'O' ? 'selected' : '' ?>>O</option>
+                </select>
+              </div>
             <div class="col-md-6">
               <label for="penyakit_bawaan" class="form-label">Penyakit Bawaan</label>
               <input type="text" class="form-control" id="penyakit_bawaan" name="penyakit_bawaan" value="<?= $data['penyakit_bawaan'] ?>" />

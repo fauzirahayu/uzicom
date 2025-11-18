@@ -9,6 +9,11 @@ package "Sistem Manajemen Haji" {
     usecase "Daftar" as UC2
     usecase "masukan email"as UC31
     usecase "masukan password" as UC32
+    usecase "nik" as UC33
+    usecase "lupa password" as UC34
+    usecase "masukan password baru" as UC35
+    usecase "cari email dan username" as UC36
+
 
     ' Dashboard
     usecase "Lihat Dashboard" as UC3
@@ -43,8 +48,12 @@ package "Sistem Manajemen Haji" {
 '
 ' Pengguna relations
 '
-UC31 --> UC2 
-UC32 --> UC2 
+UC31 ..> UC2 : extend 
+UC32 ..> UC2 : extend
+UC33 ..> UC2 : ectend
+UC1 ..> UC34 : include
+UC34 ..> UC36 : extend
+UC36 ..> UC35 : icnlude
 Pengguna --> UC3
 Pengguna --> UC8
 Pengguna --> UC24
