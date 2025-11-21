@@ -36,10 +36,6 @@ if (!isset($_SESSION['id'])) {
             </form>
         </div>
 
-        <a href="tambahAdmin.php" class="floating-add-btn" title="Tambah Admin">
-            <i class="bi bi-plus-circle"></i>
-        </a>
-
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">

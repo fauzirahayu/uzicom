@@ -23,7 +23,6 @@ if (!isset($_SESSION['id'])) {
     <div class="sidebar">
         <h4 class="text-center"><i class="bi bi-moon-stars"></i> Admin</h4>
         <a href="./contern/dasboard/" target="ContenFrame"><i class="bi bi-house-door-fill"></i>Home</a>
-        <a href="contern/jamaahHaji/tambahAdmin.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tambah Admin</a>
         <a href="./contern/jamaahHaji/kelola_akun.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Kelola Akun Admin</a>
         <a href="contern/jamaahHaji/pembimbing.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tour Guide</a>
         <a href="./contern/jamaahHaji/berita/berita.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Berita</a>

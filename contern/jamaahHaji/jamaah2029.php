@@ -112,7 +112,7 @@ if (!isset($_SESSION['id'])) {
 
             // Setelah download, buka WhatsApp dengan pesan konfirmasi
             setTimeout(function() {
-                var message = 'Halo ' + name + ', selamat Anda telah terdaftar di web kami yang bekerja sama dengan Kemenag. Untuk melihat data Anda, silakan kunjungi web kami di: https://jamaah-haji.local';
+                var message = 'Halo ' + name + ', selamat Anda telah terdaftar di web kami yang bekerja sama dengan Kemenag. Untuk melihat data Anda, silakan kunjungi web kami di: https://sistem-informasi-jamaah.wuaze.com/';
                 var whatsappUrl = 'https://wa.me/' + phone + '?text=' + encodeURIComponent(message);
                 window.open(whatsappUrl, '_blank');
             }, 1000); // Delay 1 detik untuk memastikan download selesai
