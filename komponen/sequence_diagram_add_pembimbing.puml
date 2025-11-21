@@ -3,9 +3,9 @@
 title Sequence Diagram - Tambah Pembimbing Haji
 
 actor Admin
-participant "List Pembimbing\n(pembimbing.php)" as PembimbingList
-participant "Form Pembimbing\n(tambahPembimbing.php)" as FormPage
-participant "addPembimbing.php" as AddProcess
+participant "List Pembimbing" as PembimbingList
+participant "Tambah Pembimbing" as FormPage
+participant "sistem" as AddProcess
 participant "Upload Handler" as Upload
 participant "Database" as DB
 

@@ -98,7 +98,7 @@
               </div>
               <div class="col-md-6">
                 <label for="nik" class="form-label">NIK</label>
-                <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" min="0" required />
+                <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" min="0" required readonly />
               </div>
               <div class="col-md-6">
                 <label for="no_porsi" class="form-label">No Porsi</label>

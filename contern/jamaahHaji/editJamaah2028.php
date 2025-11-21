@@ -94,10 +94,10 @@ $data = mysqli_fetch_assoc($tampil);
               <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
               <input type="text" class="form-control" id="nama_lengkap" name="nama_lengkap" value="<?= $data['nama_lengkap'] ?>" required />
             </div>
-            <div class="col-md-6">
-              <label for="nik" class="form-label">NIK</label>
-              <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" min="0" required />
-            </div>
+              <div class="col-md-6">
+                <label for="nik" class="form-label">NIK</label>
+                <input type="number" class="form-control" id="nik" name="nik" value="<?= $data['nik'] ?>" min="0" required readonly />
+              </div>
             <div class="col-md-6">
               <label for="no_porsi" class="form-label">No Porsi</label>
               <input type="text" class="form-control" id="no_porsi" name="no_porsi" value="<?= $data['no_porsi'] ?>" required />

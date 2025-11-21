@@ -3,11 +3,11 @@
 title Sequence Diagram - Login Sistem Manajemen Haji
 
 actor User
-participant "Halaman Login\n(index.php)" as LoginPage
-participant "proses_login.php" as LoginProcess
+participant "Halaman Login" as LoginPage
+participant "sistem" as LoginProcess
 participant "Database" as DB
-participant "Admin Dashboard\n(sideMenu.php)" as AdminDash
-participant "User Dashboard\n(sideMenu2.php)" as UserDash
+participant "Admin Dashboard" as AdminDash
+participant "User Dashboard" as UserDash
 
 User -> LoginPage: Akses halaman login
 LoginPage -> User: Tampilkan form login (email, password)
@@ -25,12 +25,14 @@ alt Admin ditemukan
     
     alt Password benar
         LoginProcess -> LoginProcess: Set session (id, nama, email, role='admin')
-        LoginProcess -> AdminDash: Redirect ke sideMenu.php
+        LoginProcess -> AdminDash: Redirect ke tampilan admin
         AdminDash --> User: Tampilkan dashboard admin
     else Password salah
-        LoginProcess -> LoginProcess: Check tabel pengguna
+LoginProcess -> LoginPage: Redirect dengan alert "Email atau Password salah!"
     end
 else Admin tidak ditemukan
+LoginProcess -> LoginPage: Redirect dengan alert "Email atau Password salah!"
+LoginProcess -> LoginProcess: Check tabel pengguna
     LoginProcess -> DB: SELECT * FROM pengguna WHERE email=?
     DB --> LoginProcess: Return pengguna record (jika ada)
     
