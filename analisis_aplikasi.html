@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analisis Kelebihan dan Kekurangan Aplikasi Jamaah Haji</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #004d99;
+        }
+        section {
+            background: white;
+            border-radius: 8px;
+            padding: 15px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);
+        }
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Analisis Kelebihan dan Kekurangan Aplikasi Jamaah Haji</h1>
+    <section>
+        <h2>Pendahuluan</h2>
+        <p>Dokumen ini menjelaskan kelebihan dan kekurangan aplikasi manajemen Jamaah Haji yang Anda miliki. Aplikasi ini memiliki fitur utama pengelolaan data jamaah, pembimbing, autentikasi pengguna, dan beberapa fungsi pendukung lainnya.</p>
+    </section>
+
+    <section>
+        <h2>Kelebihan Aplikasi</h2>
+        <ul>
+            <li><strong>Struktur Folder yang Terorganisir:</strong> File aplikasi terpisah secara cukup baik antara backend, frontend (contern), dan query database, memudahkan pemeliharaan.</li>
+            <li><strong>Penggunaan Bootstrap:</strong> Mempermudah pembuatan UI yang responsif dan tampilan yang konsisten.</li>
+            <li><strong>Form Input Lengkap untuk Data Jamaah:</strong> Menyediakan berbagai field yang lengkap dan validasi sederhana di sisi front-end seperti input wajib dan format tertentu.</li>
+            <li><strong>Modular Query Database:</strong> Query untuk operasi database ditempatkan di folder khusus (backend/query), memudahkan pengelolaan query dan logika database.</li>
+            <li><strong>Koneksi Database yang Sederhana dan Efisien:</strong> File koneksi database menggunakan mysqli dengan error handling sederhana, cukup untuk aplikasi skala ringan hingga menengah.</li>
+            <li><strong>Fitur Upload Foto:</strong> User dapat melakukan upload foto jamaah dengan preview gambar, meningkatkan user experience.</li>
+            <li><strong>Form Login dengan Fitur Lupa Password:</strong> Menunjukkan adanya manajemen autentikasi dasar yang penting untuk keamanan aplikasi.</li>
+            <li><strong>Penggunaan PHP Standar:</strong> Membuat aplikasi kompatibel dengan berbagai hosting karena menggunakan PHP dan MySQL standar.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Kekurangan dan Area yang Bisa Ditingkatkan</h2>
+        <ul>
+            <li><strong>Keamanan Koneksi Database:</strong> Penggunaan user root tanpa password pada koneksi database sangat tidak aman. Disarankan membuat user khusus dengan hak akses terbatas.</li>
+            <li><strong>Manajemen Session atau Autentikasi:</strong> Tidak terlihat adanya penggunaan session atau middleware untuk menjaga halaman yang hanya boleh diakses user terautentikasi.</li>
+            <li><strong>Pemisahan Logika dan Tampilan:</strong> Banyak kode PHP yang tercampur langsung di file HTML, membuat pemeliharaan dan pengembangan lebih sulit. Bisa dipertimbangkan arsitektur MVC atau penggunaan template engine.</li>
+            <li><strong>Validasi Data di Server:</strong> Validasi form saat ini hanya sisi client, perlu ditambah validasi di backend untuk keamanan dan integritas data.</li>
+            <li><strong>Pemrosesan Upload File:</strong> Perlu ditambah pengecekan tipe file dan ukuran secara lebih ketat untuk mencegah potensi penyalahgunaan.</li>
+            <li><strong>Manajemen Error dan Logging:</strong> Tidak terlihat adanya mekanisme log error atau feedback kesalahan kepada pengguna dengan detail.</li>
+            <li><strong>Penggunaan Prepared Statements:</strong> Query database harus menggunakan prepared statements untuk menghindari serangan SQL Injection.</li>
+            <li><strong>Penggunaan Password Hashing:</strong> Proses login perlu memastikan password tersimpan dan dicek dalam bentuk hash, bukan teks asli.</li>
+            <li><strong>Penggunaan Framework:</strong> Penggunaan framework PHP seperti Laravel atau CodeIgniter dapat mempercepat pengembangan dan meningkatkan standar keamanan serta manajemen kode.</li>
+            <li><strong>Dokumentasi Kode:</strong> Perlu penambahan komentar dan dokumentasi fungsi agar memudahkan developer lain memahami kode.</li>
+            <li><strong>Responsivitas Halaman Tambah Jamaah:</strong> Perlu diperhatikan agar form tambah jamaah tetap user-friendly di perangkat mobile.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Kesimpulan dan Rekomendasi</h2>
+        <p>Aplikasi sudah memiliki fondasi yang baik untuk manajemen jamaah haji dengan berbagai fitur dasar. Namun untuk meningkatkan kualitas, keamanan, dan kemudahan pemeliharaan, disarankan untuk menerapkan best practice seperti penggunaan user database terbatas, session management, prepared statements, validasi backend, dan pemisahan logika/tampilan dengan arsitektur MVC atau framework PHP.</p>
+        <p>Peningkatan tersebut akan membuat aplikasi lebih aman, scalable, dan mudah dikembangkan di masa depan.</p>
+    </section>
+    <section>
+        <h2>Perbandingan dengan Aplikasi Serupa</h2>
+        <p>Jika dibandingkan dengan aplikasi manajemen jamaah haji atau aplikasi sejenis yang sudah ada, berikut beberapa poin perbandingannya:</p>
+        <ul>
+            <li><strong>Fitur Dasar:</strong> Aplikasi Anda sudah memenuhi fitur dasar seperti autentikasi pengguna, manajemen data jamaah dan pembimbing, serta upload foto. Aplikasi serupa biasanya juga menyediakan fitur tambahan seperti pelacakan jadwal secara real-time dan integrasi dengan sistem lain, misalnya sistem pembayaran atau notifikasi.</li>
+            <li><strong>Kemanan:</strong> Aplikasi komersial umumnya sudah menerapkan standar keamanan yang lebih ketat, termasuk penggunaan session management yang baik, hashing password, validasi backend lengkap, dan perlindungan terhadap serangan umum seperti SQL Injection dan XSS. Ini masih perlu ditingkatkan di aplikasi Anda.</li>
+            <li><strong>Pengalaman Pengguna (UX):</strong> Aplikasi profesional biasanya memiliki UI/UX yang lebih halus dengan navigasi yang intuitif dan responsif di berbagai perangkat. Penggunaan Bootstrap sudah bagus, namun perlu pengujian dan penyempurnaan agar lebih user-friendly, terutama di perangkat mobile.</li>
+            <li><strong>Struktur dan Skalabilitas Kode:</strong> Banyak aplikasi sejenis menggunakan framework PHP modern (Laravel, CodeIgniter) atau arsitektur MVC. Ini membantu dalam pemisahan logika dan tampilan, memudahkan pengembangan berkelanjutan dan kolaborasi tim. Aplikasi Anda bisa ditingkatkan dengan menerapkan pola serupa.</li>
+            <li><strong>Dukungan Pengembangan dan Dokumentasi:</strong> Aplikasi komersial biasanya memiliki dokumentasi yang lengkap dan sistem logging/error handling yang baik. Ini membantu dalam pemeliharaan dan troubleshooting yang lebih cepat.</li>
+        </ul>
+        <p>Secara keseluruhan, aplikasi Anda sudah memiliki fondasi yang baik pada fitur dan struktur dasar. Dengan beberapa peningkatan terutama pada aspek keamanan, validasi, dan penggunaan arsitektur kode yang lebih modern, aplikasi Anda bisa sejajar atau bahkan unggul dibanding aplikasi serupa di pasaran.</p>
+    </section>
+    <section>
+        <h2>Perbandingan dengan Web Kementerian Agama (Kemenag)</h2>
+        <p>Jika dibandingkan dengan situs dan sistem resmi Kementerian Agama (Kemenag) yang menangani manajemen jamaah haji, berikut beberapa hal yang dapat dicermati:</p>
+        <ul>
+            <li><strong>Skala dan Infrastruktur:</strong> Web Kemenag biasanya menggunakan infrastruktur yang lebih besar dan terintegrasi dengan berbagai sistem lain, seperti sistem pendaftar haji nasional, sistem pembayaran, dan sistem pelaporan resmi.</li>
+            <li><strong>Standar Keamanan Tinggi:</strong> Kemenag menerapkan protokol keamanan yang lebih ketat dengan sistem autentikasi berlapis (misalnya OTP, captcha), enkripsi data, dan audit logging yang terintegrasi.</li>
+            <li><strong>Fitur Lengkap dan Kompleks:</strong> Situs Kemenag menyediakan fitur tidak hanya untuk manajemen jamaah, tapi juga pelaporan, monitoring kuota haji, fitur bagi petugas lapangan, dan lain-lain yang belum terdapat di aplikasi Anda.</li>
+            <li><strong>Tampilan dan UX Profesional:</strong> UI/UX pada situs resmi biasanya lebih disesuaikan dengan standar usability tingkat nasional dengan tampilan yang ramah pengguna dan responsif di berbagai perangkat.</li>
+            <li><strong>Pemeliharaan dan Pembaruan Berkala:</strong> Web Kemenag dikelola oleh tim profesional dengan siklus pengembangan dan pembaruan berkala untuk mengikuti regulasi dan kebutuhan pengguna.</li>
+            <li><strong>Penggunaan Teknologi Modern dan Framework:</strong> Kemenag cenderung menggunakan teknologi dan framework yang mutakhir untuk memastikan skalabilitas, keamanan, dan kemudahan pengelolaan kode.</li>
+        </ul>
+        <p>Secara keseluruhan, aplikasi Anda sudah bagus sebagai sistem manajemen jamaah haji tingkat lokal atau skala kecil sampai menengah. Namun untuk menyaingi atau menyamai sistem resmi Kemenag, perlu pengembangan berkelanjutan di aspek keamanan, integrasi sistem, cakupan fitur, dan standar user experience serta infrastruktur teknis.</p>
+    </section>
+</body>
+</html>
