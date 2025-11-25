@@ -25,7 +25,7 @@ include '../backend/database.php';
         <h4 class="text-center"><i class="bi bi-person"></i> Pengguna</h4>
         <a href="daftar_pengguna.php" target="ContenFrame"><i class="bi bi-house-door-fill"></i>Home</a>
         <a href="profil.php" target="ContenFrame"><i class="bi bi-person-circle"></i>Profil</a>
-        <a href="penbingbing.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Tour Guide</a>
+        <a href="penbingbing.php" target="ContenFrame"><i class="bi bi-person-badge"></i>Pembimbing (KBIH)</a>
         <a href="../cara_daftar_haji.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Gimana Cara Daftar Haji ?</a>
         <a href="berita/berita.php" target="ContenFrame"><i class="bi bi-newspaper"></i>Berita</a>
         <a href="status/index.php" target="ContenFrame"><i class="bi bi-calendar-check"></i>Status</a>

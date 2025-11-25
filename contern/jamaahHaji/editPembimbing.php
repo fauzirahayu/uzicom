@@ -75,7 +75,7 @@ $data = $result->fetch_assoc();
       <div class="row justify-content-center">
         <div class="col-lg-10">
           <div class="card card-form">
-            <h3 class="form-title"><i class="bi bi-person-badge"></i> Edit Pembimbing</h3>
+            <h3 class="form-title"><i class="bi bi-person-badge"></i> Edit Pembimbing (KBIH)</h3>
             <form action="../../backend/query/updatePembimbing.php" method="POST" enctype="multipart/form-data">
               <input type="hidden" name="id" value="<?php echo $data['id']; ?>" />
               <div class="row g-4">

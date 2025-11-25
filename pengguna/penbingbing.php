@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../contern/css/pembimbing.css" />
 </head>
 <body>
-    <div class="header"><i class="bi bi-person-badge"></i> Data Pembimbing Haji</div>
+    <div class="header"><i class="bi bi-person-badge"></i> Data Pembimbing (KBIH)</div>
     <div class="container">
         <div class="row">
             <?php

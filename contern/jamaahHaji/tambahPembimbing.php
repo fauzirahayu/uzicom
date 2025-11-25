@@ -44,7 +44,7 @@
 </head>
 <body>
     <div class="card-form">
-        <h3 class="form-title"><i class="bi bi-person-badge"></i> Tambah Pembimbing</h3>
+        <h3 class="form-title"><i class="bi bi-person-badge"></i> Tambah Pembimbing (KBIH)</h3>
         <form action="../../backend/query/addPembimbing.php" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 mb-3">
